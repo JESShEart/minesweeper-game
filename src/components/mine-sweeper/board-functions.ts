@@ -1,5 +1,5 @@
-import Position from "../position";
-import Square from "../square/square";
+import Position from "./position";
+import Square from "./square/square";
 
 function realPosition({ x, y }: Position, boardSize: number): boolean {
     return x >= 0 && y >= 0 && x < boardSize && y < boardSize;
@@ -28,6 +28,37 @@ function getAdjacentSquares(position: Position, squares: Square[][]): Square[] {
     return getAdjacentPositions(position, squares.length).map(
         ({ x, y }) => squares[y][x]
     );
+}
+
+function getAdjacentSquaresToReveal(
+    position: Position,
+    squares: Square[][]
+): Square[] {
+    return getAdjacentSquares(position, squares).filter(square =>
+        square.mine ? false : !square.revealed
+    );
+}
+
+function revealPosition(position: Position, squares: Square[][]): Square[][] {
+    return squares.map((row, y) =>
+        row.map((square, x) => ({
+            ...square,
+            revealed: (position.x === x && position.y === y) || square.revealed
+        }))
+    );
+}
+
+export function reveal(position: Position, squares: Square[][]): Square[][] {
+    const positionRevealed = revealPosition(position, squares);
+    const square = positionRevealed[position.y][position.x];
+    if (!square.mine && square.adjacentMines === 0) {
+        return getAdjacentSquaresToReveal(position, positionRevealed).reduce(
+            (accumulator, { position }) => reveal(position, accumulator),
+            positionRevealed
+        );
+    } else {
+        return positionRevealed;
+    }
 }
 
 function getAdjacentMines(position: Position, squares: Square[][]): number {

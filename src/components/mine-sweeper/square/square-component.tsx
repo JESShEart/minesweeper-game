@@ -1,13 +1,17 @@
 import { FunctionalComponent, h } from "preact";
-import { useState } from "preact/hooks";
 import * as style from "./style.css";
 import Square from "./square";
+import Position from "../position";
 
-const SquareComponent: FunctionalComponent<Square> = (props: Square) => {
-    const { mine, adjacentMines } = props;
-    const [revealed, setRevealed] = useState<boolean>(props.revealed);
+interface Props {
+    square: Square;
+    reveal: (position: Position) => void;
+}
 
-    const reveal = () => setRevealed(true);
+const SquareComponent: FunctionalComponent<Props> = (props: Props) => {
+    const { mine, adjacentMines, position, revealed } = props.square;
+
+    const reveal = () => props.reveal(position);
 
     const hiddenSquare = () => <button class={style.square} onClick={reveal} />;
 
