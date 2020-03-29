@@ -1,11 +1,54 @@
 import { Reducer } from "preact/hooks";
-import Square from "./square/square";
 import Position from "./position";
-import { reveal } from "./board-functions";
+import { createBoard, getStatus, reveal, revealMines } from "./board-functions";
+import { Game } from "./game";
 
-export const boardReducer: Reducer<Square[][], Position> = (
-    squares,
-    position
+export class RevealSquare {
+    readonly type = "REVEAL";
+    payload: Position;
+    constructor(payload: Position) {
+        this.payload = payload;
+    }
+}
+
+function revealAction(game: Game, position: Position): Game {
+    const revealedBoard = reveal(position, game.board);
+    const status = getStatus(revealedBoard);
+    const failed = status === "FAIL";
+    const board = failed ? revealMines(revealedBoard) : revealedBoard;
+    return { board, status };
+}
+
+export interface ResetPayload {
+    size: number;
+    mineRatio: number;
+}
+
+export class ResetGame {
+    readonly type = "RESET";
+    payload: ResetPayload;
+    constructor(payload: ResetPayload) {
+        this.payload = payload;
+    }
+}
+
+export function resetAction({ size, mineRatio }: ResetPayload): Game {
+    const board = createBoard(size, mineRatio);
+    const status = getStatus(board);
+    console.log(status);
+    return { board, status };
+}
+
+type BoardAction = RevealSquare | ResetGame;
+
+export const boardReducer: Reducer<Game, BoardAction> = (
+    game,
+    action: BoardAction
 ) => {
-    return reveal(position, squares);
+    if (action.type === "REVEAL") {
+        return revealAction(game, action.payload);
+    } else {
+        console.log(game.status);
+        return resetAction(action.payload);
+    }
 };

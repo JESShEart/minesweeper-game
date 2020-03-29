@@ -16,7 +16,8 @@
     cursor: pointer;
 }
 
-.square:focus, .square:hover {
+.square:not([disabled]):focus,
+.square:not([disabled]):hover {
     background: gray;
 }
 

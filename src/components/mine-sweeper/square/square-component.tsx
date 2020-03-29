@@ -1,19 +1,23 @@
 import { FunctionalComponent, h } from "preact";
 import * as style from "./style.css";
 import Square from "./square";
-import Position from "../position";
+import { RevealSquare } from "../board-reducer";
 
 interface Props {
+    finished: boolean;
     square: Square;
-    reveal: (position: Position) => void;
+    reveal: (revealSquare: RevealSquare) => void;
 }
 
 const SquareComponent: FunctionalComponent<Props> = (props: Props) => {
-    const { mine, adjacentMines, position, revealed } = props.square;
+    const { finished, square } = props;
+    const { mine, adjacentMines, position, revealed } = square;
 
-    const reveal = () => props.reveal(position);
+    const reveal = () => props.reveal(new RevealSquare(position));
 
-    const hiddenSquare = () => <button class={style.square} onClick={reveal} />;
+    const hiddenSquare = () => (
+        <button disabled={finished} class={style.square} onClick={reveal} />
+    );
 
     const adjacentMinesOrBlank = () => adjacentMines || "";
 
