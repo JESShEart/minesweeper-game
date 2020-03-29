@@ -1,0 +1,30 @@
+.square,
+.revealed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid black;
+}
+
+.square {
+    padding: 0;
+    outline: 0;
+    background: lightgray;
+    cursor: pointer;
+}
+
+.square:focus, .square:hover {
+    background: gray;
+}
+
+.revealed {
+    cursor: default;
+    background: white;
+}
+
+img {
+    background: #ff9999;
+}
