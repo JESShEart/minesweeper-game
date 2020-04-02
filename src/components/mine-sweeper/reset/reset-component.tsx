@@ -14,7 +14,6 @@ const ResetComponent: FunctionalComponent<Props> = (props: Props) => {
 
     const reset = (e: h.JSX.TargetedEvent): void => {
         e.preventDefault();
-        console.log({ size, mineRatio });
         dispatch(new ResetGame({ size, mineRatio }));
     };
 

@@ -1,8 +1,9 @@
 import Position from "./position";
 import Square from "./square/square";
 import { GameStatus } from "./game";
+import { square } from "./square/style.css";
 
-function realPosition({ x, y }: Position, boardSize: number): boolean {
+export function realPosition({ x, y }: Position, boardSize: number): boolean {
     return x >= 0 && y >= 0 && x < boardSize && y < boardSize;
 }
 
@@ -49,6 +50,45 @@ function revealPosition(position: Position, squares: Square[][]): Square[][] {
     );
 }
 
+function getFirstBlankSquareWithAdjacentToReveal(
+    revealed: Square[],
+    squares: Square[][],
+): Position | undefined {
+    const square = revealed.find(
+        square =>
+            square.revealed &&
+            square.adjacentMines === 0 &&
+            getAdjacentSquaresToReveal(square.position, squares).length > 0
+    );
+    return square && square.position;
+}
+
+function getPositionToReveal(
+    revealed: Square[],
+    squares: Square[][]
+): Position | undefined {
+    const position = getFirstBlankSquareWithAdjacentToReveal(revealed, squares);
+    return position
+        ? getAdjacentSquaresToReveal(position, squares)[0].position
+        : undefined;
+}
+
+export function revealLoop(
+    position: Position | undefined,
+    squares: Square[][]
+): Square[][] {
+    let revealed: Square[] = [];
+    while (position) {
+        squares = revealPosition(position, squares);
+        if (getAdjacentSquaresToReveal(position, squares).length > 0) {
+            revealed = [...revealed, squares[position.y][position.x]];
+        }
+        position = getPositionToReveal(revealed, squares);
+    }
+    return squares;
+}
+
+// recursive reveal, not well performing with its current impl
 export function reveal(position: Position, squares: Square[][]): Square[][] {
     const positionRevealed = revealPosition(position, squares);
     const square = positionRevealed[position.y][position.x];

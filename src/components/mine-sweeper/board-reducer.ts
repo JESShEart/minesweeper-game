@@ -1,6 +1,11 @@
 import { Reducer } from "preact/hooks";
 import Position from "./position";
-import { createBoard, getStatus, reveal, revealMines } from "./board-functions";
+import {
+    createBoard,
+    getStatus,
+    revealLoop,
+    revealMines
+} from "./board-functions";
 import { Game } from "./game";
 
 export class RevealSquare {
@@ -12,7 +17,7 @@ export class RevealSquare {
 }
 
 function revealAction(game: Game, position: Position): Game {
-    const revealedBoard = reveal(position, game.board);
+    const revealedBoard = revealLoop(position, game.board);
     const status = getStatus(revealedBoard);
     const failed = status === "FAIL";
     const board = failed ? revealMines(revealedBoard) : revealedBoard;
@@ -35,11 +40,10 @@ export class ResetGame {
 export function resetAction({ size, mineRatio }: ResetPayload): Game {
     const board = createBoard(size, mineRatio);
     const status = getStatus(board);
-    console.log(status);
     return { board, status };
 }
 
-type BoardAction = RevealSquare | ResetGame;
+export type BoardAction = RevealSquare | ResetGame;
 
 export const boardReducer: Reducer<Game, BoardAction> = (
     game,
@@ -48,7 +52,6 @@ export const boardReducer: Reducer<Game, BoardAction> = (
     if (action.type === "REVEAL") {
         return revealAction(game, action.payload);
     } else {
-        console.log(game.status);
         return resetAction(action.payload);
     }
 };
