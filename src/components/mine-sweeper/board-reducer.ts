@@ -19,7 +19,7 @@ export class RevealSquare {
 function revealAction(game: Game, position: Position): Game {
     const revealedBoard = revealLoop(position, game.board);
     const status = getStatus(revealedBoard);
-    const failed = status === "FAIL";
+    const failed = status === "FAIL" || status === "WIN";
     const board = failed ? revealMines(revealedBoard) : revealedBoard;
     return { board, status };
 }

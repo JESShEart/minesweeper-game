@@ -1,8 +1,10 @@
 import Position from "../position";
 
-export default interface Square {
-    readonly position: Position;
-    readonly revealed: boolean;
-    readonly mine: boolean;
-    readonly adjacentMines: number;
+interface Square {
+    position: Position;
+    revealed: boolean;
+    mine: boolean;
+    adjacentMines: number;
 }
+
+export default Square;
