@@ -1,28 +1,39 @@
-import { FunctionalComponent, h } from "preact";
+import { h } from "preact";
 import Square from "../square/square";
 import SquareComponent from "../square/square-component";
 import * as style from "./style.css";
 import { Game } from "../game";
+import { RevealSquare } from "../board-reducer";
 
 interface Props {
     game: Game;
-    dispatch: any;
+    reveal: (revealSquare: RevealSquare) => void;
 }
 
-const BoardComponent: FunctionalComponent<Props> = ({ game, dispatch }: Props) => {
+function BoardComponent(props: Props): h.JSX.Element {
+    const { game, reveal } = props;
     const { status, board } = game;
-
     const finished = status === "FAIL";
 
-    const renderSquare = (square: Square) => (
-        <SquareComponent square={square} reveal={dispatch} finished={finished} />
-    );
+    function renderSquare(square: Square): h.JSX.Element {
+        return (
+            <SquareComponent
+                square={square}
+                reveal={reveal}
+                finished={finished}
+            />
+        );
+    }
 
-    const renderRow = (row: Square[]) => (
-        <div class={style.row}>{row.map(square => renderSquare(square))}</div>
-    );
+    function renderRow(row: Square[]): h.JSX.Element {
+        return (
+            <div class={style.row}>
+                {row.map(square => renderSquare(square))}
+            </div>
+        );
+    }
 
     return <div class={style.board}>{board.map(row => renderRow(row))}</div>;
-};
+}
 
 export default BoardComponent;

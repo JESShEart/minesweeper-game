@@ -1,10 +1,7 @@
-import { FunctionalComponent, h } from "preact";
+import { h } from "preact";
 import * as style from "./style.css";
 
-interface Props {
-}
-
-const Profile: FunctionalComponent<Props> = (props: Props) => {
+function StatsComponent(): h.JSX.Element {
     return (
         <div class={style.profile}>
             <div>
@@ -13,6 +10,6 @@ const Profile: FunctionalComponent<Props> = (props: Props) => {
             </div>
         </div>
     );
-};
+}
 
-export default Profile;
+export default StatsComponent;

@@ -1,6 +1,6 @@
 {
-  "name": "feedback-experiment",
-  "short_name": "feedback-experiment",
+  "name": "mine-sweeper",
+  "short_name": "mine-sweeper",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
