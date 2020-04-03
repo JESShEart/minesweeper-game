@@ -1,15 +1,19 @@
 import Position from "./position";
 import Square from "./square/square";
 import { GameStatus } from "./game";
-import { square } from "./square/style.css";
 
-export function realPosition({ x, y }: Position, boardSize: number): boolean {
-    return x >= 0 && y >= 0 && x < boardSize && y < boardSize;
+export function realPosition(
+    { x, y }: Position,
+    width: number,
+    height: number
+): boolean {
+    return x >= 0 && y >= 0 && x < width && y < height;
 }
 
 function getAdjacentPositions(
     { x, y }: Position,
-    boardSize: number
+    width: number,
+    height: number
 ): Position[] {
     return [
         // row above
@@ -23,13 +27,15 @@ function getAdjacentPositions(
         { x: x - 1, y: y + 1 },
         { x, y: y + 1 },
         { x: x + 1, y: y + 1 }
-    ].filter(position => realPosition(position, boardSize));
+    ].filter(position => realPosition(position, width, height));
 }
 
 function getAdjacentSquares(position: Position, squares: Square[][]): Square[] {
-    return getAdjacentPositions(position, squares.length).map(
-        ({ x, y }) => squares[y][x]
-    );
+    return getAdjacentPositions(
+        position,
+        squares[0].length,
+        squares.length
+    ).map(({ x, y }) => squares[y][x]);
 }
 
 function getAdjacentSquaresToReveal(
@@ -52,7 +58,7 @@ function revealPosition(position: Position, squares: Square[][]): Square[][] {
 
 function getFirstBlankSquareWithAdjacentToReveal(
     revealed: Square[],
-    squares: Square[][],
+    squares: Square[][]
 ): Position | undefined {
     const square = revealed.find(
         square =>
@@ -88,21 +94,6 @@ export function revealLoop(
     return squares;
 }
 
-// recursive reveal, not well performing with its current impl
-export function reveal(position: Position, squares: Square[][]): Square[][] {
-    const positionRevealed = revealPosition(position, squares);
-    const square = positionRevealed[position.y][position.x];
-    const shouldRevealAdjacent = !square.mine && square.adjacentMines === 0;
-    if (shouldRevealAdjacent) {
-        return getAdjacentSquaresToReveal(position, positionRevealed).reduce(
-            (accumulator, { position }) => reveal(position, accumulator),
-            positionRevealed
-        );
-    } else {
-        return positionRevealed;
-    }
-}
-
 export function getStatus(squares: Square[][]): GameStatus {
     const mineRevealed = squares.find(row =>
         row.find(square => square.revealed && square.mine)
@@ -130,7 +121,7 @@ export function revealMines(squares: Square[][]): Square[][] {
 function getAdjacentMines(position: Position, squares: Square[][]): number {
     return getAdjacentSquares(position, squares).reduce(
         (adjacentMines, { mine }) => (mine ? adjacentMines + 1 : adjacentMines),
-        0
+        squares[position.y][position.x].mine ? 1 : 0
     );
 }
 
