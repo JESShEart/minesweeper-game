@@ -43,11 +43,11 @@ function getAdjacentSquares(position: Position, squares: Square[][]): Square[] {
 }
 
 function getAdjacentSquaresToReveal(
-    position: Position,
+    { position }: Square,
     squares: Square[][]
 ): Square[] {
-    return getAdjacentSquares(position, squares).filter(square =>
-        square.mine ? false : !square.revealed
+    return getAdjacentSquares(position, squares).filter(s =>
+        s.mine ? false : !s.revealed
     );
 }
 
@@ -58,7 +58,7 @@ function getPositionToReveal(
     let adjacentSquareToReveal: Square | undefined = undefined;
     revealedSquaresWithAdjacentSquaresToReveal.find(square => {
         const adjacentSquaresToReveal = getAdjacentSquaresToReveal(
-            square.position,
+            square,
             squares
         );
 
@@ -77,7 +77,7 @@ function hasAdjacentSquaresToReveal(
 ): boolean {
     return (
         square.adjacentMines === 0 &&
-        getAdjacentSquaresToReveal(square.position, squares).length > 0
+        getAdjacentSquaresToReveal(square, squares).length > 0
     );
 }
 
