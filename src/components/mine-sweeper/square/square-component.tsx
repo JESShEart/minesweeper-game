@@ -1,20 +1,21 @@
 import { h } from "preact";
 import * as style from "./style.css";
-import Square from "./square";
-import { RevealSquare } from "../board-reducer";
+import Square from "../types/square";
+import { GameDispatch } from "../game-action";
+import revealAction from "../reveal-action";
 
 interface Props {
     finished: boolean;
     square: Square;
-    reveal: (revealSquare: RevealSquare) => void;
+    dispatch: GameDispatch;
 }
 
-function SquareComponent(props: Props): h.JSX.Element {
-    const { finished, square } = props;
-    const { mine, adjacentMines, position, revealed } = square;
+export default function SquareComponent(props: Props): h.JSX.Element {
+    const { finished, square, dispatch } = props;
+    const { mine, adjacentMines, revealed } = square;
 
     function reveal(): void {
-        props.reveal(new RevealSquare(position));
+        dispatch(revealAction(square));
     }
 
     function hiddenSquare(): h.JSX.Element {
@@ -35,5 +36,3 @@ function SquareComponent(props: Props): h.JSX.Element {
 
     return <div>{revealed ? revealedSquare() : hiddenSquare()}</div>;
 }
-
-export default SquareComponent;

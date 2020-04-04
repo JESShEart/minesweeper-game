@@ -1,20 +1,26 @@
 import { h } from "preact";
 import { useReducer } from "preact/hooks";
-import { boardReducer, resetAction } from "../board-reducer";
+import gameReducer from "../game-action";
 import BoardComponent from "../board/board-component";
 import ResetComponent from "../reset/reset-component";
-import { Game } from "../game";
+import Game from "../types/game";
+import { createBoard } from "../functions/create-board";
+import getStatus from "../functions/get-status";
 
-const initialGame: Game = resetAction({ size: 10, mineRatio: 8 });
+function newGame(): Game {
+    const board = createBoard(10, 10, 8);
+    const status = getStatus(board);
+    return { board, status };
+}
 
 function GameComponent(): h.JSX.Element {
-    const [game, dispatch] = useReducer(boardReducer, initialGame);
+    const [game, dispatch] = useReducer(gameReducer, newGame());
 
     return (
         <div>
             <span>Game Status: {game.status}</span>
             <ResetComponent dispatch={dispatch} />
-            <BoardComponent game={game} reveal={dispatch} />
+            <BoardComponent game={game} dispatch={dispatch} />
         </div>
     );
 }

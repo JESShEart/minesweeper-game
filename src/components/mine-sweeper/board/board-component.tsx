@@ -1,17 +1,17 @@
 import { h } from "preact";
-import Square from "../square/square";
+import Square from "../types/square";
 import SquareComponent from "../square/square-component";
 import * as style from "./style.css";
-import { Game } from "../game";
-import { RevealSquare } from "../board-reducer";
+import Game from "../types/game";
+import { GameDispatch } from "../game-action";
 
 interface Props {
     game: Game;
-    reveal: (revealSquare: RevealSquare) => void;
+    dispatch: GameDispatch;
 }
 
 function BoardComponent(props: Props): h.JSX.Element {
-    const { game, reveal } = props;
+    const { game, dispatch } = props;
     const { status, board } = game;
     const finished = status === "FAIL";
 
@@ -19,8 +19,8 @@ function BoardComponent(props: Props): h.JSX.Element {
         return (
             <SquareComponent
                 square={square}
-                reveal={reveal}
                 finished={finished}
+                dispatch={dispatch}
             />
         );
     }

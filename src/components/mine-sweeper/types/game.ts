@@ -1,8 +1,8 @@
-import Square from "./square/square";
+import Square from "./square";
 
 export type GameStatus = "PLAY" | "WIN" | "FAIL";
 
-export interface Game {
+export default interface Game {
     status: GameStatus;
     board: Square[][];
 }

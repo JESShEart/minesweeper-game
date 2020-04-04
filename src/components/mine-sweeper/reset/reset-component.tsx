@@ -1,10 +1,11 @@
 import { FunctionalComponent, h } from "preact";
-import { ResetGame } from "../board-reducer";
+import { GameDispatch } from "../game-action";
 import * as style from "./style.css";
 import { useState } from "preact/hooks";
+import resetAction from "../reset-action";
 
 interface Props {
-    dispatch: (resetGame: ResetGame) => void;
+    dispatch: GameDispatch;
 }
 
 const ResetComponent: FunctionalComponent<Props> = (props: Props) => {
@@ -14,7 +15,7 @@ const ResetComponent: FunctionalComponent<Props> = (props: Props) => {
 
     const reset = (e: h.JSX.TargetedEvent): void => {
         e.preventDefault();
-        dispatch(new ResetGame({ size, mineRatio }));
+        dispatch(resetAction(size, size, mineRatio));
     };
 
     const numberValue = (e: any): number => +e.target.value || 1;
