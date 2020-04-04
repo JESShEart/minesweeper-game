@@ -52,15 +52,11 @@ function getAdjacentSquaresToReveal(
 }
 
 function getPositionToReveal(
-    revealed: Square[],
+    revealedSquaresWithAdjacentSquaresToReveal: Square[],
     squares: Square[][]
 ): Square | undefined {
     let adjacentSquareToReveal: Square | undefined = undefined;
-    revealed.find(square => {
-        if (square.adjacentMines !== 0) {
-            return false;
-        }
-
+    revealedSquaresWithAdjacentSquaresToReveal.find(square => {
         const adjacentSquaresToReveal = getAdjacentSquaresToReveal(
             square.position,
             squares
@@ -75,19 +71,39 @@ function getPositionToReveal(
     return adjacentSquareToReveal;
 }
 
+function hasAdjacentSquaresToReveal(
+    square: Square,
+    squares: Square[][]
+): boolean {
+    return (
+        square.adjacentMines === 0 &&
+        getAdjacentSquaresToReveal(square.position, squares).length > 0
+    );
+}
+
 export function revealLoop(
     position: Position,
     squares: Square[][]
 ): Square[][] {
     let square: Square | undefined = getSquare(squares, position);
-    let revealed: Square[] = [];
+    let revealedSquaresWithAdjacentSquaresToReveal: Square[] = [];
     while (square) {
         square.revealed = true;
         position = square.position;
-        if (getAdjacentSquaresToReveal(position, squares).length > 0) {
-            revealed = [...revealed, getSquare(squares, position)];
+        if (hasAdjacentSquaresToReveal(square, squares)) {
+            revealedSquaresWithAdjacentSquaresToReveal = [
+                ...revealedSquaresWithAdjacentSquaresToReveal,
+                square
+            ];
+        } else {
+            revealedSquaresWithAdjacentSquaresToReveal = revealedSquaresWithAdjacentSquaresToReveal.filter(
+                s => s !== square
+            );
         }
-        square = getPositionToReveal(revealed, squares);
+        square = getPositionToReveal(
+            revealedSquaresWithAdjacentSquaresToReveal,
+            squares
+        );
     }
     return squares;
 }
