@@ -57,16 +57,20 @@ function getPositionToReveal(
 ): Square | undefined {
     let adjacentSquareToReveal: Square | undefined = undefined;
     revealed.find(square => {
-        const adjacentSquaresToReveal =
-            square.adjacentMines === 0
-                ? getAdjacentSquaresToReveal(square.position, squares)
-                : [];
-        if (adjacentSquaresToReveal.length > 0) {
-            adjacentSquareToReveal = adjacentSquaresToReveal[0];
-            return true;
-        } else {
+        if (square.adjacentMines !== 0) {
             return false;
         }
+
+        const adjacentSquaresToReveal = getAdjacentSquaresToReveal(
+            square.position,
+            squares
+        );
+
+        adjacentSquareToReveal = adjacentSquaresToReveal.length
+            ? adjacentSquaresToReveal[0]
+            : undefined;
+
+        return !!adjacentSquareToReveal;
     });
     return adjacentSquareToReveal;
 }
