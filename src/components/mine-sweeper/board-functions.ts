@@ -2,6 +2,10 @@ import Position from "./position";
 import Square from "./square/square";
 import { GameStatus } from "./game";
 
+function getSquare(squares: Square[][], { x, y }: Position): Square {
+    return squares[y][x];
+}
+
 export function realPosition(
     { x, y }: Position,
     width: number,
@@ -35,7 +39,7 @@ function getAdjacentSquares(position: Position, squares: Square[][]): Square[] {
         position,
         squares[0].length,
         squares.length
-    ).map(({ x, y }) => squares[y][x]);
+    ).map(position => getSquare(squares, position));
 }
 
 function getAdjacentSquaresToReveal(
@@ -47,49 +51,39 @@ function getAdjacentSquaresToReveal(
     );
 }
 
-function revealPosition(position: Position, squares: Square[][]): Square[][] {
-    return squares.map((row, y) =>
-        row.map((square, x) => ({
-            ...square,
-            revealed: (position.x === x && position.y === y) || square.revealed
-        }))
-    );
-}
-
-function getFirstBlankSquareWithAdjacentToReveal(
-    revealed: Square[],
-    squares: Square[][]
-): Position | undefined {
-    const square = revealed.find(
-        square =>
-            square.revealed &&
-            square.adjacentMines === 0 &&
-            getAdjacentSquaresToReveal(square.position, squares).length > 0
-    );
-    return square && square.position;
-}
-
 function getPositionToReveal(
     revealed: Square[],
     squares: Square[][]
-): Position | undefined {
-    const position = getFirstBlankSquareWithAdjacentToReveal(revealed, squares);
-    return position
-        ? getAdjacentSquaresToReveal(position, squares)[0].position
-        : undefined;
+): Square | undefined {
+    let adjacentSquareToReveal: Square | undefined = undefined;
+    revealed.find(square => {
+        const adjacentSquaresToReveal =
+            square.adjacentMines === 0
+                ? getAdjacentSquaresToReveal(square.position, squares)
+                : [];
+        if (adjacentSquaresToReveal.length > 0) {
+            adjacentSquareToReveal = adjacentSquaresToReveal[0];
+            return true;
+        } else {
+            return false;
+        }
+    });
+    return adjacentSquareToReveal;
 }
 
 export function revealLoop(
-    position: Position | undefined,
+    position: Position,
     squares: Square[][]
 ): Square[][] {
+    let square: Square | undefined = getSquare(squares, position);
     let revealed: Square[] = [];
-    while (position) {
-        squares = revealPosition(position, squares);
+    while (square) {
+        square.revealed = true;
+        position = square.position;
         if (getAdjacentSquaresToReveal(position, squares).length > 0) {
-            revealed = [...revealed, squares[position.y][position.x]];
+            revealed = [...revealed, getSquare(squares, position)];
         }
-        position = getPositionToReveal(revealed, squares);
+        square = getPositionToReveal(revealed, squares);
     }
     return squares;
 }
@@ -103,10 +97,10 @@ export function getStatus(squares: Square[][]): GameStatus {
         return "FAIL";
     }
 
-    const nonMineRevealed = squares.find(row =>
+    const nonMineNotRevealed = squares.find(row =>
         row.find(square => !square.revealed && !square.mine)
     );
-    return nonMineRevealed ? "PLAY" : "WIN";
+    return nonMineNotRevealed ? "PLAY" : "WIN";
 }
 
 export function revealMines(squares: Square[][]): Square[][] {
