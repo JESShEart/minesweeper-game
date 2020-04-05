@@ -1,4 +1,4 @@
-import Game from "../types/game";
+import { Game } from "../types/game";
 import { createBoard } from "../functions/create-board";
 import { GameReducer } from "../game-reducer";
 import { createGame } from "../functions/create-game";

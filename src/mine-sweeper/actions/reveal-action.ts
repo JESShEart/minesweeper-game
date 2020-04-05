@@ -1,4 +1,4 @@
-import Game from "../types/game";
+import { Game } from "../types/game";
 import Square from "../types/square";
 import { GameReducer } from "../game-reducer";
 import reveal from "../functions/reveal";

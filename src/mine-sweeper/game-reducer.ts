@@ -1,4 +1,4 @@
-import Game from "./types/game";
+import { Game } from "./types/game";
 
 export type GameReducer = (game: Game) => Game;
 

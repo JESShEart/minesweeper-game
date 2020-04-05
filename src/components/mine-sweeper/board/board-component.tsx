@@ -2,7 +2,7 @@ import { h } from "preact";
 import Square from "../../../mine-sweeper/types/square";
 import SquareComponent from "../square/square-component";
 import * as style from "./style.css";
-import Game from "../../../mine-sweeper/types/game";
+import { Game } from "../../../mine-sweeper/types/game";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 
 interface Props {
