@@ -29,12 +29,10 @@ function getAdjacentPositions(
     ].filter(position => realPosition(position, width, height));
 }
 
-function getAdjacentSquares(square: Square, squares: Square[][]): Square[] {
+export function getAdjacentSquares(square: Square, squares: Square[][]): Square[] {
     return getAdjacentPositions(
         square.position,
         squares[0].length,
         squares.length
     ).map(({ x, y }) => squares[y][x]);
 }
-
-export default getAdjacentSquares;

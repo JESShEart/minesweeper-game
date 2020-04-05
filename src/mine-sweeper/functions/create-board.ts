@@ -1,5 +1,5 @@
 import Square from "../types/square";
-import getAdjacentSquares from "./get-adjacent-squares";
+import { getAdjacentSquares } from "./get-adjacent-squares";
 
 function createEmptyBoard(height: number, width: number): Square[][] {
     return new Array<Square[]>(height).fill(

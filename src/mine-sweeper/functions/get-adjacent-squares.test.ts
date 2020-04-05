@@ -1,4 +1,4 @@
-import getAdjacentSquares from "./get-adjacent-squares";
+import { getAdjacentSquares } from "./get-adjacent-squares";
 import { createTestBoard } from "./create-board.test";
 import Square from "../types/square";
 
