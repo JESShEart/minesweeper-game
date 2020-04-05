@@ -1,6 +1,6 @@
 import Game, { GameStatus } from "../types/game";
-import getStatus from "./get-status";
-import revealMines from "./reveal-mines";
+import { getStatus } from "./get-status";
+import { revealMines } from "./reveal-mines";
 import Square from "../types/square";
 
 function finished(status: GameStatus): boolean {
@@ -14,13 +14,14 @@ function revealMinesIfFinished({ status, board }: Game): Game {
     };
 }
 
-function getGameStatus(board: Square[][]): Game {
+function createGameWithStatus(board: Square[][]): Game {
     return {
         board,
         status: getStatus(board)
     };
 }
 
-export default function createGame(board: Square[][]): Game {
-    return revealMinesIfFinished(getGameStatus(board));
+export function createGame(board: Square[][]): Game {
+    const gameWithStatus = createGameWithStatus(board);
+    return revealMinesIfFinished(gameWithStatus);
 }

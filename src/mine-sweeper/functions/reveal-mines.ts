@@ -1,6 +1,6 @@
 import Square from "../types/square";
 
-export default function revealMines(squares: Square[][]): Square[][] {
+export function revealMines(squares: Square[][]): Square[][] {
     return squares.map(row =>
         row.map(square => ({
             ...square,
