@@ -1,6 +1,6 @@
 import { h } from "preact";
 import * as style from "./style.css";
-import GameComponent from "../../components/mine-sweeper/game/game-component";
+import GameComponent from "../../components/mine-sweeper/game-component";
 
 function PlayComponent(): h.JSX.Element {
     return (

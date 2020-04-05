@@ -12,7 +12,10 @@ function createEmptyBoard(height: number, width: number): Square[][] {
     );
 }
 
-function plantMines(emptyBoard: Square[][], mineRatio: number): Square[][] {
+function setMinesAndPositions(
+    emptyBoard: Square[][],
+    mineRatio: number
+): Square[][] {
     return emptyBoard.map((row, y) =>
         row.map((square, x) => ({
             ...square,
@@ -45,6 +48,6 @@ export function createBoard(
     mineRatio: number
 ): Square[][] {
     const emptyBoard = createEmptyBoard(height, width);
-    const minedBoard = plantMines(emptyBoard, mineRatio);
+    const minedBoard = setMinesAndPositions(emptyBoard, mineRatio);
     return markAdjacentMines(minedBoard);
 }

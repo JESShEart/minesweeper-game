@@ -1,8 +1,8 @@
 import { FunctionalComponent, h } from "preact";
-import { GameDispatch } from "../game-action";
+import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 import * as style from "./style.css";
 import { useState } from "preact/hooks";
-import resetAction from "../reset-action";
+import resetAction from "../../../mine-sweeper/actions/reset-action";
 
 interface Props {
     dispatch: GameDispatch;
