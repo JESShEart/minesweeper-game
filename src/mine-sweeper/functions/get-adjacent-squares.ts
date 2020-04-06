@@ -1,5 +1,5 @@
-import Position from "../types/position";
-import Square from "../types/square";
+import { Position } from "../types/position";
+import { Square } from "../types/square";
 
 function realPosition(
     { x, y }: Position,
@@ -29,7 +29,10 @@ function getAdjacentPositions(
     ].filter(position => realPosition(position, width, height));
 }
 
-export function getAdjacentSquares(square: Square, squares: Square[][]): Square[] {
+export function getAdjacentSquares(
+    square: Square,
+    squares: Square[][]
+): Square[] {
     return getAdjacentPositions(
         square.position,
         squares[0].length,

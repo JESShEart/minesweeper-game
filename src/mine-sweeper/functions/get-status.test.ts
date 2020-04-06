@@ -1,5 +1,5 @@
 import { getStatus } from "./get-status";
-import Square from "../types/square";
+import { Square } from "../types/square";
 import { createTestBoard } from "./create-board.test";
 
 describe("getStatus", function() {

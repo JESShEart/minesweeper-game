@@ -1,5 +1,5 @@
 import { revealMines } from "./reveal-mines";
-import Square from "../types/square";
+import { Square } from "../types/square";
 
 function square(mine: boolean): Square {
     return { revealed: false, mine } as Square;

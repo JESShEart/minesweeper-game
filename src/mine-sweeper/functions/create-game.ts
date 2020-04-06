@@ -1,7 +1,8 @@
-import Game, { GameStatus } from "../types/game";
+import { Game } from "../types/game";
 import { getStatus } from "./get-status";
 import { revealMines } from "./reveal-mines";
-import Square from "../types/square";
+import { Square } from "../types/square";
+import { GameStatus } from "../types/game-status";
 
 function finished(status: GameStatus): boolean {
     return status === "FAIL" || status === "WIN";

@@ -1,8 +1,8 @@
 import { h } from "preact";
 import * as style from "./style.css";
-import Square from "../../../mine-sweeper/types/square";
+import { Square } from "../../../mine-sweeper/types/square";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
-import revealAction from "../../../mine-sweeper/actions/reveal-action";
+import { revealAction } from "../../../mine-sweeper/actions/reveal-action";
 
 interface Props {
     finished: boolean;

@@ -1,4 +1,4 @@
-import Square from "../types/square";
+import { Square } from "../types/square";
 
 export function revealMines(squares: Square[][]): Square[][] {
     return squares.map(row =>

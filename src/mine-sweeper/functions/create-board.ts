@@ -1,4 +1,4 @@
-import Square from "../types/square";
+import { Square } from "../types/square";
 import { getAdjacentSquares } from "./get-adjacent-squares";
 
 function createEmptyBoard(height: number, width: number): Square[][] {

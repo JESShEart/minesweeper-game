@@ -1,4 +1,4 @@
-import Square from "../types/square";
+import { Square } from "../types/square";
 import { getAdjacentSquares } from "./get-adjacent-squares";
 
 function getAdjacentSquaresToReveal(
@@ -40,10 +40,7 @@ function hasAdjacentSquaresToReveal(
     );
 }
 
-export default function reveal(
-    square: Square,
-    squares: Square[][]
-): Square[][] {
+export function reveal(square: Square, squares: Square[][]): Square[][] {
     let squaresWithAdjacentToReveal: Square[] = [];
     let currentSquare: Square | undefined = square;
 

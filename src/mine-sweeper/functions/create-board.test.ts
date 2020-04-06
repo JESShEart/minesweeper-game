@@ -1,5 +1,5 @@
 import { createBoard } from "./create-board";
-import Square from "../types/square";
+import { Square } from "../types/square";
 
 /**
  * this will be used in other tests to simplify creating and visualizing a board.

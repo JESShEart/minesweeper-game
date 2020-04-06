@@ -1,9 +1,9 @@
 import { createGame } from "./create-game";
 import Spy = jasmine.Spy;
-import Square from "../types/square";
-import { GameStatus } from "../types/game";
+import { Square } from "../types/square";
 import * as GetStatus from "./get-status";
 import * as RevealMines from "./reveal-mines";
+import { GameStatus } from "../types/game-status";
 
 describe("createGame", function() {
     let revealMinesSpy: Spy;

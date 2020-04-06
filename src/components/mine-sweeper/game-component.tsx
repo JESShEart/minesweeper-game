@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { useReducer } from "preact/hooks";
-import gameReducer from "../../mine-sweeper/game-reducer";
+import { gameReducer } from "../../mine-sweeper/game-reducer";
 import BoardComponent from "./board/board-component";
 import ResetComponent from "./reset/reset-component";
 import { Game } from "../../mine-sweeper/types/game";

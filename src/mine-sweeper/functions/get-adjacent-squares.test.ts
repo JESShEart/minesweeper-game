@@ -1,6 +1,6 @@
 import { getAdjacentSquares } from "./get-adjacent-squares";
 import { createTestBoard } from "./create-board.test";
-import Square from "../types/square";
+import { Square } from "../types/square";
 
 describe("getAdjacentSquares", function() {
     let board: Square[][];

@@ -1,5 +1,5 @@
-import Square from "../types/square";
-import { GameStatus } from "../types/game";
+import { Square } from "../types/square";
+import { GameStatus } from "../types/game-status";
 
 export function getStatus(squares: Square[][]): GameStatus {
     const mineRevealed = squares.find(row =>
