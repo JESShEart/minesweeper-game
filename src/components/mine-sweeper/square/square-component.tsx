@@ -20,7 +20,11 @@ export default function SquareComponent(props: Props): h.JSX.Element {
 
     function hiddenSquare(): h.JSX.Element {
         return (
-            <button disabled={finished} class={style.square} onClick={reveal} />
+            <button
+                disabled={finished}
+                className={style.square}
+                onClick={reveal}
+            />
         );
     }
 
@@ -31,7 +35,7 @@ export default function SquareComponent(props: Props): h.JSX.Element {
 
     function revealedSquare(): h.JSX.Element {
         const content = mine ? mineImg() : adjacentMines || "";
-        return <div class={style.revealed}>{content}</div>;
+        return <div className={style.revealed}>{content}</div>;
     }
 
     return <div>{revealed ? revealedSquare() : hiddenSquare()}</div>;

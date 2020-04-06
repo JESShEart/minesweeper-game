@@ -1,10 +1,10 @@
-import { FunctionalComponent, h } from "preact";
+import { h } from "preact";
 import { Link } from "preact-router/match";
-import * as style from "./style.css";
+import * as style from "./header-component.css";
 
-const Header: FunctionalComponent = () => {
+export function HeaderComponent(): h.JSX.Element {
     return (
-        <header class={style.header}>
+        <header className={style.header}>
             <h1>Mine Sweeper Game</h1>
             <nav>
                 <Link activeClassName={style.active} href="/">
@@ -16,6 +16,4 @@ const Header: FunctionalComponent = () => {
             </nav>
         </header>
     );
-};
-
-export default Header;
+}
