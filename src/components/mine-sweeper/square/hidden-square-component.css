@@ -1,0 +1,11 @@
+.hidden {
+    padding: 0;
+    outline: 0;
+    background: lightgray;
+    cursor: pointer;
+}
+
+.hidden:not([disabled]):focus,
+.hidden:not([disabled]):hover {
+    background: gray;
+}

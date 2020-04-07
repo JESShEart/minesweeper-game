@@ -1,0 +1,20 @@
+.revealed {
+    cursor: default;
+    background: white;
+}
+
+.mine {
+    background: #ff9999;
+}
+
+.win {
+    background: limegreen;
+    animation-name: winKeyFrames;
+    animation-duration: .75s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes winKeyFrames {
+    0%   {background-color: limegreen;}
+    50%  {background-color: yellow;}
+}

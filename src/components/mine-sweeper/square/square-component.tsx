@@ -1,41 +1,32 @@
 import { h } from "preact";
-import * as style from "./style.css";
 import { Square } from "../../../mine-sweeper/types/square";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
-import { revealAction } from "../../../mine-sweeper/actions/reveal-action";
+import { GameStatus } from "../../../mine-sweeper/types/game-status";
+import { HiddenSquareComponent } from "./hidden-square-component";
+import { RevealedSquareComponent } from "./revealed-square-component";
 
 interface Props {
-    finished: boolean;
+    status: GameStatus;
     square: Square;
     dispatch: GameDispatch;
 }
 
 export default function SquareComponent(props: Props): h.JSX.Element {
-    const { finished, square, dispatch } = props;
-    const { mine, adjacentMines, revealed } = square;
+    const { status, square, dispatch } = props;
+    const { revealed } = square;
 
-    function reveal(): void {
-        dispatch(revealAction(square));
+    function revealedSquare(): h.JSX.Element {
+        return <RevealedSquareComponent status={status} square={square} />;
     }
 
     function hiddenSquare(): h.JSX.Element {
         return (
-            <button
-                disabled={finished}
-                className={style.square}
-                onClick={reveal}
+            <HiddenSquareComponent
+                status={status}
+                square={square}
+                dispatch={dispatch}
             />
         );
-    }
-
-    function mineImg(): h.JSX.Element {
-        const mineImgSrc = "/assets/icons/mine.png";
-        return <img src={mineImgSrc} alt="Mine" />;
-    }
-
-    function revealedSquare(): h.JSX.Element {
-        const content = mine ? mineImg() : adjacentMines || "";
-        return <div className={style.revealed}>{content}</div>;
     }
 
     return <div>{revealed ? revealedSquare() : hiddenSquare()}</div>;

@@ -13,13 +13,12 @@ interface Props {
 function BoardComponent(props: Props): h.JSX.Element {
     const { game, dispatch } = props;
     const { status, board } = game;
-    const finished = status === "FAIL";
 
     function renderSquare(square: Square): h.JSX.Element {
         return (
             <SquareComponent
                 square={square}
-                finished={finished}
+                status={status}
                 dispatch={dispatch}
             />
         );
@@ -27,13 +26,15 @@ function BoardComponent(props: Props): h.JSX.Element {
 
     function renderRow(row: Square[]): h.JSX.Element {
         return (
-            <div class={style.row}>
+            <div className={style.row}>
                 {row.map(square => renderSquare(square))}
             </div>
         );
     }
 
-    return <div class={style.board}>{board.map(row => renderRow(row))}</div>;
+    return (
+        <div className={style.board}>{board.map(row => renderRow(row))}</div>
+    );
 }
 
 export default BoardComponent;
