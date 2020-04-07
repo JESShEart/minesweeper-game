@@ -1,19 +1,6 @@
 import { createBoard } from "./create-board";
 import { Square } from "../types/square";
-
-/**
- * this will be used in other tests to simplify creating and visualizing a board.
- * @param mines truthy numbers will produce a mine in the position
- */
-export function createTestBoard(mines: (0 | 1)[][]): Square[][] {
-    const flattened = mines.reduce((it, row) => [...it, ...row], []);
-    const randomNumbers = flattened.map(mine => (mine ? 0 : 0.9));
-    spyOn(Math, "random").and.returnValues(...randomNumbers);
-
-    const height = mines.length;
-    const width = mines[0].length;
-    return createBoard(height, width, 2);
-}
+import { createTestBoard } from "../../testing/create-test-board";
 
 function mines(board: Square[][]): boolean[][] {
     return board.map(row => row.map(square => square.mine));

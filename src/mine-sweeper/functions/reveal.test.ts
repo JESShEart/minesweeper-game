@@ -1,6 +1,6 @@
-import { createTestBoard } from "./create-board.test";
 import { Square } from "../types/square";
 import { reveal } from "./reveal";
+import { createTestBoard } from "../../testing/create-test-board";
 
 function revealed(board: Square[][]): boolean[][] {
     return board.map(row => row.map(square => square.revealed));

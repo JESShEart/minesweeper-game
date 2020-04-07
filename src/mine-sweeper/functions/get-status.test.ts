@@ -1,6 +1,6 @@
 import { getStatus } from "./get-status";
 import { Square } from "../types/square";
-import { createTestBoard } from "./create-board.test";
+import { createTestBoard } from "../../testing/create-test-board";
 
 describe("getStatus", function() {
     let board: Square[][];
