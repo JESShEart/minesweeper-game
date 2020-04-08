@@ -1,11 +1,11 @@
 import { h } from "preact";
 import * as style from "./style.css";
-import GameComponent from "../../components/mine-sweeper/game-component";
+import { MineSweeperComponent } from "../../components/mine-sweeper/mine-sweeper-component";
 
 function PlayComponent(): h.JSX.Element {
     return (
-        <div class={style.home}>
-            <GameComponent />
+        <div className={style.home}>
+            <MineSweeperComponent />
         </div>
     );
 }

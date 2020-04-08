@@ -1,44 +1,55 @@
-import { FunctionalComponent, h } from "preact";
-import { GameDispatch } from "../../../mine-sweeper/game-reducer";
-import * as style from "./style.css";
+import { h } from "preact";
+import { GameDispatch, GameReducer } from "../../../mine-sweeper/game-reducer";
 import { useState } from "preact/hooks";
 import { resetAction } from "../../../mine-sweeper/actions/reset-action";
+import * as style from "./reset-component.css";
+
+type Difficulty = "EASY" | "NORMAL" | "HARD";
 
 interface Props {
     dispatch: GameDispatch;
 }
 
-const ResetComponent: FunctionalComponent<Props> = (props: Props) => {
+export function ResetComponent(props: Props): h.JSX.Element {
     const { dispatch } = props;
-    const [size, updateSize] = useState(10);
-    const [mineRatio, updateMineRatio] = useState(8);
+    const [difficulty, updateDifficulty] = useState("EASY" as Difficulty);
 
-    const reset = (e: h.JSX.TargetedEvent): void => {
+    function getResetDifficultyAction(): GameReducer {
+        switch (difficulty) {
+            case "HARD":
+                return resetAction(25, 50, 8);
+            case "NORMAL":
+                return resetAction(15, 25, 8);
+            case "EASY":
+            default:
+                return resetAction(10, 10, 8);
+        }
+    }
+
+    function reset(e: h.JSX.TargetedEvent): void {
         e.preventDefault();
-        dispatch(resetAction(size, size, mineRatio));
-    };
+        dispatch(getResetDifficultyAction());
+    }
 
-    const numberValue = (e: any): number => +e.target.value || 1;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function onDifficultyInput(e: any): void {
+        updateDifficulty(e.target.value as Difficulty);
+    }
 
     return (
-        <form onSubmit={e => reset(e)}>
-            <input
-                class={style.numberInput}
-                title="Board Size"
-                type="number"
-                value={size}
-                onInput={e => updateSize(numberValue(e))}
-            />
-            <input
-                class={style.numberInput}
-                title="Mine Rate"
-                type="number"
-                value={mineRatio}
-                onInput={e => updateMineRatio(numberValue(e))}
-            />
-            <button type="submit">Reset</button>
-        </form>
+        <div className={style.reset}>
+            <form onSubmit={reset}>
+                <select
+                    className={style.select}
+                    value={difficulty}
+                    onInput={onDifficultyInput}
+                >
+                    <option value="EASY">Easy (10x10)</option>
+                    <option value="NORMAL">Normal (25x15)</option>
+                    <option value="HARD">Hard (50x25)</option>
+                </select>
+                <button type="submit">Reset</button>
+            </form>
+        </div>
     );
-};
-
-export default ResetComponent;
+}

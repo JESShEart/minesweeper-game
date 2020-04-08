@@ -1,0 +1,8 @@
+.status {
+    display: flex;
+    flex: 0;
+}
+.emoji {
+    cursor: default;
+    font-size: 30px;
+}
