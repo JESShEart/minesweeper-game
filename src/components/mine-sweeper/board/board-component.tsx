@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Square } from "../../../mine-sweeper/types/square";
-import SquareComponent from "../square/square-component";
-import * as style from "./style.css";
+import { SquareComponent } from "../square/square-component";
+import * as style from "./board-component.css";
 import { Game } from "../../../mine-sweeper/types/game";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 
@@ -10,7 +10,7 @@ interface Props {
     dispatch: GameDispatch;
 }
 
-function BoardComponent(props: Props): h.JSX.Element {
+export function BoardComponent(props: Props): h.JSX.Element {
     const { game, dispatch } = props;
     const { status, board } = game;
 
@@ -36,5 +36,3 @@ function BoardComponent(props: Props): h.JSX.Element {
         <div className={style.board}>{board.map(row => renderRow(row))}</div>
     );
 }
-
-export default BoardComponent;

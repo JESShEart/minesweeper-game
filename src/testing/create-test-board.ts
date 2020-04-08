@@ -3,7 +3,7 @@ import { createBoard } from "../mine-sweeper/functions/create-board";
 
 /**
  * this will be used in tests to simplify creating and visualizing a board.
- * @param mines truthy numbers will produce a mine in the position
+ * @param mines 1 will produce a mine in the position, and 0 will not
  */
 export function createTestBoard(mines: (0 | 1)[][]): Square[][] {
     const flattened = mines.reduce((it, row) => [...it, ...row], []);

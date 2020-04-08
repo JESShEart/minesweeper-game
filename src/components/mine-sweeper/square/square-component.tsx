@@ -11,7 +11,7 @@ interface Props {
     dispatch: GameDispatch;
 }
 
-export default function SquareComponent(props: Props): h.JSX.Element {
+export function SquareComponent(props: Props): h.JSX.Element {
     const { status, square, dispatch } = props;
     const { revealed } = square;
 
