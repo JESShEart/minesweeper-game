@@ -4,7 +4,7 @@ import { Square } from "../../../mine-sweeper/types/square";
 import { RevealedSquareComponent } from "./revealed-square-component";
 import { ReactElement } from "react";
 import { h } from "preact";
-import SquareComponent from "./square-component";
+import { SquareComponent } from "./square-component";
 import { HiddenSquareComponent } from "./hidden-square-component";
 
 describe("SquareComponent", function() {
