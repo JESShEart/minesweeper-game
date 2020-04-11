@@ -1,4 +1,4 @@
-.row {
+.statusContainer {
     display: flex;
     flex-direction: row;
 }

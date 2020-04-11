@@ -1,11 +1,19 @@
 import { h } from "preact";
 import * as style from "./style.css";
 import { MineSweeperComponent } from "../../components/mine-sweeper/mine-sweeper-component";
+import { Game } from "../../mine-sweeper/types/game";
+import { GameDispatch } from "../../mine-sweeper/game-reducer";
 
-function PlayComponent(): h.JSX.Element {
+interface Props {
+    game: Game;
+    dispatch: GameDispatch;
+}
+
+function PlayComponent(props: Props): h.JSX.Element {
+    const { game, dispatch } = props;
     return (
         <div className={style.home}>
-            <MineSweeperComponent />
+            <MineSweeperComponent game={game} dispatch={dispatch} />
         </div>
     );
 }
