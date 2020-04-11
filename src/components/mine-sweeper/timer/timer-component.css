@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.timer {
+    cursor: default;
+    font-size: 14px;
+}
+
+.hide {
+    display: none;
+}

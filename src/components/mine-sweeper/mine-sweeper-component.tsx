@@ -5,6 +5,7 @@ import { ResetComponent } from "./reset/reset-component";
 import { Game } from "../../mine-sweeper/types/game";
 import { StatusComponent } from "./status/status-component";
 import * as style from "./mine-sweeper-component.css";
+import { TimerComponent } from "./timer/timer-component";
 
 interface Props {
     game: Game;
@@ -19,6 +20,10 @@ export function MineSweeperComponent(props: Props): h.JSX.Element {
             <div className={style.statusContainer}>
                 <StatusComponent status={game.status} />
                 <ResetComponent dispatch={dispatch} />
+                <TimerComponent
+                    startedAt={game.startedAt}
+                    finishedAt={game.finishedAt}
+                />
             </div>
             <BoardComponent game={game} dispatch={dispatch} />
         </div>

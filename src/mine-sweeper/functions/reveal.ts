@@ -1,5 +1,7 @@
 import { Square } from "../types/square";
 import { getAdjacentSquares } from "./get-adjacent-squares";
+import { createGame } from "./create-game";
+import { Game } from "../types/game";
 
 function getAdjacentSquaresToReveal(
     square: Square,
@@ -40,7 +42,7 @@ function hasAdjacentSquaresToReveal(
     );
 }
 
-export function reveal(square: Square, squares: Square[][]): Square[][] {
+export function revealBoard(square: Square, squares: Square[][]): Square[][] {
     let squaresWithAdjacentToReveal: Square[] = [];
     let currentSquare: Square | undefined = square;
 
@@ -65,4 +67,12 @@ export function reveal(square: Square, squares: Square[][]): Square[][] {
     }
 
     return squares;
+}
+
+export function reveal(square: Square, game: Game): Game {
+    return createGame({
+        ...game,
+        board: revealBoard(square, game.board),
+        startedAt: game.startedAt || Date.now()
+    });
 }

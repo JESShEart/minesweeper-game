@@ -8,4 +8,9 @@
     display: inline;
     margin-left: .75rem;
     margin-right: .25rem;
+    height: 1.25rem;
+}
+
+button {
+    height: 1.25rem;
 }

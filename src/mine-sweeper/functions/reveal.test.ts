@@ -1,22 +1,32 @@
 import { Square } from "../types/square";
 import { reveal } from "./reveal";
 import { createTestBoard } from "../../testing/create-test-board";
+import { Game } from "../types/game";
 
-function revealed(board: Square[][]): boolean[][] {
+function revealed({ board }: Game): boolean[][] {
     return board.map(row => row.map(square => square.revealed));
+}
+
+function setupGame(game: { board: Square[][] } & Partial<Game>): Game {
+    return {
+        status: "PLAY",
+        startedAt: null,
+        finishedAt: null,
+        ...game
+    };
 }
 
 describe("reveal", function() {
     test("should reveal all squares (1)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
         ]);
 
-        board = reveal(board[1][1], board);
+        const game = reveal(board[1][1], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [true, true, true],
             [true, true, true],
             [true, true, true]
@@ -24,15 +34,15 @@ describe("reveal", function() {
     });
 
     test("should reveal all squares (2)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
         ]);
 
-        board = reveal(board[0][0], board);
+        const game = reveal(board[0][0], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [true, true, true],
             [true, true, true],
             [true, true, true]
@@ -40,15 +50,15 @@ describe("reveal", function() {
     });
 
     test("should reveal all squares (3)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
         ]);
 
-        board = reveal(board[2][2], board);
+        const game = reveal(board[2][2], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [true, true, true],
             [true, true, true],
             [true, true, true]
@@ -56,15 +66,15 @@ describe("reveal", function() {
     });
 
     test("should reveal 1 square when it has adjacent mines (1)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0],
             [0, 0, 1],
             [0, 0, 0]
         ]);
 
-        board = reveal(board[1][1], board);
+        const game = reveal(board[1][1], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [false, false, false],
             [false, true, false],
             [false, false, false]
@@ -72,15 +82,15 @@ describe("reveal", function() {
     });
 
     test("should reveal 1 square when it has adjacent mines (2)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0],
             [0, 0, 1],
             [0, 0, 0]
         ]);
 
-        board = reveal(board[0][1], board);
+        const game = reveal(board[0][1], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [false, true, false],
             [false, false, false],
             [false, false, false]
@@ -88,15 +98,15 @@ describe("reveal", function() {
     });
 
     test("should reveal squares until squares with adjacent mines are revealed (1)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0],
             [0, 0, 1],
             [0, 0, 0]
         ]);
 
-        board = reveal(board[1][0], board);
+        const game = reveal(board[1][0], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [true, true, false],
             [true, true, false],
             [true, true, false]
@@ -104,15 +114,15 @@ describe("reveal", function() {
     });
 
     test("should reveal squares until squares with adjacent mines are revealed (2)", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 1],
             [0, 0, 0],
             [1, 0, 0]
         ]);
 
-        board = reveal(board[2][2], board);
+        const game = reveal(board[2][2], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [false, false, false],
             [false, true, true],
             [false, true, true]
@@ -120,7 +130,7 @@ describe("reveal", function() {
     });
 
     test("should reveal all appropriate squares on a largish board", function() {
-        let board = createTestBoard([
+        const board = createTestBoard([
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 1, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -129,9 +139,9 @@ describe("reveal", function() {
             [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]);
 
-        board = reveal(board[1][1], board);
+        const game = reveal(board[1][1], setupGame({ board }));
 
-        expect(revealed(board)).toEqual([
+        expect(revealed(game)).toEqual([
             [true, true, true, true, true, true, true, false, false],
             [true, true, true, true, true, true, true, false, false],
             [true, true, true, true, true, true, true, true, false],

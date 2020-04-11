@@ -1,43 +1,61 @@
 import { createGame } from "./create-game";
 import Spy = jasmine.Spy;
-import { Square } from "../types/square";
 import * as GetStatus from "./get-status";
 import * as RevealMines from "./reveal-mines";
+import { Game } from "../types/game";
 import { GameStatus } from "../types/game-status";
 
 describe("createGame", function() {
+    let game: Game;
     let revealMinesSpy: Spy;
     let getStatusSpy: Spy;
 
-    function setup(revealMines: Square[][], getStatus: GameStatus): void {
-        revealMinesSpy = spyOn(RevealMines, "revealMines").and.returnValue(
-            revealMines
-        );
+    function setup(getStatus: GameStatus): void {
+        revealMinesSpy = spyOn(RevealMines, "revealMines").and.returnValue([]);
         getStatusSpy = spyOn(GetStatus, "getStatus").and.returnValues(
             getStatus
         );
+        spyOn(Date, "now").and.returnValue(2);
+        game = createGame({
+            board: [],
+            status: "PLAY",
+            startedAt: 1,
+            finishedAt: null
+        });
     }
 
     test("should reveal mines when the game is won", function() {
-        setup([], "WIN");
-        const game = createGame([]);
-        expect(game).toEqual({ board: [], status: "WIN" });
+        setup("WIN");
+        expect(game).toEqual({
+            board: [],
+            status: "WIN",
+            startedAt: 1,
+            finishedAt: 2
+        });
         expect(getStatusSpy).toHaveBeenCalled();
         expect(revealMinesSpy).toHaveBeenCalled();
     });
 
     test("should reveal mines when the game is lost", function() {
-        setup([], "FAIL");
-        const game = createGame([]);
-        expect(game).toEqual({ board: [], status: "FAIL" });
+        setup("FAIL");
+        expect(game).toEqual({
+            board: [],
+            status: "FAIL",
+            startedAt: 1,
+            finishedAt: 2
+        });
         expect(getStatusSpy).toHaveBeenCalled();
         expect(revealMinesSpy).toHaveBeenCalled();
     });
 
     test("should not reveal mines when the game is ongoing", function() {
-        setup([], "PLAY");
-        const game = createGame([]);
-        expect(game).toEqual({ board: [], status: "PLAY" });
+        setup("PLAY");
+        expect(game).toEqual({
+            board: [],
+            status: "PLAY",
+            startedAt: 1,
+            finishedAt: null
+        });
         expect(getStatusSpy).toHaveBeenCalled();
         expect(revealMinesSpy).not.toHaveBeenCalled();
     });

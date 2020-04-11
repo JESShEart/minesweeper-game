@@ -6,9 +6,8 @@ import { HeaderComponent } from "./header/header-component";
 import PlayComponent from "../routes/play/play-component";
 import { useReducer } from "preact/hooks";
 import { gameReducer } from "../mine-sweeper/game-reducer";
-import { createGame } from "../mine-sweeper/functions/create-game";
-import { createBoard } from "../mine-sweeper/functions/create-board";
 import { Game } from "../mine-sweeper/types/game";
+import { resetGame } from "../mine-sweeper/functions/reset-game";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 if ((module as any).hot) {
@@ -17,8 +16,7 @@ if ((module as any).hot) {
 }
 
 function newGame(): Game {
-    const board = createBoard(10, 10, 8);
-    return createGame(board);
+    return resetGame(10, 10, 8);
 }
 
 function AppComponent(): h.JSX.Element {

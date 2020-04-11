@@ -4,17 +4,25 @@
 }
 
 .mine {
-    background: #ff9999;
+    background: #FF9999;
+    animation-name: mineKeyFrames;
+    animation-duration: .75s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes mineKeyFrames {
+    0%   { background-color: #FF9999; }
+    50%  { background-color: #FF5555; }
 }
 
 .win {
-    background: limegreen;
+    background: #32CD32;
     animation-name: winKeyFrames;
     animation-duration: .75s;
     animation-iteration-count: infinite;
 }
 
 @keyframes winKeyFrames {
-    0%   {background-color: limegreen;}
-    50%  {background-color: yellow;}
+    0%   { background-color: #32CD32; }
+    50%  { background-color: #FFFF00; }
 }

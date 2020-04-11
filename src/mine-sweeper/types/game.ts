@@ -1,7 +1,6 @@
-import { Square } from "./square";
-import { GameStatus } from "./game-status";
+import { BoardWithStatus } from "./board-with-status";
 
-export interface Game {
-    status: GameStatus;
-    board: Square[][];
+export interface Game extends BoardWithStatus {
+    startedAt: number | null;
+    finishedAt: number | null;
 }

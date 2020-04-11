@@ -20,7 +20,7 @@ describe("BoardComponent", function() {
     function setup(squares: Square[][]): void {
         board = squares;
         status = "PLAY";
-        const game: Game = { board, status };
+        const game: Game = { board, status, startedAt: null, finishedAt: null };
         dispatch = (): void => {};
         wrapper = shallow(
             (<BoardComponent game={game} dispatch={dispatch} />) as ReactElement
