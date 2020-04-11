@@ -8,29 +8,29 @@ interface Props {
     finishedAt: number | null;
 }
 
+function computeElapsedTime(
+    startedAt: number | null,
+    finishedAt: number | null
+): number {
+    if (startedAt && finishedAt) {
+        return finishedAt - startedAt;
+    } else if (startedAt) {
+        return Date.now() - startedAt;
+    } else {
+        return 0;
+    }
+}
+
 export function TimerComponent(props: Props): h.JSX.Element {
     const { startedAt, finishedAt } = props;
-    const containerClassNames = `${style.container} ${
-        startedAt ? "" : style.hide
-    }`;
-
-    function computeElapsedTime(): number {
-        if (startedAt && finishedAt) {
-            return finishedAt - startedAt;
-        } else if (startedAt) {
-            return Date.now() - startedAt;
-        } else {
-            return 0;
-        }
-    }
-
     const [elapsedTime, setElapsedTime] = useState<number>(
-        computeElapsedTime()
+        computeElapsedTime(startedAt, finishedAt)
     );
+    const hiddenClass = startedAt ? "" : style.hide;
 
     useEffect(function() {
         const timer = window.setInterval(function(): void {
-            setElapsedTime(computeElapsedTime());
+            setElapsedTime(computeElapsedTime(startedAt, finishedAt));
         }, 100);
         return function(): void {
             clearInterval(timer);
@@ -38,7 +38,7 @@ export function TimerComponent(props: Props): h.JSX.Element {
     });
 
     return (
-        <div className={containerClassNames}>
+        <div className={`${style.container} ${hiddenClass}`}>
             <div className={style.timer}>
                 {toHoursMinutesSeconds(elapsedTime)}&nbsp;⏱
             </div>

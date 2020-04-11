@@ -4,6 +4,8 @@
 }
 
 .mine {
+    height: 100%;
+    width: 100%;
     background: #FF9999;
     animation-name: mineKeyFrames;
     animation-duration: .75s;
