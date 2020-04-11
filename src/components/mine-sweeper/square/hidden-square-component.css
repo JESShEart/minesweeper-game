@@ -16,3 +16,9 @@
     top: -.125rem;
     left: -.125rem;
 }
+
+.hidden:not([disabled]):active:focus,
+.hidden:not([disabled]):active:hover {
+    top: 0;
+    left: 0;
+}
