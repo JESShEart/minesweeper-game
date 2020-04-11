@@ -12,12 +12,12 @@ function computeElapsedTime(
     startedAt: number | null,
     finishedAt: number | null
 ): number {
-    if (startedAt && finishedAt) {
-        return finishedAt - startedAt;
-    } else if (startedAt) {
+    if (startedAt === null) {
+        return 0;
+    } else if (finishedAt === null) {
         return Date.now() - startedAt;
     } else {
-        return 0;
+        return finishedAt - startedAt;
     }
 }
 
@@ -26,7 +26,7 @@ export function TimerComponent(props: Props): h.JSX.Element {
     const [elapsedTime, setElapsedTime] = useState<number>(
         computeElapsedTime(startedAt, finishedAt)
     );
-    const hiddenClass = startedAt ? "" : style.hide;
+    const hiddenClass = startedAt !== null ? "" : style.hide;
 
     useEffect(function() {
         const timer = window.setInterval(function(): void {

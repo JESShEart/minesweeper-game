@@ -32,4 +32,8 @@ describe("toHoursMinutesSeconds", function() {
     test("should be 999:59:59 for 3599999999 milliseconds", function() {
         expect(toHoursMinutesSeconds(3599999999)).toBe("999:59:59");
     });
+
+    test("should be -1:00 for -60 seconds", function() {
+        expect(toHoursMinutesSeconds(-60000)).toBe("-1:00");
+    });
 });
