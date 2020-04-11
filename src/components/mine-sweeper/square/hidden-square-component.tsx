@@ -20,10 +20,12 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
     }
 
     return (
-        <button
-            disabled={status !== "PLAY"}
-            className={`${squareStyle.square} ${style.hidden}`}
-            onClick={reveal}
-        />
+        <div className={squareStyle.square}>
+            <button
+                disabled={status !== "PLAY"}
+                className={`${squareStyle.square} ${style.hidden}`}
+                onClick={reveal}
+            />
+        </div>
     );
 }

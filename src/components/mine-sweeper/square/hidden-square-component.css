@@ -3,9 +3,16 @@
     outline: 0;
     background: lightgray;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 250ms;
+    transition-property: top, left, background;
 }
 
 .hidden:not([disabled]):focus,
 .hidden:not([disabled]):hover {
     background: gray;
+    top: -.125rem;
+    left: -.125rem;
 }

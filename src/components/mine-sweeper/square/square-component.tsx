@@ -4,6 +4,7 @@ import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 import { GameStatus } from "../../../mine-sweeper/types/game-status";
 import { HiddenSquareComponent } from "./hidden-square-component";
 import { RevealedSquareComponent } from "./revealed-square-component";
+import * as style from "./square-component.css";
 
 interface Props {
     status: GameStatus;
@@ -29,5 +30,9 @@ export function SquareComponent(props: Props): h.JSX.Element {
         );
     }
 
-    return <div>{revealed ? revealedSquare() : hiddenSquare()}</div>;
+    return (
+        <div className={style.container}>
+            {revealed ? revealedSquare() : hiddenSquare()}
+        </div>
+    );
 }
