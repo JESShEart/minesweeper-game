@@ -4,13 +4,22 @@
     align-items: center;
 }
 
+.reset form {
+    display: flex;
+    flex-direction: row;
+}
+
 .select {
-    display: inline;
+    display: inline-flex;
     margin-left: .75rem;
     margin-right: .25rem;
     height: 1.25rem;
 }
 
-button {
+.submit {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
     height: 1.25rem;
+    padding: 0 .25rem;
 }

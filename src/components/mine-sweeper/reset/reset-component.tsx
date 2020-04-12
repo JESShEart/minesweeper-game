@@ -48,7 +48,9 @@ export function ResetComponent(props: Props): h.JSX.Element {
                     <option value="NORMAL">Normal (25x15)</option>
                     <option value="HARD">Hard (50x25)</option>
                 </select>
-                <button type="submit">Reset</button>
+                <button className={style.submit} type="submit">
+                    Reset
+                </button>
             </form>
         </div>
     );
