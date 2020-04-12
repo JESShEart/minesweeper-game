@@ -9,6 +9,7 @@ export function resetGame(
     return {
         board: createBoard(height, width, mineRatio),
         status: "START",
+        flagging: false,
         startedAt: null,
         finishedAt: null
     };

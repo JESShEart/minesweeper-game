@@ -7,24 +7,26 @@ import { RevealedSquareComponent } from "./revealed-square-component";
 import * as style from "./square-component.css";
 
 interface Props {
-    status: GameStatus;
     square: Square;
+    status: GameStatus;
+    flagging: boolean;
     dispatch: GameDispatch;
 }
 
 export function SquareComponent(props: Props): h.JSX.Element {
-    const { status, square, dispatch } = props;
+    const { square, status, flagging, dispatch } = props;
     const { revealed } = square;
 
     function revealedSquare(): h.JSX.Element {
-        return <RevealedSquareComponent status={status} square={square} />;
+        return <RevealedSquareComponent square={square} status={status} />;
     }
 
     function hiddenSquare(): h.JSX.Element {
         return (
             <HiddenSquareComponent
-                status={status}
                 square={square}
+                status={status}
+                flagging={flagging}
                 dispatch={dispatch}
             />
         );

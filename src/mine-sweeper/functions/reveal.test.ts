@@ -7,13 +7,8 @@ function revealed({ board }: Game): boolean[][] {
     return board.map(row => row.map(square => square.revealed));
 }
 
-function setupGame(game: { board: Square[][] } & Partial<Game>): Game {
-    return {
-        status: "PLAY",
-        startedAt: null,
-        finishedAt: null,
-        ...game
-    };
+function setupGame(board: Square[][]): Game {
+    return { board } as Game;
 }
 
 describe("reveal", function() {
@@ -24,7 +19,7 @@ describe("reveal", function() {
             [0, 0, 0]
         ]);
 
-        const game = reveal(board[1][1], setupGame({ board }));
+        const game = reveal(board[1][1], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [true, true, true],
@@ -40,7 +35,7 @@ describe("reveal", function() {
             [0, 0, 0]
         ]);
 
-        const game = reveal(board[0][0], setupGame({ board }));
+        const game = reveal(board[0][0], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [true, true, true],
@@ -56,7 +51,7 @@ describe("reveal", function() {
             [0, 0, 0]
         ]);
 
-        const game = reveal(board[2][2], setupGame({ board }));
+        const game = reveal(board[2][2], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [true, true, true],
@@ -72,7 +67,7 @@ describe("reveal", function() {
             [0, 0, 0]
         ]);
 
-        const game = reveal(board[1][1], setupGame({ board }));
+        const game = reveal(board[1][1], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [false, false, false],
@@ -88,7 +83,7 @@ describe("reveal", function() {
             [0, 0, 0]
         ]);
 
-        const game = reveal(board[0][1], setupGame({ board }));
+        const game = reveal(board[0][1], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [false, true, false],
@@ -104,7 +99,7 @@ describe("reveal", function() {
             [0, 0, 0]
         ]);
 
-        const game = reveal(board[1][0], setupGame({ board }));
+        const game = reveal(board[1][0], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [true, true, false],
@@ -120,7 +115,7 @@ describe("reveal", function() {
             [1, 0, 0]
         ]);
 
-        const game = reveal(board[2][2], setupGame({ board }));
+        const game = reveal(board[2][2], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [false, false, false],
@@ -139,7 +134,7 @@ describe("reveal", function() {
             [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]);
 
-        const game = reveal(board[1][1], setupGame({ board }));
+        const game = reveal(board[1][1], setupGame(board));
 
         expect(revealed(game)).toEqual([
             [true, true, true, true, true, true, true, false, false],

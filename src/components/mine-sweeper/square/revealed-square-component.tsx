@@ -5,8 +5,8 @@ import * as squareStyle from "./square-component.css";
 import * as style from "./revealed-square-component.css";
 
 interface Props {
-    status: GameStatus;
     square: Square;
+    status: GameStatus;
 }
 
 export function RevealedSquareComponent(props: Props): h.JSX.Element {

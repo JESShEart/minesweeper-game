@@ -15,12 +15,14 @@ describe("BoardComponent", function() {
     let wrapper: ShallowWrapper;
     let board: Square[][];
     let status: GameStatus;
+    let flagging: boolean;
     let dispatch: GameDispatch;
 
     function setup(squares: Square[][]): void {
         board = squares;
         status = "PLAY";
-        const game: Game = { board, status, startedAt: null, finishedAt: null };
+        flagging = true;
+        const game: Game = { board, status, flagging } as Game;
         dispatch = (): void => {};
         wrapper = shallow(
             (<BoardComponent game={game} dispatch={dispatch} />) as ReactElement
@@ -35,6 +37,7 @@ describe("BoardComponent", function() {
             .at(x);
         expect(squareWrapper.prop("square")).toBe(board[y][x]);
         expect(squareWrapper.prop("status")).toBe(status);
+        expect(squareWrapper.prop("flagging")).toBe(flagging);
         expect(squareWrapper.prop("dispatch")).toBe(dispatch);
     }
 

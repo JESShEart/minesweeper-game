@@ -19,6 +19,7 @@ describe("createGame", function() {
         game = createGame({
             board: [],
             status: "PLAY",
+            flagging: false,
             startedAt: 1,
             finishedAt: null
         });
@@ -29,6 +30,7 @@ describe("createGame", function() {
         expect(game).toEqual({
             board: [],
             status: "WIN",
+            flagging: false,
             startedAt: 1,
             finishedAt: 2
         });
@@ -41,6 +43,7 @@ describe("createGame", function() {
         expect(game).toEqual({
             board: [],
             status: "FAIL",
+            flagging: false,
             startedAt: 1,
             finishedAt: 2
         });
@@ -53,6 +56,7 @@ describe("createGame", function() {
         expect(game).toEqual({
             board: [],
             status: "PLAY",
+            flagging: false,
             startedAt: 1,
             finishedAt: null
         });

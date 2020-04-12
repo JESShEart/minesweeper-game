@@ -15,22 +15,20 @@ interface Props {
 
 export function MineSweeperComponent(props: Props): h.JSX.Element {
     const { game, dispatch } = props;
+    const { status, flagging, startedAt, finishedAt } = game;
 
     return (
         <div>
             <div className={style.topRow}>
-                <StatusComponent status={game.status} />
+                <StatusComponent status={status} />
                 <ResetComponent dispatch={dispatch} />
-                <TimerComponent
-                    startedAt={game.startedAt}
-                    finishedAt={game.finishedAt}
-                />
+                <TimerComponent startedAt={startedAt} finishedAt={finishedAt} />
             </div>
             <BoardComponent game={game} dispatch={dispatch} />
             <div className={style.bottomRow}>
                 <FlaggingToggleComponent
-                    status={game.status}
-                    flagging={false}
+                    status={status}
+                    flagging={flagging}
                     dispatch={dispatch}
                 />
             </div>

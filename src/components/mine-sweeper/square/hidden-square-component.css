@@ -22,3 +22,9 @@
     top: 0;
     left: 0;
 }
+
+.flagged:before {
+    content: "🚩";
+    font-size: 1.25rem;
+    padding-bottom: .125rem;
+}

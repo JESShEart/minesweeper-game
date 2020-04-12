@@ -12,13 +12,14 @@ interface Props {
 
 export function BoardComponent(props: Props): h.JSX.Element {
     const { game, dispatch } = props;
-    const { status, board } = game;
+    const { status, board, flagging } = game;
 
     function renderSquare(square: Square): h.JSX.Element {
         return (
             <SquareComponent
                 square={square}
                 status={status}
+                flagging={flagging}
                 dispatch={dispatch}
             />
         );

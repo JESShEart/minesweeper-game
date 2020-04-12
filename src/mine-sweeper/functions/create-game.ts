@@ -8,12 +8,13 @@ function finishedStatus(status: GameStatus): boolean {
 }
 
 export function createGame(game: Game): Game {
-    const { board, startedAt } = game;
+    const { board, flagging, startedAt } = game;
     const status = getStatus(board);
     const finished = finishedStatus(status);
     return {
         board: finished ? revealMines(board) : board,
         status,
+        flagging,
         startedAt,
         finishedAt: finished ? Date.now() : null
     };

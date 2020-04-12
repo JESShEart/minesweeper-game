@@ -1,8 +1,8 @@
 import { h } from "preact";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
-import { useState } from "preact/hooks";
 import * as style from "./flagging-toggle-component.css";
 import { GameStatus } from "../../../mine-sweeper/types/game-status";
+import { toggleFlaggingAction } from "../../../mine-sweeper/actions/toggle-flagging-action";
 
 interface Props {
     status: GameStatus;
@@ -11,14 +11,13 @@ interface Props {
 }
 
 export function FlaggingToggleComponent(props: Props): h.JSX.Element {
-    const { status, dispatch } = props;
-    const [flagging, updateFlagging] = useState(props.flagging);
+    const { status, flagging, dispatch } = props;
     const flaggingClass = flagging ? style.active : "";
     const label = flagging ? "Flagging" : "Clearing";
     const disabled = status === "WIN" || status === "FAIL";
 
     function toggleFlagging(): void {
-        updateFlagging(!flagging);
+        dispatch(toggleFlaggingAction());
     }
 
     return (

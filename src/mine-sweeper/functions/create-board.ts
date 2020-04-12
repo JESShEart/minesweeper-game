@@ -6,6 +6,7 @@ function createEmptyBoard(height: number, width: number): Square[][] {
         new Array<Square>(width).fill({
             position: { x: 0, y: 0 },
             revealed: false,
+            flagged: false,
             mine: false,
             adjacentMines: 0
         })
