@@ -40,7 +40,7 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
                     onClick={toggleFlagging}
                     disabled={disabled}
                     className={style.button}
-                    title="Press F for shortcut key"
+                    title="Toggle flagging mines (Press F for shortcut)"
                 >
                     <span className={style.flag}>🚩</span>
                 </button>
