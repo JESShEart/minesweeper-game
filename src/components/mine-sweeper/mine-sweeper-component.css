@@ -1,4 +1,9 @@
-.statusContainer {
+.topRow,
+.bottomRow {
     display: flex;
     flex-direction: row;
+}
+
+.bottomRow {
+    padding-top: .5rem;
 }
