@@ -3,6 +3,7 @@ import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 import * as style from "./flagging-toggle-component.css";
 import { GameStatus } from "../../../mine-sweeper/types/game-status";
 import { toggleFlaggingAction } from "../../../mine-sweeper/actions/toggle-flagging-action";
+import { useEffect } from "preact/hooks";
 
 interface Props {
     status: GameStatus;
@@ -19,6 +20,19 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
         dispatch(toggleFlaggingAction());
     }
 
+    function onKeyPress(e: KeyboardEvent): void {
+        if (!disabled && e.key === "f") {
+            toggleFlagging();
+        }
+    }
+
+    useEffect(function() {
+        document.addEventListener("keydown", onKeyPress);
+        return function(): void {
+            document.removeEventListener("keydown", onKeyPress);
+        };
+    });
+
     return (
         <div className={`${style.container} ${buttonFlaggingClass}`}>
             <div className={style.buttonBackground}>
@@ -26,6 +40,7 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
                     onClick={toggleFlagging}
                     disabled={disabled}
                     className={style.button}
+                    title="Press F for shortcut key"
                 >
                     <span className={style.flag}>🚩</span>
                 </button>
