@@ -11,25 +11,27 @@ export function StatusComponent(props: Props): h.JSX.Element {
 
     function description(): string {
         switch (status) {
+            case "START":
+                return "";
+            case "PLAY":
+                return "Game in progress...";
             case "FAIL":
                 return "You lost!  Please, try again!";
             case "WIN":
                 return "You won!";
-            case "PLAY":
-            default:
-                return "Game in progress...";
         }
     }
 
     function emoji(): string {
         switch (status) {
+            case "START":
+                return "🙂";
+            case "PLAY":
+                return "🤔";
             case "FAIL":
                 return "😵";
             case "WIN":
                 return "😎";
-            case "PLAY":
-            default:
-                return "🤔";
         }
     }
 

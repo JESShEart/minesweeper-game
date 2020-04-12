@@ -25,6 +25,11 @@ describe("HiddenSquareComponent", function() {
         );
     }
 
+    test("should be enabled when status is START", function() {
+        setup("START", {});
+        expect(wrapper.find("button").prop("disabled")).toBeFalsy();
+    });
+
     test("should be enabled when status is PLAY", function() {
         setup("PLAY", {});
         expect(wrapper.find("button").prop("disabled")).toBeFalsy();

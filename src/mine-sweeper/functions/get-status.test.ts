@@ -19,6 +19,15 @@ describe("getStatus", function() {
         ]);
     });
 
+    test("should be START when no squares are revealed", function() {
+        revealSquares([
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ]);
+        expect(getStatus(board)).toBe("START");
+    });
+
     test("should be PLAY when 1 or more non-mines are not revealed", function() {
         revealSquares([
             [1, 1, 1],

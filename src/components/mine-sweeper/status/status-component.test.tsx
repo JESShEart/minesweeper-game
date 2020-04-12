@@ -14,6 +14,12 @@ describe("StatusComponent", function() {
         );
     }
 
+    test("should display START status", function() {
+        setup("START");
+        expect(wrapper.find(`.${style.emoji}`).text()).toBe("🙂");
+        expect(wrapper.find(`.${style.emoji}`).prop("title")).toBe("");
+    });
+
     test("should display PLAY status", function() {
         setup("PLAY");
         expect(wrapper.find(`.${style.emoji}`).text()).toBe("🤔");

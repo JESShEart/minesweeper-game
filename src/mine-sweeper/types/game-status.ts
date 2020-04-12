@@ -1,1 +1,1 @@
-export type GameStatus = "PLAY" | "WIN" | "FAIL";
+export type GameStatus = "START" | "PLAY" | "WIN" | "FAIL";

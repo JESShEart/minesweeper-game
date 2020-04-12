@@ -14,6 +14,7 @@ interface Props {
 
 export function HiddenSquareComponent(props: Props): h.JSX.Element {
     const { status, square, dispatch } = props;
+    const disabled = status === "FAIL" || status === "WIN";
 
     function reveal(): void {
         dispatch(revealAction(square));
@@ -22,7 +23,7 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
     return (
         <div className={squareStyle.square}>
             <button
-                disabled={status !== "PLAY"}
+                disabled={disabled}
                 className={`${squareStyle.square} ${style.hidden}`}
                 onClick={reveal}
             />

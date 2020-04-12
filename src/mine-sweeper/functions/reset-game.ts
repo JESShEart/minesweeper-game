@@ -8,7 +8,7 @@ export function resetGame(
 ): Game {
     return {
         board: createBoard(height, width, mineRatio),
-        status: "PLAY",
+        status: "START",
         startedAt: null,
         finishedAt: null
     };
