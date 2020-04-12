@@ -12,8 +12,7 @@ interface Props {
 
 export function FlaggingToggleComponent(props: Props): h.JSX.Element {
     const { status, flagging, dispatch } = props;
-    const flaggingClass = flagging ? style.active : "";
-    const label = flagging ? "Flagging" : "Clearing";
+    const buttonFlaggingClass = flagging ? style.buttonActive : "";
     const disabled = status === "WIN" || status === "FAIL";
 
     function toggleFlagging(): void {
@@ -21,15 +20,16 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
     }
 
     return (
-        <div className={style.container}>
-            <button
-                onClick={toggleFlagging}
-                disabled={disabled}
-                className={style.button}
-            >
-                <span className={`${style.flag} ${flaggingClass}`}>🚩</span>
-                {label}
-            </button>
+        <div className={`${style.container} ${buttonFlaggingClass}`}>
+            <div className={style.buttonBackground}>
+                <button
+                    onClick={toggleFlagging}
+                    disabled={disabled}
+                    className={style.button}
+                >
+                    <span className={style.flag}>🚩</span>
+                </button>
+            </div>
         </div>
     );
 }

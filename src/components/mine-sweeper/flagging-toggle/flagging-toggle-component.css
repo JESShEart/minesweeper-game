@@ -3,18 +3,43 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.buttonBackground {
+    background: black;
+    border-radius: 2px;
+    min-height: 2rem;
+    min-width: 8rem;
 }
 
 .button {
+    background: white;
+    color: black;
     border: 1px solid black;
     border-radius: 2px;
-    background: white;
     display: flex;
     min-height: 2rem;
     min-width: 8rem;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: all 250ms;
+}
+
+.button:not([disabled]):focus,
+.button:not([disabled]):hover {
+    top: -.125rem;
+    left: -.125rem;
+}
+.button:not([disabled]):active:focus,
+.button:not([disabled]):active:hover {
+    top: 0;
+    left: 0;
 }
 
 .button:not([disabled]):focus,
@@ -22,19 +47,13 @@
     background: #eeeeee;
 }
 
-.button:disabled {
-    /*background: #eeeeee;*/
-    border: 1px solid #aaaaaa;
-}
-
 .flag {
     color: transparent;
     text-shadow: 0 0 0 lightgray;
     font-size: 1.75rem;
-    margin-right: .5rem;
 }
 
-.active {
+.buttonActive .flag {
     animation-duration: 1.5s;
     animation-name: wiggleKeyFrames;
     animation-iteration-count: infinite;
