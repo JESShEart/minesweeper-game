@@ -35,16 +35,14 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
 
     return (
         <div className={`${style.container} ${buttonFlaggingClass}`}>
-            <div className={style.buttonBackground}>
-                <button
-                    onClick={toggleFlagging}
-                    disabled={disabled}
-                    className={style.button}
-                    title="Toggle flagging mines (Press F for shortcut)"
-                >
-                    <span className={style.flag}>🚩</span>
-                </button>
-            </div>
+            <button
+                onClick={toggleFlagging}
+                disabled={disabled}
+                className={style.button}
+                title="Toggle flagging mines (Press F for shortcut)"
+            >
+                <span className={style.flag}>🚩</span>
+            </button>
         </div>
     );
 }
