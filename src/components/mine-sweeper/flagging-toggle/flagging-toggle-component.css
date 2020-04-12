@@ -17,12 +17,13 @@
     cursor: pointer;
 }
 
-.button:hover {
+.button:not([disabled]):focus,
+.button:not([disabled]):hover  {
     background: #eeeeee;
 }
 
 .button:disabled {
-    background: #eeeeee;
+    /*background: #eeeeee;*/
     border: 1px solid #aaaaaa;
 }
 

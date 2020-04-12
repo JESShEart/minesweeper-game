@@ -17,10 +17,6 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
     const label = flagging ? "Flagging" : "Clearing";
     const disabled = status === "WIN" || status === "FAIL";
 
-    if (disabled && flagging) {
-        updateFlagging(false);
-    }
-
     function toggleFlagging(): void {
         updateFlagging(!flagging);
     }
