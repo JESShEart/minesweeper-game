@@ -18,6 +18,7 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
     const { square, status, flagging, dispatch } = props;
     const disabled = status === "FAIL" || status === "WIN";
     const flaggedClass = square.flagged ? style.flagged : "";
+    const flaggingClass = flagging ? style.flagging : "";
 
     function reveal(): void {
         if (flagging) {
@@ -31,7 +32,7 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
         <div className={squareStyle.square}>
             <button
                 disabled={disabled}
-                className={`${squareStyle.square} ${style.hidden} ${flaggedClass}`}
+                className={`${squareStyle.square} ${style.hidden} ${flaggedClass} ${flaggingClass}`}
                 onClick={reveal}
             />
         </div>

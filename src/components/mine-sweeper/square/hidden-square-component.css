@@ -23,8 +23,27 @@
     left: 0;
 }
 
-.flagged:before {
+.flagged.hidden:not([disabled]):focus,
+.flagged.hidden:not([disabled]):hover {
+    background: lightgray;
+}
+
+.flagged:before,
+.flagging.hidden:focus:before,
+.flagging.hidden:hover:before {
     content: "🚩";
     font-size: 1.25rem;
     padding-bottom: .125rem;
+}
+
+
+.flagging.hidden:not(.flagged):focus:before,
+.flagging.hidden:not(.flagged):hover:before {
+    color: transparent;
+    text-shadow: 0 0 0 darkgray;
+}
+
+.flagging.hidden:not([disabled]):focus,
+.flagging.hidden:not([disabled]):hover {
+    background: lightgray;
 }
