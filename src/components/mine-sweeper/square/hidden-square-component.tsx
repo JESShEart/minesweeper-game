@@ -26,6 +26,9 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
         } else if (!square.flagged) {
             dispatch(revealAction(square));
         }
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
     }
 
     return (
