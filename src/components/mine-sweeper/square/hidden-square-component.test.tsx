@@ -14,6 +14,7 @@ describe("HiddenSquareComponent", function() {
     let wrapper: ShallowWrapper;
     let revealAction: Spy;
     let toggleFlaggedAction: Spy;
+    let blur: Spy;
 
     function setup(
         status: GameStatus,
@@ -25,6 +26,7 @@ describe("HiddenSquareComponent", function() {
             toggleFlaggedActionObj,
             "toggleFlaggedSquareAction"
         );
+        blur = spyOn(document.activeElement as HTMLElement, "blur");
         wrapper = shallow(
             (
                 <HiddenSquareComponent
@@ -95,9 +97,22 @@ describe("HiddenSquareComponent", function() {
         expect(toggleFlaggedAction).not.toHaveBeenCalled();
     });
 
+    test("should blur when not flagging and clicked", function() {
+        setup("PLAY", {}, false);
+        wrapper.find("button").simulate("click");
+        expect(blur).toHaveBeenCalled();
+    });
+
+    test("should blur when flagging and clicked", function() {
+        setup("PLAY", {}, true);
+        wrapper.find("button").simulate("click");
+        expect(blur).toHaveBeenCalled();
+    });
+
     test("should not dispatch when not clicked", function() {
         setup("PLAY", { flagged: false }, false);
         expect(revealAction).not.toHaveBeenCalled();
         expect(toggleFlaggedAction).not.toHaveBeenCalled();
+        expect(blur).not.toHaveBeenCalled();
     });
 });
