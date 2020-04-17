@@ -17,11 +17,13 @@ export function FlaggingToggleComponent(props: Props): h.JSX.Element {
     const disabled = status === "WIN" || status === "FAIL";
 
     function toggleFlagging(): void {
-        dispatch(toggleFlaggingAction());
+        if (!disabled) {
+            dispatch(toggleFlaggingAction());
+        }
     }
 
     function onKeyPress(e: KeyboardEvent): void {
-        if (!disabled && e.key === "f") {
+        if (e.key === "f") {
             toggleFlagging();
         }
     }
