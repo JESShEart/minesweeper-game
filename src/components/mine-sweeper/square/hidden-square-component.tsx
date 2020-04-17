@@ -20,14 +20,19 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
     const flaggedClass = square.flagged ? style.flagged : "";
     const flaggingClass = flagging ? style.flagging : "";
 
+    function blur(): void {
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+    }
+
     function reveal(): void {
         if (flagging) {
             dispatch(toggleFlaggedSquareAction(square));
+            blur();
         } else if (!square.flagged) {
             dispatch(revealAction(square));
-        }
-        if (document.activeElement instanceof HTMLElement) {
-            document.activeElement.blur();
+            blur();
         }
     }
 

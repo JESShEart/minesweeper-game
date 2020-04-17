@@ -24,6 +24,7 @@ describe("resetGame", function() {
         const game = resetGame(EASY);
         expect(game).toEqual({
             board: [],
+            difficultyName: EASY.name,
             status: "START",
             flagging: false,
             startedAt: null,

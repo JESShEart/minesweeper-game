@@ -18,6 +18,7 @@ describe("createGame", function() {
         spyOn(Date, "now").and.returnValue(2);
         game = createGame({
             board: [],
+            difficultyName: "NORMAL",
             status: "PLAY",
             flagging: false,
             startedAt: 1,
@@ -29,6 +30,7 @@ describe("createGame", function() {
         setup("WIN");
         expect(game).toEqual({
             board: [],
+            difficultyName: "NORMAL",
             status: "WIN",
             flagging: false,
             startedAt: 1,
@@ -42,6 +44,7 @@ describe("createGame", function() {
         setup("FAIL");
         expect(game).toEqual({
             board: [],
+            difficultyName: "NORMAL",
             status: "FAIL",
             flagging: false,
             startedAt: 1,
@@ -55,6 +58,7 @@ describe("createGame", function() {
         setup("PLAY");
         expect(game).toEqual({
             board: [],
+            difficultyName: "NORMAL",
             status: "PLAY",
             flagging: false,
             startedAt: 1,

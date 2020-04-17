@@ -8,11 +8,12 @@ function finishedStatus(status: GameStatus): boolean {
 }
 
 export function createGame(game: Game): Game {
-    const { board, flagging, startedAt } = game;
+    const { board, flagging, startedAt, difficultyName } = game;
     const status = getStatus(board);
     const finished = finishedStatus(status);
     return {
         board: finished ? revealMines(board) : board,
+        difficultyName,
         status,
         flagging,
         startedAt,

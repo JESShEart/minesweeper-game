@@ -6,6 +6,7 @@ describe("toggleFlagging", function() {
     function setup(flagging: boolean): Game {
         const game = toggleFlagging({
             board: [[]] as Square[][],
+            difficultyName: "EASY",
             status: "PLAY",
             startedAt: 1,
             finishedAt: 2,

@@ -18,6 +18,7 @@ function game(
 ): Game {
     return {
         board: new Array(difficulty.height).fill(new Array(difficulty.width)),
+        difficultyName: difficulty.name,
         startedAt,
         finishedAt,
         status
@@ -33,7 +34,12 @@ describe("logResult", function() {
         const result = logResult(stats([]), game(EASY, "WIN", 1, 3));
         expect(result).toEqual(
             stats([
-                { win: true, startedAt: 1, finishedAt: 3, difficulty: "EASY" }
+                {
+                    win: true,
+                    startedAt: 1,
+                    finishedAt: 3,
+                    difficultyName: "EASY"
+                }
             ])
         );
     });
@@ -46,7 +52,7 @@ describe("logResult", function() {
                     win: false,
                     startedAt: 1,
                     finishedAt: 3,
-                    difficulty: "NORMAL"
+                    difficultyName: "NORMAL"
                 }
             ])
         );
@@ -56,7 +62,12 @@ describe("logResult", function() {
         const result = logResult(stats([]), game(HARD, "WIN", 1, 3));
         expect(result).toEqual(
             stats([
-                { win: true, startedAt: 1, finishedAt: 3, difficulty: "HARD" }
+                {
+                    win: true,
+                    startedAt: 1,
+                    finishedAt: 3,
+                    difficultyName: "HARD"
+                }
             ])
         );
     });
@@ -69,9 +80,24 @@ describe("logResult", function() {
 
         expect(result).toEqual(
             stats([
-                { win: true, startedAt: 1, finishedAt: 3, difficulty: "HARD" },
-                { win: false, startedAt: 1, finishedAt: 3, difficulty: "EASY" },
-                { win: true, startedAt: 1, finishedAt: 3, difficulty: "EASY" }
+                {
+                    win: true,
+                    startedAt: 1,
+                    finishedAt: 3,
+                    difficultyName: "HARD"
+                },
+                {
+                    win: false,
+                    startedAt: 1,
+                    finishedAt: 3,
+                    difficultyName: "EASY"
+                },
+                {
+                    win: true,
+                    startedAt: 1,
+                    finishedAt: 3,
+                    difficultyName: "EASY"
+                }
             ])
         );
     });
