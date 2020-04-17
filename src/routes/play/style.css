@@ -1,6 +1,5 @@
 .home {
 	display: flex;
 	flex-grow: 1;
-	padding: .25rem 1rem 1rem 1rem;
 	overflow: auto;
 }

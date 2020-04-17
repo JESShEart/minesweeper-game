@@ -18,7 +18,7 @@ export function MineSweeperComponent(props: Props): h.JSX.Element {
     const { status, flagging, startedAt, finishedAt } = game;
 
     return (
-        <div>
+        <div style="padding: .25rem 1rem .5rem 1rem">
             <div className={style.topRow}>
                 <StatusComponent status={status} />
                 <ResetComponent dispatch={dispatch} />
