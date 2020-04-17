@@ -49,9 +49,15 @@ export function ResetComponent(props: Props): h.JSX.Element {
                     value={difficulty}
                     onInput={onDifficultyInput}
                 >
-                    <option value="EASY">Easy (10x10)</option>
-                    <option value="NORMAL">Normal (25x15)</option>
-                    <option value="HARD">Hard (50x25)</option>
+                    <option value={EASY.name}>
+                        Easy ({EASY.width}x{EASY.height})
+                    </option>
+                    <option value={NORMAL.name}>
+                        Normal ({NORMAL.width}x{NORMAL.height})
+                    </option>
+                    <option value={HARD.name}>
+                        Hard ({HARD.width}x{HARD.height})
+                    </option>
                 </select>
                 <button className={style.submit} type="submit">
                     Reset
