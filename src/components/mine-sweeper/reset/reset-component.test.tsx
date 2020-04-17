@@ -5,7 +5,6 @@ import { h } from "preact";
 import { ResetComponent } from "./reset-component";
 import * as resetActionObj from "../../../mine-sweeper/actions/reset-action";
 import Spy = jasmine.Spy;
-import { GameReducer } from "../../../mine-sweeper/game-reducer";
 
 describe("ResetComponent", function() {
     let wrapper: ShallowWrapper;
@@ -13,8 +12,7 @@ describe("ResetComponent", function() {
     let dispatch: Spy;
 
     beforeEach(function() {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const dispatcher = { dispatch: (action: GameReducer): void => {} };
+        const dispatcher = { dispatch: (): void => {} };
         dispatch = spyOn(dispatcher, "dispatch");
 
         resetAction = spyOn(resetActionObj, "resetAction").and.returnValue(
@@ -30,7 +28,7 @@ describe("ResetComponent", function() {
         const onInput =
             wrapper.find("select").props().onInput ??
             fail("select onInput should never be undefined");
-        onInput(({ target: { value } } as unknown) as FormEvent);
+        onInput(({ currentTarget: { value } } as unknown) as FormEvent);
     }
 
     test("should set select initial value to EASY", function() {

@@ -31,9 +31,10 @@ export function ResetComponent(props: Props): h.JSX.Element {
         dispatch(getResetDifficultyAction());
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    function onDifficultyInput(e: any): void {
-        updateDifficulty(e.target.value as Difficulty);
+    function onDifficultyInput(
+        e: h.JSX.TargetedEvent<HTMLSelectElement, Event>
+    ): void {
+        updateDifficulty(e.currentTarget.value as Difficulty);
     }
 
     return (
