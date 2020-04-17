@@ -1,10 +1,15 @@
 import { h } from "preact";
-import { GameDispatch, GameReducer } from "../../../mine-sweeper/game-reducer";
+import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 import { useState } from "preact/hooks";
 import { resetAction } from "../../../mine-sweeper/actions/reset-action";
 import * as style from "./reset-component.css";
-
-type Difficulty = "EASY" | "NORMAL" | "HARD";
+import {
+    Difficulty,
+    DifficultyName,
+    EASY,
+    HARD,
+    NORMAL
+} from "../../../mine-sweeper/types/difficulty";
 
 interface Props {
     dispatch: GameDispatch;
@@ -12,29 +17,28 @@ interface Props {
 
 export function ResetComponent(props: Props): h.JSX.Element {
     const { dispatch } = props;
-    const [difficulty, updateDifficulty] = useState("EASY" as Difficulty);
+    const [difficulty, updateDifficulty] = useState("EASY" as DifficultyName);
 
-    function getResetDifficultyAction(): GameReducer {
+    function getResetDifficultyValue(): Difficulty {
         switch (difficulty) {
             case "HARD":
-                return resetAction(25, 50, 8);
+                return HARD;
             case "NORMAL":
-                return resetAction(15, 25, 8);
+                return NORMAL;
             case "EASY":
-            default:
-                return resetAction(10, 10, 8);
+                return EASY;
         }
     }
 
     function reset(e: h.JSX.TargetedEvent): void {
         e.preventDefault();
-        dispatch(getResetDifficultyAction());
+        dispatch(resetAction(getResetDifficultyValue()));
     }
 
     function onDifficultyInput(
         e: h.JSX.TargetedEvent<HTMLSelectElement, Event>
     ): void {
-        updateDifficulty(e.currentTarget.value as Difficulty);
+        updateDifficulty(e.currentTarget.value as DifficultyName);
     }
 
     return (

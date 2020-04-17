@@ -8,6 +8,7 @@ import { useReducer } from "preact/hooks";
 import { gameReducer } from "../mine-sweeper/game-reducer";
 import { Game } from "../mine-sweeper/types/game";
 import { resetGame } from "../mine-sweeper/functions/reset-game";
+import { EASY } from "../mine-sweeper/types/difficulty";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 if ((module as any).hot) {
@@ -16,7 +17,7 @@ if ((module as any).hot) {
 }
 
 function newGame(): Game {
-    return resetGame(10, 10, 8);
+    return resetGame(EASY);
 }
 
 function AppComponent(): h.JSX.Element {

@@ -5,6 +5,7 @@ import { h } from "preact";
 import { ResetComponent } from "./reset-component";
 import * as resetActionObj from "../../../mine-sweeper/actions/reset-action";
 import Spy = jasmine.Spy;
+import { EASY, HARD, NORMAL } from "../../../mine-sweeper/types/difficulty";
 
 describe("ResetComponent", function() {
     let wrapper: ShallowWrapper;
@@ -48,18 +49,18 @@ describe("ResetComponent", function() {
     test("should call reset action with EASY values", function() {
         setFormValue("EASY");
         wrapper.find("form").simulate("submit");
-        expect(resetAction).toHaveBeenCalledWith(10, 10, 8);
+        expect(resetAction).toHaveBeenCalledWith(EASY);
     });
 
     test("should call reset action with NORMAL values", function() {
         setFormValue("NORMAL");
         wrapper.find("form").simulate("submit");
-        expect(resetAction).toHaveBeenCalledWith(15, 25, 8);
+        expect(resetAction).toHaveBeenCalledWith(NORMAL);
     });
 
     test("should call reset action with HARD values", function() {
         setFormValue("HARD");
         wrapper.find("form").simulate("submit");
-        expect(resetAction).toHaveBeenCalledWith(25, 50, 8);
+        expect(resetAction).toHaveBeenCalledWith(HARD);
     });
 });

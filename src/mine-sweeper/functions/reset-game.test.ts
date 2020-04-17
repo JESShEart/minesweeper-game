@@ -1,6 +1,7 @@
 import * as createBoardObj from "./create-board";
 import Spy = jasmine.Spy;
 import { resetGame } from "./reset-game";
+import { EASY, NORMAL } from "../types/difficulty";
 
 describe("resetGame", function() {
     let createBoard: Spy;
@@ -11,13 +12,16 @@ describe("resetGame", function() {
     });
 
     test("should pass params through to create board", function() {
-        const params: [number, number, number] = [1, 2, 3];
-        resetGame(...params);
-        expect(createBoard).toHaveBeenCalledWith(...params);
+        resetGame(NORMAL);
+        expect(createBoard).toHaveBeenCalledWith(
+            NORMAL.height,
+            NORMAL.width,
+            NORMAL.mineRatio
+        );
     });
 
     test("should reset game", function() {
-        const game = resetGame(1, 2, 3);
+        const game = resetGame(EASY);
         expect(game).toEqual({
             board: [],
             status: "START",

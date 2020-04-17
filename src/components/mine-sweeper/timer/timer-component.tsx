@@ -1,7 +1,7 @@
 import { h } from "preact";
 import * as style from "./timer-component.css";
 import { useEffect, useState } from "preact/hooks";
-import { toHoursMinutesSeconds } from "./to-hours-minutes-seconds";
+import { toHoursMinutesSeconds } from "../../../mine-sweeper/functions/to-hours-minutes-seconds";
 
 interface Props {
     startedAt: number | null;
