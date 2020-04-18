@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Route, Router } from "preact-router";
 
-import StatsComponent from "../routes/stats/stats-component";
+import StatsRouteComponent from "../routes/stats/stats-route-component";
 import { HeaderComponent } from "./header/header-component";
 import PlayComponent from "../routes/play/play-component";
 import { useReducer } from "preact/hooks";
@@ -24,6 +24,7 @@ function newGame(): Game {
 
 function loadStats(): Stats {
     return {
+        todayOnly: false,
         results: []
     };
 }
@@ -45,8 +46,9 @@ function AppComponent(): h.JSX.Element {
                 />
                 <Route
                     path="/stats/"
-                    component={StatsComponent}
+                    component={StatsRouteComponent}
                     stats={stats}
+                    dispatch={statsDispatch}
                 />
             </Router>
         </div>

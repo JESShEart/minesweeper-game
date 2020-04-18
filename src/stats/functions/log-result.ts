@@ -15,8 +15,9 @@ function gameResult(game: Game): Result {
     };
 }
 
-export function logResult(stats: Stats, game: Game): Stats {
+export function logResult({ todayOnly, results }: Stats, game: Game): Stats {
     return {
-        results: [...stats.results, gameResult(game)]
+        todayOnly,
+        results: [...results, gameResult(game)]
     };
 }

@@ -36,4 +36,12 @@ describe("toHoursMinutesSeconds", function() {
     test("should be -1:00 for -60 seconds", function() {
         expect(toHoursMinutesSeconds(-60000)).toBe("-1:00");
     });
+
+    test("should be 0:10 for 10 seconds when show minutes is true", function() {
+        expect(toHoursMinutesSeconds(10000, true)).toBe("0:10");
+    });
+
+    test("should be 10 for 10 seconds when show minutes is false", function() {
+        expect(toHoursMinutesSeconds(10000, false)).toBe("10");
+    });
 });

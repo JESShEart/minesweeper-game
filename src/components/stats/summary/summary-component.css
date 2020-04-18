@@ -1,0 +1,27 @@
+.summary {
+    display: flex;
+    flex-direction: column;
+    min-width: 230px;
+    max-width: 230px;
+    background: #eeeeee;
+    padding: .25rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+}
+
+.summary h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid black;
+}
+.summary h3 .dimensions {
+    font-size: 18px;
+}
+
+.summary .statLines {
+    margin: .25rem .5rem;
+}

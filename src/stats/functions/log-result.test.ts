@@ -26,7 +26,7 @@ function game(
 }
 
 function stats(results: Partial<Result>[]): Stats {
-    return { results: results as Result[] };
+    return { results } as Stats;
 }
 
 describe("logResult", function() {
