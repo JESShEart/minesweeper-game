@@ -7,14 +7,16 @@ import { StatusComponent } from "./status/status-component";
 import * as style from "./mine-sweeper-component.css";
 import { TimerComponent } from "./timer/timer-component";
 import { FlaggingToggleComponent } from "./flagging-toggle/flagging-toggle-component";
+import { StatsDispatch } from "../../stats/stats-reducer";
 
 interface Props {
     game: Game;
     dispatch: GameDispatch;
+    statsDispatch: StatsDispatch;
 }
 
 export function MineSweeperComponent(props: Props): h.JSX.Element {
-    const { game, dispatch } = props;
+    const { game, dispatch, statsDispatch } = props;
     const { status, flagging, startedAt, finishedAt } = game;
 
     return (
@@ -24,7 +26,11 @@ export function MineSweeperComponent(props: Props): h.JSX.Element {
                 <ResetComponent dispatch={dispatch} />
                 <TimerComponent startedAt={startedAt} finishedAt={finishedAt} />
             </div>
-            <BoardComponent game={game} dispatch={dispatch} />
+            <BoardComponent
+                game={game}
+                dispatch={dispatch}
+                statsDispatch={statsDispatch}
+            />
             <div className={style.bottomRow}>
                 <FlaggingToggleComponent
                     status={status}

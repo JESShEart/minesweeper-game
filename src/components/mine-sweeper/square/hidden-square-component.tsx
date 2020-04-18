@@ -6,16 +6,18 @@ import { revealAction } from "../../../mine-sweeper/actions/reveal-action";
 import * as squareStyle from "./square-component.css";
 import * as style from "./hidden-square-component.css";
 import { toggleFlaggedSquareAction } from "../../../mine-sweeper/actions/toggle-flagged-square-action";
+import { StatsDispatch } from "../../../stats/stats-reducer";
 
 interface Props {
     square: Square;
     status: GameStatus;
     flagging: boolean;
     dispatch: GameDispatch;
+    statsDispatch: StatsDispatch;
 }
 
 export function HiddenSquareComponent(props: Props): h.JSX.Element {
-    const { square, status, flagging, dispatch } = props;
+    const { square, status, flagging, dispatch, statsDispatch } = props;
     const disabled = status === "FAIL" || status === "WIN";
     const flaggedClass = square.flagged ? style.flagged : "";
     const flaggingClass = flagging ? style.flagging : "";
@@ -31,7 +33,7 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
             dispatch(toggleFlaggedSquareAction(square));
             blur();
         } else if (!square.flagged) {
-            dispatch(revealAction(square));
+            dispatch(revealAction(square, statsDispatch));
             blur();
         }
     }

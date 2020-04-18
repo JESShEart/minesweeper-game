@@ -15,6 +15,7 @@ describe("SquareComponent", function() {
     function setup(square: Partial<Square>): void {
         const status = "PLAY";
         const dispatch = function(): void {};
+        const statsDispatch = function(): void {};
         const flagging = true;
 
         hiddenSquare = (
@@ -23,6 +24,7 @@ describe("SquareComponent", function() {
                 status={status}
                 flagging={flagging}
                 dispatch={dispatch}
+                statsDispatch={statsDispatch}
             />
         ) as ReactElement;
 
@@ -40,6 +42,7 @@ describe("SquareComponent", function() {
                     status={status}
                     flagging={flagging}
                     dispatch={dispatch}
+                    statsDispatch={statsDispatch}
                 />
             ) as ReactElement
         );

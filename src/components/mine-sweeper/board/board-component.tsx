@@ -4,14 +4,16 @@ import { SquareComponent } from "../square/square-component";
 import * as style from "./board-component.css";
 import { Game } from "../../../mine-sweeper/types/game";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
+import { StatsDispatch } from "../../../stats/stats-reducer";
 
 interface Props {
     game: Game;
     dispatch: GameDispatch;
+    statsDispatch: StatsDispatch;
 }
 
 export function BoardComponent(props: Props): h.JSX.Element {
-    const { game, dispatch } = props;
+    const { game, dispatch, statsDispatch } = props;
     const { status, board, flagging } = game;
 
     function renderSquare(square: Square): h.JSX.Element {
@@ -21,6 +23,7 @@ export function BoardComponent(props: Props): h.JSX.Element {
                 status={status}
                 flagging={flagging}
                 dispatch={dispatch}
+                statsDispatch={statsDispatch}
             />
         );
     }

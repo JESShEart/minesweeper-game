@@ -5,16 +5,18 @@ import { GameStatus } from "../../../mine-sweeper/types/game-status";
 import { HiddenSquareComponent } from "./hidden-square-component";
 import { RevealedSquareComponent } from "./revealed-square-component";
 import * as style from "./square-component.css";
+import { StatsDispatch } from "../../../stats/stats-reducer";
 
 interface Props {
     square: Square;
     status: GameStatus;
     flagging: boolean;
     dispatch: GameDispatch;
+    statsDispatch: StatsDispatch;
 }
 
 export function SquareComponent(props: Props): h.JSX.Element {
-    const { square, status, flagging, dispatch } = props;
+    const { square, status, flagging, dispatch, statsDispatch } = props;
     const { revealed } = square;
 
     function revealedSquare(): h.JSX.Element {
@@ -28,6 +30,7 @@ export function SquareComponent(props: Props): h.JSX.Element {
                 status={status}
                 flagging={flagging}
                 dispatch={dispatch}
+                statsDispatch={statsDispatch}
             />
         );
     }

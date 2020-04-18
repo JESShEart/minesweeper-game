@@ -10,6 +10,7 @@ import { SquareComponent } from "../square/square-component";
 import { GameDispatch } from "../../../mine-sweeper/game-reducer";
 import { GameStatus } from "../../../mine-sweeper/types/game-status";
 import { Square } from "../../../mine-sweeper/types/square";
+import { StatsDispatch } from "../../../stats/stats-reducer";
 
 describe("BoardComponent", function() {
     let wrapper: ShallowWrapper;
@@ -17,6 +18,7 @@ describe("BoardComponent", function() {
     let status: GameStatus;
     let flagging: boolean;
     let dispatch: GameDispatch;
+    let statsDispatch: StatsDispatch;
 
     function setup(squares: Square[][]): void {
         board = squares;
@@ -24,8 +26,15 @@ describe("BoardComponent", function() {
         flagging = true;
         const game: Game = { board, status, flagging } as Game;
         dispatch = (): void => {};
+        statsDispatch = function(): void {};
         wrapper = shallow(
-            (<BoardComponent game={game} dispatch={dispatch} />) as ReactElement
+            (
+                <BoardComponent
+                    game={game}
+                    dispatch={dispatch}
+                    statsDispatch={statsDispatch}
+                />
+            ) as ReactElement
         );
     }
 
@@ -39,6 +48,7 @@ describe("BoardComponent", function() {
         expect(squareWrapper.prop("status")).toBe(status);
         expect(squareWrapper.prop("flagging")).toBe(flagging);
         expect(squareWrapper.prop("dispatch")).toBe(dispatch);
+        expect(squareWrapper.prop("statsDispatch")).toBe(statsDispatch);
     }
 
     test("should render empty board", function() {

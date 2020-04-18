@@ -4,6 +4,6 @@ export type StatsReducer = (stats: Stats) => Stats;
 
 export type StatsDispatch = (action: StatsReducer) => void;
 
-export function gameReducer(stats: Stats, action: StatsReducer): Stats {
+export function statsReducer(stats: Stats, action: StatsReducer): Stats {
     return action(stats);
 }

@@ -9,12 +9,14 @@ import Spy = jasmine.Spy;
 import * as revealActionObj from "../../../mine-sweeper/actions/reveal-action";
 import * as toggleFlaggedActionObj from "../../../mine-sweeper/actions/toggle-flagged-square-action";
 import * as style from "./hidden-square-component.css";
+import { StatsDispatch } from "../../../stats/stats-reducer";
 
 describe("HiddenSquareComponent", function() {
     let wrapper: ShallowWrapper;
     let revealAction: Spy;
     let toggleFlaggedAction: Spy;
     let blur: Spy;
+    let statsDispatch: StatsDispatch;
 
     function setup(
         status: GameStatus,
@@ -27,6 +29,7 @@ describe("HiddenSquareComponent", function() {
             "toggleFlaggedSquareAction"
         );
         blur = spyOn(document.activeElement as HTMLElement, "blur");
+        statsDispatch = function(): void {};
         wrapper = shallow(
             (
                 <HiddenSquareComponent
@@ -34,6 +37,7 @@ describe("HiddenSquareComponent", function() {
                     status={status}
                     flagging={flagging}
                     dispatch={function(): void {}}
+                    statsDispatch={statsDispatch}
                 />
             ) as ReactElement
         );
@@ -72,7 +76,10 @@ describe("HiddenSquareComponent", function() {
     test("should call revealAction when clicked, flagged is false and flagging is false", function() {
         setup("PLAY", { flagged: false }, false);
         wrapper.find("button").simulate("click");
-        expect(revealAction).toHaveBeenCalledWith({ flagged: false });
+        expect(revealAction).toHaveBeenCalledWith(
+            { flagged: false },
+            statsDispatch
+        );
         expect(toggleFlaggedAction).not.toHaveBeenCalled();
     });
 
@@ -97,6 +104,13 @@ describe("HiddenSquareComponent", function() {
         expect(toggleFlaggedAction).not.toHaveBeenCalled();
     });
 
+    test("should not dispatch when not clicked", function() {
+        setup("PLAY", { flagged: false }, false);
+        expect(revealAction).not.toHaveBeenCalled();
+        expect(toggleFlaggedAction).not.toHaveBeenCalled();
+        expect(blur).not.toHaveBeenCalled();
+    });
+
     test("should blur when not flagging and clicked", function() {
         setup("PLAY", {}, false);
         wrapper.find("button").simulate("click");
@@ -107,12 +121,5 @@ describe("HiddenSquareComponent", function() {
         setup("PLAY", {}, true);
         wrapper.find("button").simulate("click");
         expect(blur).toHaveBeenCalled();
-    });
-
-    test("should not dispatch when not clicked", function() {
-        setup("PLAY", { flagged: false }, false);
-        expect(revealAction).not.toHaveBeenCalled();
-        expect(toggleFlaggedAction).not.toHaveBeenCalled();
-        expect(blur).not.toHaveBeenCalled();
     });
 });
