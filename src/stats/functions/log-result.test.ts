@@ -9,6 +9,8 @@ import {
     NORMAL
 } from "../../mine-sweeper/types/difficulty";
 import { GameStatus } from "../../mine-sweeper/types/game-status";
+import * as saveStatsObj from "./save-stats";
+import Spy = jasmine.Spy;
 
 function game(
     difficulty: Difficulty,
@@ -30,6 +32,13 @@ function stats(results: Partial<Result>[]): Stats {
 }
 
 describe("logResult", function() {
+    let saveStats: Spy;
+
+    beforeEach(function() {
+        saveStats = spyOn(saveStatsObj, "saveStats");
+        saveStats.and.stub();
+    });
+
     test("should record EASY winning result", function() {
         const result = logResult(stats([]), game(EASY, "WIN", 1, 3));
         expect(result).toEqual(
@@ -100,5 +109,10 @@ describe("logResult", function() {
                 }
             ])
         );
+    });
+
+    test("should save the resulting stats", function() {
+        const result = logResult(stats([]), game(HARD, "WIN", 1, 3));
+        expect(saveStats).toHaveBeenCalledWith(result);
     });
 });

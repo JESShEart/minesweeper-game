@@ -1,6 +1,7 @@
 import { Game } from "../../mine-sweeper/types/game";
 import { Stats } from "../types/stats";
 import { Result } from "../types/result";
+import { saveStats } from "./save-stats";
 
 function gameResult(game: Game): Result {
     const { startedAt, finishedAt, difficultyName } = game;
@@ -16,8 +17,10 @@ function gameResult(game: Game): Result {
 }
 
 export function logResult({ todayOnly, results }: Stats, game: Game): Stats {
-    return {
+    const stats: Stats = {
         todayOnly,
         results: [...results, gameResult(game)]
     };
+    saveStats(stats);
+    return stats;
 }

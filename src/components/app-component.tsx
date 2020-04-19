@@ -6,11 +6,10 @@ import { HeaderComponent } from "./header/header-component";
 import PlayComponent from "../routes/play/play-component";
 import { useReducer } from "preact/hooks";
 import { gameReducer } from "../mine-sweeper/game-reducer";
-import { Game } from "../mine-sweeper/types/game";
 import { resetGame } from "../mine-sweeper/functions/reset-game";
 import { EASY } from "../mine-sweeper/types/difficulty";
 import { statsReducer } from "../stats/stats-reducer";
-import { Stats } from "../stats/types/stats";
+import { loadStats } from "../stats/functions/load-stats";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 if ((module as any).hot) {
@@ -18,19 +17,8 @@ if ((module as any).hot) {
     require("preact/debug");
 }
 
-function newGame(): Game {
-    return resetGame(EASY);
-}
-
-function loadStats(): Stats {
-    return {
-        todayOnly: false,
-        results: []
-    };
-}
-
 function AppComponent(): h.JSX.Element {
-    const [game, gameDispatch] = useReducer(gameReducer, newGame());
+    const [game, gameDispatch] = useReducer(gameReducer, resetGame(EASY));
     const [stats, statsDispatch] = useReducer(statsReducer, loadStats());
 
     return (
