@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { Link } from "preact-router/match";
 import * as style from "./header-component.css";
-import { minesweeperRouteProps } from "../mine-sweeper/minesweeper-route-props";
+import { minesweeperRouteProps } from "../minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "../stats/stats-route-props";
 
 export function HeaderComponent(): h.JSX.Element {
@@ -13,13 +13,13 @@ export function HeaderComponent(): h.JSX.Element {
                     activeClassName={style.active}
                     href={minesweeperRouteProps.path}
                 >
-                    Play
+                    {minesweeperRouteProps.title}
                 </Link>
                 <Link
                     activeClassName={style.active}
                     href={statsRouteProps.path}
                 >
-                    Stats
+                    {statsRouteProps.title}
                 </Link>
             </nav>
         </header>
