@@ -37,7 +37,7 @@ export function StatsComponent(props: Props): h.JSX.Element {
                 <DifficultySummaryComponent difficulty={NORMAL} stats={stats} />
                 <DifficultySummaryComponent difficulty={HARD} stats={stats} />
             </div>
-            <small>Stats are only recorded for finished games!</small>
+            <small>ℹ️ Stats are only recorded for finished games!</small>
         </div>
     );
 }
