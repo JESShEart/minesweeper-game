@@ -31,3 +31,5 @@ export const HARD: Difficulty = {
     width: 50,
     mineRatio: 8
 };
+
+export const DIFFICULTIES: readonly Difficulty[] = [EASY, NORMAL, HARD];

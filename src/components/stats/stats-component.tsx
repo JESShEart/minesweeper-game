@@ -30,7 +30,7 @@ export function StatsComponent(props: Props): h.JSX.Element {
                 <button onClick={allTime}>All Time</button>
                 <button onClick={todayOnly}>Today</button>
             </div>
-            <h2>Game Stats ({heading})</h2>
+            <h2>Game Stats: {heading}</h2>
             <div className={style.summaries}>
                 <TotalSummaryComponent stats={stats} />
                 <DifficultySummaryComponent difficulty={EASY} stats={stats} />

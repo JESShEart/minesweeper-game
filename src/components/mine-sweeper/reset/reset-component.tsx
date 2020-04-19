@@ -4,6 +4,7 @@ import { useState } from "preact/hooks";
 import { resetAction } from "../../../mine-sweeper/actions/reset-action";
 import * as style from "./reset-component.css";
 import {
+    DIFFICULTIES,
     Difficulty,
     DifficultyName,
     EASY,
@@ -41,6 +42,15 @@ export function ResetComponent(props: Props): h.JSX.Element {
         updateDifficulty(e.currentTarget.value as DifficultyName);
     }
 
+    function difficultyOption(d: Difficulty): h.JSX.Element {
+        const { name, displayName, width, height } = d;
+        return (
+            <option value={name}>
+                {displayName} ({width}x{height})
+            </option>
+        );
+    }
+
     return (
         <div className={style.reset}>
             <form onSubmit={reset}>
@@ -49,15 +59,7 @@ export function ResetComponent(props: Props): h.JSX.Element {
                     value={difficulty}
                     onInput={onDifficultyInput}
                 >
-                    <option value={EASY.name}>
-                        Easy ({EASY.width}x{EASY.height})
-                    </option>
-                    <option value={NORMAL.name}>
-                        Normal ({NORMAL.width}x{NORMAL.height})
-                    </option>
-                    <option value={HARD.name}>
-                        Hard ({HARD.width}x{HARD.height})
-                    </option>
+                    {DIFFICULTIES.map(difficultyOption)}
                 </select>
                 <button className={style.submit} type="submit">
                     Reset

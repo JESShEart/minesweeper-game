@@ -3,12 +3,14 @@
     flex-direction: row;
     border-bottom: 1px dotted gray;
     margin-bottom: .25rem;
+    white-space: nowrap;
 }
 
 .label {
     display: flex;
     flex-direction: column;
     flex: 1;
+    white-space: nowrap;
 }
 
 .value {
