@@ -17,4 +17,15 @@ html, body {
 
 #app {
 	height: 100%;
+	width: 100%;
+	overflow: auto;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding: .5rem 1rem;
+	width: -moz-fit-content;
+	width: fit-content;
 }

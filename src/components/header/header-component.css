@@ -1,5 +1,6 @@
 .header {
-	width: 100%;
+	position: sticky;
+	left: 0;
 	padding: 0;
 	background: #673AB7;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
