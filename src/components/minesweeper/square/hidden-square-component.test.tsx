@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { shallow, ShallowWrapper } from "enzyme";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
-import { Square } from "../../../mine-sweeper/types/square";
+import { GameStatus } from "../../../minesweeper/types/game-status";
+import { Square } from "../../../minesweeper/types/square";
 import { ReactElement } from "react";
 import { h } from "preact";
 import { HiddenSquareComponent } from "./hidden-square-component";
-import Spy = jasmine.Spy;
-import * as revealActionObj from "../../../mine-sweeper/actions/reveal-action";
-import * as toggleFlaggedActionObj from "../../../mine-sweeper/actions/toggle-flagged-square-action";
+import * as revealActionObj from "../../../minesweeper/actions/reveal-action";
+import * as toggleFlaggedActionObj from "../../../minesweeper/actions/toggle-flagged-square-action";
 import * as style from "./hidden-square-component.css";
 import { StatsDispatch } from "../../../stats/stats-reducer";
+import Spy = jasmine.Spy;
 
 describe("HiddenSquareComponent", function() {
     let wrapper: ShallowWrapper;

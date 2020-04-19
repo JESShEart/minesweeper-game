@@ -1,6 +1,6 @@
 import { Result } from "../types/result";
 import { Stats } from "../types/stats";
-import { Difficulty } from "../../mine-sweeper/types/difficulty";
+import { Difficulty } from "../../minesweeper/types/difficulty";
 
 function startOfToday(): number {
     const today = new Date(Date.now());

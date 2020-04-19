@@ -1,6 +1,6 @@
 import { h } from "preact";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
-import { Square } from "../../../mine-sweeper/types/square";
+import { GameStatus } from "../../../minesweeper/types/game-status";
+import { Square } from "../../../minesweeper/types/square";
 import * as squareStyle from "./square-component.css";
 import * as style from "./revealed-square-component.css";
 

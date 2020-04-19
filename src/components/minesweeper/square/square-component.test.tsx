@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { shallow, ShallowWrapper } from "enzyme";
-import { Square } from "../../../mine-sweeper/types/square";
+import { Square } from "../../../minesweeper/types/square";
 import { RevealedSquareComponent } from "./revealed-square-component";
 import { ReactElement } from "react";
 import { h } from "preact";

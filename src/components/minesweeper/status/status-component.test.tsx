@@ -2,7 +2,7 @@ import { shallow, ShallowWrapper } from "enzyme";
 import { ReactElement } from "react";
 import { h } from "preact";
 import { StatusComponent } from "./status-component";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
+import { GameStatus } from "../../../minesweeper/types/game-status";
 import * as style from "./status-component.css";
 
 describe("StatusComponent", function() {

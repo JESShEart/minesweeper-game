@@ -5,7 +5,7 @@ import { getWinningTimes } from "./get-winning-times";
 import { TotalSummary } from "../types/total-summary";
 import { getTotalTime } from "./get-total-time";
 import { Result } from "../types/result";
-import { toHoursMinutesSeconds } from "../../mine-sweeper/functions/to-hours-minutes-seconds";
+import { toHoursMinutesSeconds } from "../../minesweeper/functions/to-hours-minutes-seconds";
 
 export function getAllTimes(results: Result[]): number[] {
     return results.map(result => result.finishedAt - result.startedAt);

@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { shallow, ShallowWrapper } from "enzyme";
 import { BoardComponent } from "./board-component";
-import { Game } from "../../../mine-sweeper/types/game";
+import { Game } from "../../../minesweeper/types/game";
 import { h } from "preact";
 import { ReactElement } from "react";
 import * as style from "./board-component.css";
 import { createTestBoard } from "../../../testing/create-test-board";
 import { SquareComponent } from "../square/square-component";
-import { GameDispatch } from "../../../mine-sweeper/game-reducer";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
-import { Square } from "../../../mine-sweeper/types/square";
+import { GameDispatch } from "../../../minesweeper/game-reducer";
+import { GameStatus } from "../../../minesweeper/types/game-status";
+import { Square } from "../../../minesweeper/types/square";
 import { StatsDispatch } from "../../../stats/stats-reducer";
 
 describe("BoardComponent", function() {

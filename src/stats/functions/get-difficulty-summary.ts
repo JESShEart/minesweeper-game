@@ -1,7 +1,7 @@
 import { Stats } from "../types/stats";
-import { Difficulty } from "../../mine-sweeper/types/difficulty";
+import { Difficulty } from "../../minesweeper/types/difficulty";
 import { getRelevantResults } from "./get-relevant-results";
-import { toHoursMinutesSeconds } from "../../mine-sweeper/functions/to-hours-minutes-seconds";
+import { toHoursMinutesSeconds } from "../../minesweeper/functions/to-hours-minutes-seconds";
 import { getWinRate } from "./get-win-rate";
 import { getTotalTime } from "./get-total-time";
 import { DifficultySummary } from "../types/difficulty-summary";

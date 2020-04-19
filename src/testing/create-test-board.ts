@@ -1,5 +1,5 @@
-import { Square } from "../mine-sweeper/types/square";
-import { createBoard } from "../mine-sweeper/functions/create-board";
+import { Square } from "../minesweeper/types/square";
+import { createBoard } from "../minesweeper/functions/create-board";
 
 /**
  * this will be used in tests to simplify creating and visualizing a board.

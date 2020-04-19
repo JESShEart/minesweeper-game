@@ -1,8 +1,8 @@
 import { h } from "preact";
-import { GameDispatch } from "../../mine-sweeper/game-reducer";
+import { GameDispatch } from "../../minesweeper/game-reducer";
 import { BoardComponent } from "./board/board-component";
 import { ResetComponent } from "./reset/reset-component";
-import { Game } from "../../mine-sweeper/types/game";
+import { Game } from "../../minesweeper/types/game";
 import { StatusComponent } from "./status/status-component";
 import * as style from "./mine-sweeper-component.css";
 import { TimerComponent } from "./timer/timer-component";

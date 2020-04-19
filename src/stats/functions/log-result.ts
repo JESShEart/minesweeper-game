@@ -1,4 +1,4 @@
-import { Game } from "../../mine-sweeper/types/game";
+import { Game } from "../../minesweeper/types/game";
 import { Stats } from "../types/stats";
 import { Result } from "../types/result";
 import { saveStats } from "./save-stats";

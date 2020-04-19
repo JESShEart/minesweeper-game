@@ -1,4 +1,4 @@
-import { DifficultyName } from "../../mine-sweeper/types/difficulty";
+import { DifficultyName } from "../../minesweeper/types/difficulty";
 
 export interface Result {
     difficultyName: DifficultyName;

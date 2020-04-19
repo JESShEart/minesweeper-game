@@ -1,6 +1,6 @@
 import { Stats } from "../../../stats/types/stats";
 import { h } from "preact";
-import { Difficulty } from "../../../mine-sweeper/types/difficulty";
+import { Difficulty } from "../../../minesweeper/types/difficulty";
 import { StatLineComponent } from "../stat-line/stat-line-component";
 import * as style from "./summary-component.css";
 import { getDifficultySummary } from "../../../stats/functions/get-difficulty-summary";

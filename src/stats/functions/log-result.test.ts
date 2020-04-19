@@ -1,5 +1,5 @@
 import { logResult } from "./log-result";
-import { Game } from "../../mine-sweeper/types/game";
+import { Game } from "../../minesweeper/types/game";
 import { Result } from "../types/result";
 import { Stats } from "../types/stats";
 import {
@@ -7,8 +7,8 @@ import {
     EASY,
     HARD,
     NORMAL
-} from "../../mine-sweeper/types/difficulty";
-import { GameStatus } from "../../mine-sweeper/types/game-status";
+} from "../../minesweeper/types/difficulty";
+import { GameStatus } from "../../minesweeper/types/game-status";
 import * as saveStatsObj from "./save-stats";
 import Spy = jasmine.Spy;
 

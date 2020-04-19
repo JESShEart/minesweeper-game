@@ -2,7 +2,7 @@ import { shallow, ShallowWrapper } from "enzyme";
 import { ReactElement } from "react";
 import { h } from "preact";
 import { DifficultySummaryComponent } from "./difficulty-summary-component";
-import { Difficulty } from "../../../mine-sweeper/types/difficulty";
+import { Difficulty } from "../../../minesweeper/types/difficulty";
 import { Stats } from "../../../stats/types/stats";
 import * as getDifficultySummaryObj from "../../../stats/functions/get-difficulty-summary";
 import { DifficultySummary } from "../../../stats/types/difficulty-summary";

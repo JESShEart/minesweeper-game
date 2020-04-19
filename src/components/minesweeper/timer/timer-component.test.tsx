@@ -3,7 +3,7 @@ import { h } from "preact";
 import { ReactElement } from "react";
 import { TimerComponent } from "./timer-component";
 import * as style from "./timer-component.css";
-import * as toHoursMinutesSecondsObj from "../../../mine-sweeper/functions/to-hours-minutes-seconds";
+import * as toHoursMinutesSecondsObj from "../../../minesweeper/functions/to-hours-minutes-seconds";
 import Spy = jasmine.Spy;
 
 const ELAPSED_TIME_MESSAGE = "#:##";

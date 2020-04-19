@@ -2,7 +2,7 @@ import { h } from "preact";
 import { Stats } from "../../stats/types/stats";
 import { StatsDispatch } from "../../stats/stats-reducer";
 import { DifficultySummaryComponent } from "./summary/difficulty-summary-component";
-import { EASY, HARD, NORMAL } from "../../mine-sweeper/types/difficulty";
+import { EASY, HARD, NORMAL } from "../../minesweeper/types/difficulty";
 import * as style from "./stats-component.css";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { todayOnlyAction } from "../../stats/actions/today-only-action";

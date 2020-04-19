@@ -5,7 +5,7 @@ import {
     EASY,
     HARD,
     NORMAL
-} from "../../mine-sweeper/types/difficulty";
+} from "../../minesweeper/types/difficulty";
 
 describe("getRelevantResults", function() {
     let easyYesterdayResult: Result;

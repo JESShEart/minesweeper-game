@@ -1,7 +1,7 @@
 import { h } from "preact";
-import { GameDispatch } from "../../../mine-sweeper/game-reducer";
+import { GameDispatch } from "../../../minesweeper/game-reducer";
 import { useState } from "preact/hooks";
-import { resetAction } from "../../../mine-sweeper/actions/reset-action";
+import { resetAction } from "../../../minesweeper/actions/reset-action";
 import * as style from "./reset-component.css";
 import {
     DIFFICULTIES,
@@ -10,7 +10,7 @@ import {
     EASY,
     HARD,
     NORMAL
-} from "../../../mine-sweeper/types/difficulty";
+} from "../../../minesweeper/types/difficulty";
 
 interface Props {
     dispatch: GameDispatch;

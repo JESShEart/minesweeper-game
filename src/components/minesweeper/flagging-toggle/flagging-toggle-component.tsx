@@ -1,8 +1,8 @@
 import { h } from "preact";
-import { GameDispatch } from "../../../mine-sweeper/game-reducer";
+import { GameDispatch } from "../../../minesweeper/game-reducer";
 import * as style from "./flagging-toggle-component.css";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
-import { toggleFlaggingAction } from "../../../mine-sweeper/actions/toggle-flagging-action";
+import { GameStatus } from "../../../minesweeper/types/game-status";
+import { toggleFlaggingAction } from "../../../minesweeper/actions/toggle-flagging-action";
 import { useEffect } from "preact/hooks";
 
 interface Props {

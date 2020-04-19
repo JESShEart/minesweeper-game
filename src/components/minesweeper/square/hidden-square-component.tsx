@@ -1,11 +1,11 @@
-import { GameDispatch } from "../../../mine-sweeper/game-reducer";
+import { GameDispatch } from "../../../minesweeper/game-reducer";
 import { h } from "preact";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
-import { Square } from "../../../mine-sweeper/types/square";
-import { revealAction } from "../../../mine-sweeper/actions/reveal-action";
+import { GameStatus } from "../../../minesweeper/types/game-status";
+import { Square } from "../../../minesweeper/types/square";
+import { revealAction } from "../../../minesweeper/actions/reveal-action";
 import * as squareStyle from "./square-component.css";
 import * as style from "./hidden-square-component.css";
-import { toggleFlaggedSquareAction } from "../../../mine-sweeper/actions/toggle-flagged-square-action";
+import { toggleFlaggedSquareAction } from "../../../minesweeper/actions/toggle-flagged-square-action";
 import { StatsDispatch } from "../../../stats/stats-reducer";
 
 interface Props {

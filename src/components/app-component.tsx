@@ -3,14 +3,14 @@ import { Route, Router } from "preact-router";
 
 import { HeaderComponent } from "./header/header-component";
 import { useReducer } from "preact/hooks";
-import { gameReducer } from "../mine-sweeper/game-reducer";
-import { resetGame } from "../mine-sweeper/functions/reset-game";
-import { EASY } from "../mine-sweeper/types/difficulty";
+import { gameReducer } from "../minesweeper/game-reducer";
+import { resetGame } from "../minesweeper/functions/reset-game";
+import { EASY } from "../minesweeper/types/difficulty";
 import { statsReducer } from "../stats/stats-reducer";
 import { loadStats } from "../stats/functions/load-stats";
-import { MineSweeperComponent } from "./mine-sweeper/mine-sweeper-component";
+import { MineSweeperComponent } from "./minesweeper/mine-sweeper-component";
 import { StatsComponent } from "./stats/stats-component";
-import { minesweeperRouteProps } from "./mine-sweeper/minesweeper-route-props";
+import { minesweeperRouteProps } from "./minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "./stats/stats-route-props";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -6,7 +6,7 @@ import { ReactElement } from "react";
 import { Stats } from "../../stats/types/stats";
 import * as todayOnlyActionObj from "../../stats/actions/today-only-action";
 import { DifficultySummaryComponent } from "./summary/difficulty-summary-component";
-import { EASY, HARD, NORMAL } from "../../mine-sweeper/types/difficulty";
+import { EASY, HARD, NORMAL } from "../../minesweeper/types/difficulty";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { statsRouteProps } from "./stats-route-props";
 import Spy = jasmine.Spy;

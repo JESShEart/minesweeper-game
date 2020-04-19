@@ -2,8 +2,8 @@ import { shallow, ShallowWrapper } from "enzyme";
 import { ReactElement } from "react";
 import { h } from "preact";
 import { RevealedSquareComponent } from "./revealed-square-component";
-import { Square } from "../../../mine-sweeper/types/square";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
+import { Square } from "../../../minesweeper/types/square";
+import { GameStatus } from "../../../minesweeper/types/game-status";
 import * as style from "./revealed-square-component.css";
 
 describe("RevealedSquareComponent", () => {

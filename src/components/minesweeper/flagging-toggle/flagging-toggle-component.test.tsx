@@ -4,9 +4,9 @@ import { ReactElement } from "react";
 import { h } from "preact";
 import { FlaggingToggleComponent } from "./flagging-toggle-component";
 import * as style from "./flagging-toggle-component.css";
-import * as toggleFlaggingActionObj from "../../../mine-sweeper/actions/toggle-flagging-action";
+import * as toggleFlaggingActionObj from "../../../minesweeper/actions/toggle-flagging-action";
+import { GameStatus } from "../../../minesweeper/types/game-status";
 import Spy = jasmine.Spy;
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
 
 describe("FlaggingToggleComponent", function() {
     let wrapper: ShallowWrapper;

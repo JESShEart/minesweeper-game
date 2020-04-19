@@ -1,7 +1,7 @@
 import { h } from "preact";
-import { Square } from "../../../mine-sweeper/types/square";
-import { GameDispatch } from "../../../mine-sweeper/game-reducer";
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
+import { Square } from "../../../minesweeper/types/square";
+import { GameDispatch } from "../../../minesweeper/game-reducer";
+import { GameStatus } from "../../../minesweeper/types/game-status";
 import { HiddenSquareComponent } from "./hidden-square-component";
 import { RevealedSquareComponent } from "./revealed-square-component";
 import * as style from "./square-component.css";

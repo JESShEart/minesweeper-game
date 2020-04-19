@@ -1,4 +1,4 @@
-import { GameStatus } from "../../../mine-sweeper/types/game-status";
+import { GameStatus } from "../../../minesweeper/types/game-status";
 import { h } from "preact";
 import * as style from "./status-component.css";
 

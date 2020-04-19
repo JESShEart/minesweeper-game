@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement, FormEvent } from "react";
+import { FormEvent, ReactElement } from "react";
 import { h } from "preact";
 import { ResetComponent } from "./reset-component";
-import * as resetActionObj from "../../../mine-sweeper/actions/reset-action";
+import * as resetActionObj from "../../../minesweeper/actions/reset-action";
+import { EASY, HARD, NORMAL } from "../../../minesweeper/types/difficulty";
 import Spy = jasmine.Spy;
-import { EASY, HARD, NORMAL } from "../../../mine-sweeper/types/difficulty";
 
 describe("ResetComponent", function() {
     let wrapper: ShallowWrapper;

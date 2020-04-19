@@ -1,7 +1,7 @@
 import * as createBoardObj from "./create-board";
-import Spy = jasmine.Spy;
 import { resetGame } from "./reset-game";
 import { EASY, NORMAL } from "../types/difficulty";
+import Spy = jasmine.Spy;
 
 describe("resetGame", function() {
     let createBoard: Spy;
