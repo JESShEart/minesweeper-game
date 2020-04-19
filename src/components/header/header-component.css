@@ -9,10 +9,10 @@
 .header h1 {
 	display: inline-block;
 	margin: 0;
-	padding: 0 0 0 1rem;
-	font-size: 24px;
-	line-height: 56px;
-	font-weight: 400;
+	padding: .5rem 1rem;
+	font-size: 1.75rem;
+	line-height: 2rem;
+	font-weight: 500;
 	color: #FFF;
 }
 
@@ -23,6 +23,8 @@
 }
 
 .header nav a {
+	font-size: 1.5rem;
+	line-height: 1.5rem;
 	display: inline-block;
 	margin-right: .5rem;
 	padding: .25rem .5rem;

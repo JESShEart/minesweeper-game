@@ -10,6 +10,8 @@ import { statsReducer } from "../stats/stats-reducer";
 import { loadStats } from "../stats/functions/load-stats";
 import { MineSweeperComponent } from "./mine-sweeper/mine-sweeper-component";
 import { StatsComponent } from "./stats/stats-component";
+import { minesweeperRouteProps } from "./mine-sweeper/minesweeper-route-props";
+import { statsRouteProps } from "./stats/stats-route-props";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 if ((module as any).hot) {
@@ -17,9 +19,15 @@ if ((module as any).hot) {
     require("preact/debug");
 }
 
-function AppComponent(): h.JSX.Element {
+export type TitleUpdater = (routeTitle: string) => void;
+
+export function AppComponent(): h.JSX.Element {
     const [game, gameDispatch] = useReducer(gameReducer, resetGame(EASY));
     const [stats, statsDispatch] = useReducer(statsReducer, loadStats());
+
+    function updateTitle(routeTitle: string): void {
+        document.title = `Minesweeper Game - ${routeTitle}`;
+    }
 
     return (
         <div id="app">
@@ -27,17 +35,19 @@ function AppComponent(): h.JSX.Element {
             <main>
                 <Router>
                     <Route
-                        path="/"
+                        path={minesweeperRouteProps.path}
                         component={MineSweeperComponent}
                         game={game}
                         dispatch={gameDispatch}
                         statsDispatch={statsDispatch}
+                        updateTitle={updateTitle}
                     />
                     <Route
-                        path="/stats/"
+                        path={statsRouteProps.path}
                         component={StatsComponent}
                         stats={stats}
                         dispatch={statsDispatch}
+                        updateTitle={updateTitle}
                     />
                 </Router>
             </main>

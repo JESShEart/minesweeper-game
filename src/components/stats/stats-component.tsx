@@ -6,15 +6,23 @@ import { EASY, HARD, NORMAL } from "../../mine-sweeper/types/difficulty";
 import * as style from "./stats-component.css";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { todayOnlyAction } from "../../stats/actions/today-only-action";
+import { useEffect } from "preact/hooks";
+import { TitleUpdater } from "../app-component";
+import { statsRouteProps } from "./stats-route-props";
 
 interface Props {
     stats: Stats;
     dispatch: StatsDispatch;
+    updateTitle: TitleUpdater;
 }
 
 export function StatsComponent(props: Props): h.JSX.Element {
-    const { stats, dispatch } = props;
+    const { stats, dispatch, updateTitle } = props;
     const heading = stats.todayOnly ? "Today" : "All TIme";
+
+    useEffect(function() {
+        updateTitle(statsRouteProps.title);
+    }, []);
 
     function allTime(): void {
         dispatch(todayOnlyAction(false));
