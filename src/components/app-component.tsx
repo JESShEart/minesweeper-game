@@ -1,6 +1,5 @@
 import { h } from "preact";
 import { Route, Router } from "preact-router";
-
 import { HeaderComponent } from "./header/header-component";
 import { useReducer } from "preact/hooks";
 import { gameReducer } from "../minesweeper/game-reducer";
@@ -8,7 +7,7 @@ import { resetGame } from "../minesweeper/functions/reset-game";
 import { EASY } from "../minesweeper/types/difficulty";
 import { statsReducer } from "../stats/stats-reducer";
 import { loadStats } from "../stats/functions/load-stats";
-import { MineSweeperComponent } from "./minesweeper/mine-sweeper-component";
+import { MinesweeperComponent } from "./minesweeper/minesweeper-component";
 import { StatsComponent } from "./stats/stats-component";
 import { minesweeperRouteProps } from "./minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "./stats/stats-route-props";
@@ -36,7 +35,7 @@ export function AppComponent(): h.JSX.Element {
                 <Router>
                     <Route
                         path={minesweeperRouteProps.path}
-                        component={MineSweeperComponent}
+                        component={MinesweeperComponent}
                         game={game}
                         dispatch={gameDispatch}
                         statsDispatch={statsDispatch}
@@ -54,5 +53,3 @@ export function AppComponent(): h.JSX.Element {
         </div>
     );
 }
-
-export default AppComponent;

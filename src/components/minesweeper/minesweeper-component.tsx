@@ -4,7 +4,7 @@ import { BoardComponent } from "./board/board-component";
 import { ResetComponent } from "./reset/reset-component";
 import { Game } from "../../minesweeper/types/game";
 import { StatusComponent } from "./status/status-component";
-import * as style from "./mine-sweeper-component.css";
+import * as style from "./minesweeper-component.css";
 import { TimerComponent } from "./timer/timer-component";
 import { FlaggingToggleComponent } from "./flagging-toggle/flagging-toggle-component";
 import { StatsDispatch } from "../../stats/stats-reducer";
@@ -19,7 +19,7 @@ interface Props {
     updateTitle: TitleUpdater;
 }
 
-export function MineSweeperComponent(props: Props): h.JSX.Element {
+export function MinesweeperComponent(props: Props): h.JSX.Element {
     const { game, dispatch, statsDispatch, updateTitle } = props;
     const { status, flagging, startedAt, finishedAt } = game;
 

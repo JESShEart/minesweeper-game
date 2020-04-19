@@ -1,4 +1,4 @@
 import "./index.css";
-import AppComponent from "./components/app-component.tsx";
+import { AppComponent } from "./components/app-component";
 
 export default AppComponent;

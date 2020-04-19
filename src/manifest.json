@@ -1,6 +1,6 @@
 {
-  "name": "mine-sweeper",
-  "short_name": "mine-sweeper",
+  "name": "minesweeper-game",
+  "short_name": "minesweeper-game",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

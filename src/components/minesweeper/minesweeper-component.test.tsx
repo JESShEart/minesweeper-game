@@ -2,7 +2,7 @@
 import { shallow, ShallowWrapper } from "enzyme";
 import { ReactElement } from "react";
 import { h } from "preact";
-import { MineSweeperComponent } from "./mine-sweeper-component";
+import { MinesweeperComponent } from "./minesweeper-component";
 import { Game } from "../../minesweeper/types/game";
 import { GameDispatch } from "../../minesweeper/game-reducer";
 import { StatsDispatch } from "../../stats/stats-reducer";
@@ -13,7 +13,7 @@ import { ResetComponent } from "./reset/reset-component";
 import { TimerComponent } from "./timer/timer-component";
 import { FlaggingToggleComponent } from "./flagging-toggle/flagging-toggle-component";
 
-describe("MineSweeperComponent", function() {
+describe("MinesweeperComponent", function() {
     let wrapper: ShallowWrapper;
     let game: Game;
     let title: string;
@@ -34,7 +34,7 @@ describe("MineSweeperComponent", function() {
         statsDispatch = function(): void {};
         wrapper = shallow(
             (
-                <MineSweeperComponent
+                <MinesweeperComponent
                     game={game}
                     dispatch={gameDispatch}
                     statsDispatch={statsDispatch}
