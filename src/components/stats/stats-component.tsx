@@ -18,7 +18,7 @@ interface Props {
 
 export function StatsComponent(props: Props): h.JSX.Element {
     const { stats, dispatch, updateTitle } = props;
-    const heading = stats.todayOnly ? "Today" : "All TIme";
+    const heading = stats.todayOnly ? "Today" : "All Time";
 
     useEffect(function() {
         updateTitle(statsRouteProps.title);
@@ -35,8 +35,12 @@ export function StatsComponent(props: Props): h.JSX.Element {
     return (
         <div>
             <div className={style.filters}>
-                <button onClick={allTime}>All Time</button>
-                <button onClick={todayOnly}>Today</button>
+                <button id="allTimeButton" onClick={allTime}>
+                    All Time
+                </button>
+                <button id="todayButton" onClick={todayOnly}>
+                    Today
+                </button>
             </div>
             <h2>Game Stats: {heading}</h2>
             <div className={style.summaries}>
