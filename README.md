@@ -1,4 +1,4 @@
-# feedback-experiment
+# minesweeper-game
 
 ## CLI Commands
 *   `npm install`: Installs dependencies

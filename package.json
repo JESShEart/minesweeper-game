@@ -10,7 +10,7 @@
     "build": "preact build",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint": "eslint src/**/*.{js,ts,tsx}",
     "test": "jest",
     "precommit": "lint-staged"
   },
