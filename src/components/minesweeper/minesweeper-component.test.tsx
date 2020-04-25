@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
+/// <reference types="enzyme-adapter-preact-pure" />
+
 import { h } from "preact";
 import { MinesweeperComponent } from "./minesweeper-component";
 import { Game } from "../../minesweeper/types/game";
@@ -12,9 +12,10 @@ import { StatusComponent } from "./status/status-component";
 import { ResetComponent } from "./reset/reset-component";
 import { TimerComponent } from "./timer/timer-component";
 import { FlaggingToggleComponent } from "./flagging-toggle/flagging-toggle-component";
+import { shallow, ShallowWrapper } from "enzyme";
 
 describe("MinesweeperComponent", function() {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
     let game: Game;
     let title: string;
     let gameDispatch: GameDispatch;
@@ -33,14 +34,12 @@ describe("MinesweeperComponent", function() {
         gameDispatch = function(): void {};
         statsDispatch = function(): void {};
         wrapper = shallow(
-            (
-                <MinesweeperComponent
-                    game={game}
-                    dispatch={gameDispatch}
-                    statsDispatch={statsDispatch}
-                    updateTitle={titleUpdater}
-                />
-            ) as ReactElement
+            <MinesweeperComponent
+                game={game}
+                dispatch={gameDispatch}
+                statsDispatch={statsDispatch}
+                updateTitle={titleUpdater}
+            />
         );
     });
 

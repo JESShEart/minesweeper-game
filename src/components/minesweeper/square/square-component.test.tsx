@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+/// <reference types="enzyme-adapter-preact-pure" />
+
 import { shallow, ShallowWrapper } from "enzyme";
 import { Square } from "../../../minesweeper/types/square";
 import { RevealedSquareComponent } from "./revealed-square-component";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { SquareComponent } from "./square-component";
 import { HiddenSquareComponent } from "./hidden-square-component";
 
 describe("SquareComponent", function() {
-    let wrapper: ShallowWrapper;
-    let hiddenSquare: ReactElement;
-    let revealedSquare: ReactElement;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let hiddenSquare: h.JSX.Element;
+    let revealedSquare: h.JSX.Element;
 
     function setup(square: Partial<Square>): void {
         const status = "PLAY";
@@ -26,25 +27,23 @@ describe("SquareComponent", function() {
                 dispatch={dispatch}
                 statsDispatch={statsDispatch}
             />
-        ) as ReactElement;
+        );
 
         revealedSquare = (
             <RevealedSquareComponent
                 square={square as Square}
                 status={status}
             />
-        ) as ReactElement;
+        );
 
         wrapper = shallow(
-            (
-                <SquareComponent
-                    square={square as Square}
-                    status={status}
-                    flagging={flagging}
-                    dispatch={dispatch}
-                    statsDispatch={statsDispatch}
-                />
-            ) as ReactElement
+            <SquareComponent
+                square={square as Square}
+                status={status}
+                flagging={flagging}
+                dispatch={dispatch}
+                statsDispatch={statsDispatch}
+            />
         );
     }
 
