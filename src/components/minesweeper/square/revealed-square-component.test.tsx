@@ -1,5 +1,5 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { RevealedSquareComponent } from "./revealed-square-component";
 import { Square } from "../../../minesweeper/types/square";
@@ -7,16 +7,14 @@ import { GameStatus } from "../../../minesweeper/types/game-status";
 import * as style from "./revealed-square-component.css";
 
 describe("RevealedSquareComponent", () => {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
 
     function setup(status: GameStatus, square: Partial<Square>): void {
         wrapper = shallow(
-            (
-                <RevealedSquareComponent
-                    square={square as Square}
-                    status={status}
-                />
-            ) as ReactElement
+            <RevealedSquareComponent
+                square={square as Square}
+                status={status}
+            />
         );
     }
 

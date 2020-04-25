@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /// <reference types="enzyme-adapter-preact-pure" />
-
 import { shallow, ShallowWrapper } from "enzyme";
 import { Square } from "../../../minesweeper/types/square";
 import { RevealedSquareComponent } from "./revealed-square-component";

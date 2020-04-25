@@ -1,18 +1,17 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
 import { h } from "preact";
-import { ReactElement } from "react";
 import { TimerComponent } from "./timer-component";
 import * as style from "./timer-component.css";
 import * as toHoursMinutesSecondsObj from "../../../minesweeper/functions/to-hours-minutes-seconds";
-import Spy = jasmine.Spy;
 
 const ELAPSED_TIME_MESSAGE = "#:##";
 
 describe("TimerComponent", function() {
-    let wrapper: ShallowWrapper;
-    let nowSpy: Spy;
-    let setIntervalSpy: Spy;
-    let toHoursMinutesSeconds: Spy;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let nowSpy: jasmine.Spy;
+    let setIntervalSpy: jasmine.Spy;
+    let toHoursMinutesSeconds: jasmine.Spy;
 
     beforeEach(function() {
         nowSpy = spyOn(Date, "now");
@@ -31,9 +30,7 @@ describe("TimerComponent", function() {
     ): void {
         nowSpy.and.returnValue(now);
         wrapper = shallow(
-            (
-                <TimerComponent startedAt={startedAt} finishedAt={finishedAt} />
-            ) as ReactElement
+            <TimerComponent startedAt={startedAt} finishedAt={finishedAt} />
         );
     }
 

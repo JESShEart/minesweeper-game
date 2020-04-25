@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /// <reference types="enzyme-adapter-preact-pure" />
-
 import { h } from "preact";
 import { MinesweeperComponent } from "./minesweeper-component";
 import { Game } from "../../minesweeper/types/game";

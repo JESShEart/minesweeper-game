@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
 import { GameStatus } from "../../../minesweeper/types/game-status";
 import { Square } from "../../../minesweeper/types/square";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { HiddenSquareComponent } from "./hidden-square-component";
 import * as revealActionObj from "../../../minesweeper/actions/reveal-action";
 import * as toggleFlaggedActionObj from "../../../minesweeper/actions/toggle-flagged-square-action";
 import * as style from "./hidden-square-component.css";
 import { StatsDispatch } from "../../../stats/stats-reducer";
-import Spy = jasmine.Spy;
 
 describe("HiddenSquareComponent", function() {
-    let wrapper: ShallowWrapper;
-    let revealAction: Spy;
-    let toggleFlaggedAction: Spy;
-    let blur: Spy;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let revealAction: jasmine.Spy;
+    let toggleFlaggedAction: jasmine.Spy;
+    let blur: jasmine.Spy;
     let statsDispatch: StatsDispatch;
 
     function setup(
@@ -31,15 +30,13 @@ describe("HiddenSquareComponent", function() {
         blur = spyOn(document.activeElement as HTMLElement, "blur");
         statsDispatch = function(): void {};
         wrapper = shallow(
-            (
-                <HiddenSquareComponent
-                    square={square as Square}
-                    status={status}
-                    flagging={flagging}
-                    dispatch={function(): void {}}
-                    statsDispatch={statsDispatch}
-                />
-            ) as ReactElement
+            <HiddenSquareComponent
+                square={square as Square}
+                status={status}
+                flagging={flagging}
+                dispatch={function(): void {}}
+                statsDispatch={statsDispatch}
+            />
         );
     }
 

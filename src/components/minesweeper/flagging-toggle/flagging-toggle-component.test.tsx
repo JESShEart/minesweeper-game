@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { FlaggingToggleComponent } from "./flagging-toggle-component";
 import * as style from "./flagging-toggle-component.css";
 import * as toggleFlaggingActionObj from "../../../minesweeper/actions/toggle-flagging-action";
 import { GameStatus } from "../../../minesweeper/types/game-status";
-import Spy = jasmine.Spy;
 
 describe("FlaggingToggleComponent", function() {
-    let wrapper: ShallowWrapper;
-    let toggleFlaggingAction: Spy;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let toggleFlaggingAction: jasmine.Spy;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let _documentEventSimulator: any;
 
@@ -27,13 +26,11 @@ describe("FlaggingToggleComponent", function() {
             "toggleFlaggingAction"
         );
         wrapper = shallow(
-            (
-                <FlaggingToggleComponent
-                    status={status}
-                    flagging={flagging}
-                    dispatch={function(): void {}}
-                />
-            ) as ReactElement
+            <FlaggingToggleComponent
+                status={status}
+                flagging={flagging}
+                dispatch={function(): void {}}
+            />
         );
     }
 

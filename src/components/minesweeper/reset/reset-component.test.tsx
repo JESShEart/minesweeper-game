@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { FormEvent, ReactElement } from "react";
+import { FormEvent } from "react";
 import { h } from "preact";
 import { ResetComponent } from "./reset-component";
 import * as resetActionObj from "../../../minesweeper/actions/reset-action";
 import { EASY, HARD, NORMAL } from "../../../minesweeper/types/difficulty";
-import Spy = jasmine.Spy;
 
 describe("ResetComponent", function() {
-    let wrapper: ShallowWrapper;
-    let resetAction: Spy;
-    let dispatch: Spy;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let resetAction: jasmine.Spy;
+    let dispatch: jasmine.Spy;
 
     beforeEach(function() {
         const dispatcher = { dispatch: (): void => {} };
@@ -20,9 +20,7 @@ describe("ResetComponent", function() {
             "RESET_ACTION"
         );
 
-        wrapper = shallow(
-            (<ResetComponent dispatch={dispatcher.dispatch} />) as ReactElement
-        );
+        wrapper = shallow(<ResetComponent dispatch={dispatcher.dispatch} />);
     });
 
     function setFormValue(value: string): void {

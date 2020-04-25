@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
 import { BoardComponent } from "./board-component";
 import { Game } from "../../../minesweeper/types/game";
 import { h } from "preact";
-import { ReactElement } from "react";
 import * as style from "./board-component.css";
 import { createTestBoard } from "../../../testing/create-test-board";
 import { SquareComponent } from "../square/square-component";
@@ -13,7 +13,7 @@ import { Square } from "../../../minesweeper/types/square";
 import { StatsDispatch } from "../../../stats/stats-reducer";
 
 describe("BoardComponent", function() {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
     let board: Square[][];
     let status: GameStatus;
     let flagging: boolean;
@@ -28,13 +28,11 @@ describe("BoardComponent", function() {
         dispatch = (): void => {};
         statsDispatch = function(): void {};
         wrapper = shallow(
-            (
-                <BoardComponent
-                    game={game}
-                    dispatch={dispatch}
-                    statsDispatch={statsDispatch}
-                />
-            ) as ReactElement
+            <BoardComponent
+                game={game}
+                dispatch={dispatch}
+                statsDispatch={statsDispatch}
+            />
         );
     }
 

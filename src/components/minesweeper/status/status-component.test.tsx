@@ -1,17 +1,15 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { StatusComponent } from "./status-component";
 import { GameStatus } from "../../../minesweeper/types/game-status";
 import * as style from "./status-component.css";
 
 describe("StatusComponent", function() {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
 
     function setup(status: GameStatus): void {
-        wrapper = shallow(
-            (<StatusComponent status={status} />) as ReactElement
-        );
+        wrapper = shallow(<StatusComponent status={status} />);
     }
 
     test("should display START status", function() {
