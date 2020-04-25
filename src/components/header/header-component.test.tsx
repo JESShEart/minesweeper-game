@@ -1,6 +1,6 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { h } from "preact";
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { HeaderComponent } from "./header-component";
 import { statsRouteProps } from "../stats/stats-route-props";
 import { RouteProps } from "../route-props";
@@ -8,10 +8,10 @@ import { minesweeperRouteProps } from "../minesweeper/minesweeper-route-props";
 import * as style from "./header-component.css";
 
 describe("HeaderComponent", () => {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
 
     beforeEach(function() {
-        wrapper = shallow((<HeaderComponent />) as ReactElement);
+        wrapper = shallow(<HeaderComponent />);
     });
 
     test("should render header and 2 nav items", function() {

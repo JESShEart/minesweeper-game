@@ -1,16 +1,14 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { h } from "preact";
-import { ReactElement } from "react";
 import { StatLineComponent } from "./stat-line-component";
 import * as style from "./stat-line-component.css";
+import { h } from "preact";
 
 describe("StatLineComponent", function() {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
 
     function setup(label: string, value: string | number): void {
-        wrapper = shallow(
-            (<StatLineComponent label={label} value={value} />) as ReactElement
-        );
+        wrapper = shallow(<StatLineComponent label={label} value={value} />);
     }
 
     test("should render with string value", function() {

@@ -1,5 +1,5 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { DifficultySummaryComponent } from "./difficulty-summary-component";
 import { Difficulty } from "../../../minesweeper/types/difficulty";
@@ -8,11 +8,10 @@ import * as getDifficultySummaryObj from "../../../stats/functions/get-difficult
 import { DifficultySummary } from "../../../stats/types/difficulty-summary";
 import { Result } from "../../../stats/types/result";
 import { StatLineComponent } from "../stat-line/stat-line-component";
-import Spy = jasmine.Spy;
 
 describe("DifficultySummaryComponent", function() {
-    let wrapper: ShallowWrapper;
-    let getDifficultySummary: Spy;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let getDifficultySummary: jasmine.Spy;
 
     const difficulty: Readonly<Difficulty> = {
         name: "EASY",
@@ -42,12 +41,7 @@ describe("DifficultySummaryComponent", function() {
         );
         getDifficultySummary.and.returnValue(summary);
         wrapper = shallow(
-            (
-                <DifficultySummaryComponent
-                    stats={stats}
-                    difficulty={difficulty}
-                />
-            ) as ReactElement
+            <DifficultySummaryComponent stats={stats} difficulty={difficulty} />
         );
     });
 

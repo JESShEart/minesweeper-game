@@ -1,5 +1,5 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { AppComponent, TitleUpdater } from "./app-component";
 import * as resetGameObj from "../minesweeper/functions/reset-game";
@@ -11,12 +11,12 @@ import { statsRouteProps } from "./stats/stats-route-props";
 import { StatsComponent } from "./stats/stats-component";
 
 describe("AppComponent", function() {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
 
     beforeEach(function() {
         spyOn(resetGameObj, "resetGame").and.stub();
         spyOn(loadStatsObj, "loadStats").and.stub();
-        wrapper = shallow((<AppComponent />) as ReactElement);
+        wrapper = shallow(<AppComponent />);
     });
 
     test("should render minesweeper route", function() {

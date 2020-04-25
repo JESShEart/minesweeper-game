@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+/// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
 import { StatsComponent } from "./stats-component";
-import { h } from "preact";
-import { ReactElement } from "react";
 import { Stats } from "../../stats/types/stats";
 import * as todayOnlyActionObj from "../../stats/actions/today-only-action";
 import { DifficultySummaryComponent } from "./summary/difficulty-summary-component";
 import { EASY, HARD, NORMAL } from "../../minesweeper/types/difficulty";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { statsRouteProps } from "./stats-route-props";
-import Spy = jasmine.Spy;
+import { h } from "preact";
 
 describe("StatsComponent", function() {
-    let wrapper: ShallowWrapper;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
     let stats: Stats;
     let title: string;
-    let todayOnlyAction: Spy;
+    let todayOnlyAction: jasmine.Spy;
 
     function setup(todayOnly: boolean): void {
         stats = {
@@ -28,13 +27,11 @@ describe("StatsComponent", function() {
         const dispatch = function(): void {};
         todayOnlyAction = spyOn(todayOnlyActionObj, "todayOnlyAction");
         wrapper = shallow(
-            (
-                <StatsComponent
-                    stats={stats}
-                    dispatch={dispatch}
-                    updateTitle={titleUpdater}
-                />
-            ) as ReactElement
+            <StatsComponent
+                stats={stats}
+                dispatch={dispatch}
+                updateTitle={titleUpdater}
+            />
         );
     }
 

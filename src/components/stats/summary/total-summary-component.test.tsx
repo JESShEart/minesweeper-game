@@ -1,17 +1,16 @@
+/// <reference types="enzyme-adapter-preact-pure" />
 import * as getTotalSummaryObj from "../../../stats/functions/get-total-summary";
 import { shallow, ShallowWrapper } from "enzyme";
-import { ReactElement } from "react";
 import { h } from "preact";
 import { TotalSummaryComponent } from "./total-summary-component";
-import Spy = jasmine.Spy;
 import { TotalSummary } from "../../../stats/types/total-summary";
 import { Stats } from "../../../stats/types/stats";
 import { Result } from "../../../stats/types/result";
 import { StatLineComponent } from "../stat-line/stat-line-component";
 
 describe("TotalSummaryComponent", function() {
-    let wrapper: ShallowWrapper;
-    let getTotalSummary: Spy;
+    let wrapper: ShallowWrapper<h.JSX.Element>;
+    let getTotalSummary: jasmine.Spy;
 
     const stats: Readonly<Stats> = {
         results: [] as Readonly<Array<Result>>,
@@ -28,9 +27,7 @@ describe("TotalSummaryComponent", function() {
     beforeEach(function(): void {
         getTotalSummary = spyOn(getTotalSummaryObj, "getTotalSummary");
         getTotalSummary.and.returnValue(summary);
-        wrapper = shallow(
-            (<TotalSummaryComponent stats={stats} />) as ReactElement
-        );
+        wrapper = shallow(<TotalSummaryComponent stats={stats} />);
     });
 
     test("should call getTotalSummary with stats", function() {
