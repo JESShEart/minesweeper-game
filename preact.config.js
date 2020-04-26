@@ -30,5 +30,6 @@ export default {
             "src",
             "index"
         );
+        config.output.publicPath = "/demos/minesweeper/";
     }
 };
