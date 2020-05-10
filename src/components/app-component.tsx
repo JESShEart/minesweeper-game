@@ -11,6 +11,9 @@ import { MinesweeperComponent } from "./minesweeper/minesweeper-component";
 import { StatsComponent } from "./stats/stats-component";
 import { minesweeperRouteProps } from "./minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "./stats/stats-route-props";
+import { helpRouteProps } from "./help/help-route-props";
+import { HelpComponent } from "./help/help-component";
+import * as style from "./app-component.css";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 if ((module as any).hot) {
@@ -64,7 +67,13 @@ export function AppComponent(): h.JSX.Element {
                         dispatch={statsDispatch}
                         updateTitle={updateTitle}
                     />
+                    <Route
+                        path={helpRouteProps.path}
+                        component={HelpComponent}
+                        updateTitle={updateTitle}
+                    />
                 </Router>
+                <small className={style.version}>v1.2.0</small>
             </main>
         </div>
     );

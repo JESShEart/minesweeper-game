@@ -30,21 +30,21 @@ describe("RevealedSquareComponent", () => {
 
     test("should render mine img when mine", () => {
         setup("PLAY", { mine: true });
-        expect(wrapper.find("img").exists()).toBeTruthy();
+        expect(wrapper.find(`.${style.mine}`).exists()).toBeTruthy();
     });
 
     test("should not render mine img when no mine", () => {
         setup("PLAY", { mine: false });
-        expect(wrapper.find("img").exists()).toBeFalsy();
+        expect(wrapper.find(`.${style.mine}`).exists()).toBeFalsy();
     });
 
     test("should apply win class to mine img when WIN", () => {
         setup("WIN", { mine: true });
-        expect(wrapper.find("img").hasClass(style.win)).toBeTruthy();
+        expect(wrapper.find(`.${style.mine}`).hasClass(style.win)).toBeTruthy();
     });
 
     test("should not apply win class to mine img when FAIL", () => {
         setup("FAIL", { mine: true });
-        expect(wrapper.find("img").hasClass(style.win)).toBeFalsy();
+        expect(wrapper.find(`.${style.mine}`).hasClass(style.win)).toBeFalsy();
     });
 });

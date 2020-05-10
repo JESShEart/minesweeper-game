@@ -18,13 +18,10 @@ export function ResetComponent(props: Props): h.JSX.Element {
     const { dispatch } = props;
     const [difficulty, updateDifficulty] = useState("EASY" as DifficultyName);
 
-    function getResetDifficultyValue(): Difficulty {
-        return DIFFICULTIES.find(it => it.name === difficulty) || EASY;
-    }
-
     function reset(e: h.JSX.TargetedEvent): void {
         e.preventDefault();
-        dispatch(resetAction(getResetDifficultyValue()));
+        const value = DIFFICULTIES.find(it => it.name === difficulty) || EASY;
+        dispatch(resetAction(value));
     }
 
     function onDifficultyInput(

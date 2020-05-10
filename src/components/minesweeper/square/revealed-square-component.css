@@ -10,6 +10,8 @@
     animation-name: mineKeyFrames;
     animation-duration: .75s;
     animation-iteration-count: infinite;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 @keyframes mineKeyFrames {

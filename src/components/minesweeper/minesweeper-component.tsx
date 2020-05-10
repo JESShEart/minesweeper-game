@@ -29,9 +29,12 @@ export function MinesweeperComponent(props: Props): h.JSX.Element {
 
     return (
         <div>
+            <ResetComponent dispatch={dispatch} />
             <div className={style.topRow}>
-                <StatusComponent status={status} />
-                <ResetComponent dispatch={dispatch} />
+                <StatusComponent
+                    status={status}
+                    difficultyName={game.difficultyName}
+                />
                 <TimerComponent startedAt={startedAt} finishedAt={finishedAt} />
             </div>
             <BoardComponent
