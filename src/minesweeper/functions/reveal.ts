@@ -42,12 +42,24 @@ function hasAdjacentSquaresToReveal(
     );
 }
 
+function revealSquare(square: Square, squares: Square[][]): void {
+    const { y, x } = square.position;
+    squares[y][x] = {
+        ...square,
+        revealed: true
+    };
+}
+
 export function revealBoard(square: Square, squares: Square[][]): Square[][] {
     let squaresWithAdjacentToReveal: Square[] = [];
     let currentSquare: Square | undefined = square;
 
+    // copying squares array to avoid manipulating the one that is passed in
+    // creating a new set of squares for each square revealed is too costly
+    squares = squares.map(it => it);
+
     while (currentSquare) {
-        currentSquare.revealed = true;
+        revealSquare(currentSquare, squares);
 
         if (hasAdjacentSquaresToReveal(currentSquare, squares)) {
             squaresWithAdjacentToReveal = [

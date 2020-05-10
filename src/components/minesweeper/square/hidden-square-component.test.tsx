@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-empty-function,@typescript-eslint/no-explicit-any */
 /// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
 import { GameStatus } from "../../../minesweeper/types/game-status";
@@ -38,6 +38,15 @@ describe("HiddenSquareComponent", function() {
                 statsDispatch={statsDispatch}
             />
         );
+    }
+
+    function simulateEventOnButton(
+        eventProp: string,
+        preventDefault = function(): void {}
+    ): void {
+        (wrapper.find("button").prop(eventProp) as any)({
+            preventDefault
+        } as h.JSX.TargetedTouchEvent<HTMLButtonElement>);
     }
 
     test("should be enabled when status is START", function() {
@@ -108,15 +117,77 @@ describe("HiddenSquareComponent", function() {
         expect(blur).not.toHaveBeenCalled();
     });
 
-    test("should blur when not flagging and clicked", function() {
-        setup("PLAY", {}, false);
-        wrapper.find("button").simulate("click");
-        expect(blur).toHaveBeenCalled();
-    });
-
     test("should blur when flagging and clicked", function() {
         setup("PLAY", {}, true);
         wrapper.find("button").simulate("click");
         expect(blur).toHaveBeenCalled();
+    });
+
+    test("should prevent default when touched", function() {
+        setup("PLAY", { flagged: false }, false);
+        const setTimeout = spyOn(window, "setTimeout");
+
+        let defaultPrevented = false;
+        simulateEventOnButton("onTouchStart", () => (defaultPrevented = true));
+
+        expect(defaultPrevented).toBeTruthy();
+        expect(setTimeout).toHaveBeenCalled();
+    });
+
+    test("should call reveal action with timeout callback when touched", function() {
+        setup("PLAY", { flagged: false }, false);
+        spyOn(window, "setTimeout").and.callFake(callback => {
+            callback();
+            return 1;
+        });
+        simulateEventOnButton("onTouchStart");
+
+        expect(revealAction).toHaveBeenCalled();
+    });
+
+    test("should clear timeout when touch ends", function() {
+        setup("PLAY", { flagged: false }, false);
+        spyOn(window, "setTimeout").and.callFake(() => 1);
+        const clearTimeout = spyOn(window, "clearTimeout");
+
+        simulateEventOnButton("onTouchStart");
+        simulateEventOnButton("onTouchEnd");
+
+        expect(clearTimeout).toHaveBeenCalledWith(1);
+        expect(revealAction).not.toHaveBeenCalled();
+    });
+
+    test("should not clear timeout when no timeout and touch ends", function() {
+        setup("PLAY", { flagged: false }, false);
+        spyOn(window, "setTimeout").and.callFake(() => 1);
+        const clearTimeout = spyOn(window, "clearTimeout");
+
+        simulateEventOnButton("onTouchEnd");
+
+        expect(clearTimeout).not.toHaveBeenCalled();
+        expect(revealAction).not.toHaveBeenCalled();
+    });
+
+    test("should clear timeout when touch moves", function() {
+        setup("PLAY", { flagged: false }, false);
+        spyOn(window, "setTimeout").and.callFake(() => 1);
+        const clearTimeout = spyOn(window, "clearTimeout");
+
+        simulateEventOnButton("onTouchStart");
+        simulateEventOnButton("onTouchMove");
+
+        expect(clearTimeout).toHaveBeenCalledWith(1);
+        expect(revealAction).not.toHaveBeenCalled();
+    });
+
+    test("should not clear timeout when no timeout and touch moves", function() {
+        setup("PLAY", { flagged: false }, false);
+        spyOn(window, "setTimeout").and.callFake(() => 1);
+        const clearTimeout = spyOn(window, "clearTimeout");
+
+        simulateEventOnButton("onTouchMove");
+
+        expect(clearTimeout).not.toHaveBeenCalled();
+        expect(revealAction).not.toHaveBeenCalled();
     });
 });

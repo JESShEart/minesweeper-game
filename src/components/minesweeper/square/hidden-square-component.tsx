@@ -7,6 +7,7 @@ import * as squareStyle from "./square-component.css";
 import * as style from "./hidden-square-component.css";
 import { toggleFlaggedSquareAction } from "../../../minesweeper/actions/toggle-flagged-square-action";
 import { StatsDispatch } from "../../../stats/stats-reducer";
+import { useState } from "preact/hooks";
 
 interface Props {
     square: Square;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export function HiddenSquareComponent(props: Props): h.JSX.Element {
+    const [timeoutId, updateTimeoutId] = useState(0);
     const { square, status, flagging, dispatch, statsDispatch } = props;
     const disabled = status === "FAIL" || status === "WIN";
     const flaggedClass = square.flagged ? style.flagged : "";
@@ -28,14 +30,47 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
         }
     }
 
-    function reveal(): void {
-        if (flagging) {
+    function immediateReveal(): void {
+        if (!square.flagged) {
+            dispatch(revealAction(square, statsDispatch));
+        }
+    }
+
+    function longPressReveal(): void {
+        if (!flagging) {
+            const newTimeoutId = window.setTimeout(immediateReveal, 1000);
+            updateTimeoutId(newTimeoutId);
+        }
+    }
+
+    function cancelLongPressReveal(): void {
+        if (timeoutId) {
+            window.clearTimeout(timeoutId);
+            updateTimeoutId(0);
+        }
+        blur();
+    }
+
+    function reveal(revealFunction: () => void): void {
+        if (disabled) {
+            return;
+        } else if (flagging) {
             dispatch(toggleFlaggedSquareAction(square));
             blur();
         } else if (!square.flagged) {
-            dispatch(revealAction(square, statsDispatch));
-            blur();
+            revealFunction();
         }
+    }
+
+    function mouseReveal(): void {
+        reveal(immediateReveal);
+    }
+
+    function touchReveal(
+        event: h.JSX.TargetedTouchEvent<HTMLButtonElement>
+    ): void {
+        event.preventDefault();
+        reveal(longPressReveal);
     }
 
     return (
@@ -43,7 +78,10 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
             <button
                 disabled={disabled}
                 className={`${squareStyle.square} ${style.hidden} ${flaggedClass} ${flaggingClass}`}
-                onClick={reveal}
+                onClick={mouseReveal}
+                onTouchStart={touchReveal}
+                onTouchEnd={cancelLongPressReveal}
+                onTouchMove={cancelLongPressReveal}
             />
         </div>
     );

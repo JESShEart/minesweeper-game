@@ -5,7 +5,7 @@ import { FormEvent } from "react";
 import { h } from "preact";
 import { ResetComponent } from "./reset-component";
 import * as resetActionObj from "../../../minesweeper/actions/reset-action";
-import { EASY, HARD, NORMAL } from "../../../minesweeper/types/difficulty";
+import { DIFFICULTIES } from "../../../minesweeper/types/difficulty";
 
 describe("ResetComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
@@ -44,21 +44,11 @@ describe("ResetComponent", function() {
         expect(dispatch).toHaveBeenCalledWith("RESET_ACTION");
     });
 
-    test("should call reset action with EASY values", function() {
-        setFormValue("EASY");
-        wrapper.find("form").simulate("submit");
-        expect(resetAction).toHaveBeenCalledWith(EASY);
-    });
-
-    test("should call reset action with NORMAL values", function() {
-        setFormValue("NORMAL");
-        wrapper.find("form").simulate("submit");
-        expect(resetAction).toHaveBeenCalledWith(NORMAL);
-    });
-
-    test("should call reset action with HARD values", function() {
-        setFormValue("HARD");
-        wrapper.find("form").simulate("submit");
-        expect(resetAction).toHaveBeenCalledWith(HARD);
+    DIFFICULTIES.forEach(function(difficulty) {
+        test(`should call reset action with ${difficulty.name} values`, function() {
+            setFormValue(difficulty.name);
+            wrapper.find("form").simulate("submit");
+            expect(resetAction).toHaveBeenCalledWith(difficulty);
+        });
     });
 });

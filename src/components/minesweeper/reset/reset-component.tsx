@@ -7,9 +7,7 @@ import {
     DIFFICULTIES,
     Difficulty,
     DifficultyName,
-    EASY,
-    HARD,
-    NORMAL
+    EASY
 } from "../../../minesweeper/types/difficulty";
 
 interface Props {
@@ -21,14 +19,7 @@ export function ResetComponent(props: Props): h.JSX.Element {
     const [difficulty, updateDifficulty] = useState("EASY" as DifficultyName);
 
     function getResetDifficultyValue(): Difficulty {
-        switch (difficulty) {
-            case "HARD":
-                return HARD;
-            case "NORMAL":
-                return NORMAL;
-            case "EASY":
-                return EASY;
-        }
+        return DIFFICULTIES.find(it => it.name === difficulty) || EASY;
     }
 
     function reset(e: h.JSX.TargetedEvent): void {
