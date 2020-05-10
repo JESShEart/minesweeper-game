@@ -38,7 +38,7 @@ export function HiddenSquareComponent(props: Props): h.JSX.Element {
 
     function longPressReveal(): void {
         if (!flagging) {
-            const newTimeoutId = window.setTimeout(immediateReveal, 1000);
+            const newTimeoutId = window.setTimeout(immediateReveal, 500);
             updateTimeoutId(newTimeoutId);
         }
     }
