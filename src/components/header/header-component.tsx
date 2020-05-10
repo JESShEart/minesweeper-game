@@ -3,6 +3,7 @@ import { Link } from "preact-router/match";
 import * as style from "./header-component.css";
 import { minesweeperRouteProps } from "../minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "../stats/stats-route-props";
+import { helpRouteProps } from "../help/help-route-props";
 
 export function HeaderComponent(): h.JSX.Element {
     return (
@@ -20,6 +21,9 @@ export function HeaderComponent(): h.JSX.Element {
                     href={statsRouteProps.path}
                 >
                     {statsRouteProps.title}
+                </Link>
+                <Link activeClassName={style.active} href={helpRouteProps.path}>
+                    {helpRouteProps.title}
                 </Link>
             </nav>
         </header>

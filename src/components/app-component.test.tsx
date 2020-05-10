@@ -51,11 +51,13 @@ describe("AppComponent", function() {
         const titleUpdaters: TitleUpdater[] = wrapper
             .find(Route)
             .map(item => item.prop("updateTitle"));
-        expect(titleUpdaters.length).toBe(2);
+        expect(titleUpdaters.length).toBe(3);
         titleUpdaters[0]("TEST0");
         expect(document.title).toBe("Minesweeper Game - TEST0");
         titleUpdaters[1]("TEST1");
         expect(document.title).toBe("Minesweeper Game - TEST1");
+        titleUpdaters[2]("TEST2");
+        expect(document.title).toBe("Minesweeper Game - TEST2");
     });
 
     function simulateTouchStartOnApp(): void {

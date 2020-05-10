@@ -15,9 +15,8 @@ export function RevealedSquareComponent(props: Props): h.JSX.Element {
 
     function mineImg(): h.JSX.Element {
         const winStyle = status === "WIN" ? style.win : "";
-        const className = ` ${winStyle} ${style.mine}`;
-        const mineImgSrc = "/assets/icons/mine.png";
-        return <img className={className} src={mineImgSrc} alt="Mine" />;
+        const className = `${winStyle} ${style.mine}`;
+        return <span className={className}>💣</span>;
     }
 
     return (

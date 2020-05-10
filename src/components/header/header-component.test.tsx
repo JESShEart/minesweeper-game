@@ -14,9 +14,9 @@ describe("HeaderComponent", () => {
         wrapper = shallow(<HeaderComponent />);
     });
 
-    test("should render header and 2 nav items", function() {
+    test("should render header and 3 nav items", function() {
         expect(wrapper.find("h1").text()).toBe("Minesweeper Game");
-        expect(wrapper.find("Link").length).toBe(2);
+        expect(wrapper.find("Link").length).toBe(3);
     });
 
     test("should render both links with their route props", function() {
