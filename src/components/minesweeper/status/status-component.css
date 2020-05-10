@@ -1,8 +1,16 @@
 .status {
     display: flex;
-    flex: 0;
+    flex-direction: row;
+    flex: 1;
 }
 .emoji {
     cursor: default;
     font-size: 30px;
+    padding-right: .5rem;
+}
+.difficulty {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    font-weight: 600;
 }

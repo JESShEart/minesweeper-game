@@ -4,12 +4,21 @@ import { h } from "preact";
 import { StatusComponent } from "./status-component";
 import { GameStatus } from "../../../minesweeper/types/game-status";
 import * as style from "./status-component.css";
+import {
+    DIFFICULTIES,
+    DifficultyName
+} from "../../../minesweeper/types/difficulty";
 
 describe("StatusComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
 
-    function setup(status: GameStatus): void {
-        wrapper = shallow(<StatusComponent status={status} />);
+    function setup(
+        status: GameStatus,
+        difficultyName: DifficultyName = "EASY"
+    ): void {
+        wrapper = shallow(
+            <StatusComponent status={status} difficultyName={difficultyName} />
+        );
     }
 
     test("should display START status", function() {
@@ -38,5 +47,14 @@ describe("StatusComponent", function() {
         expect(wrapper.find(`.${style.emoji}`).prop("title")).toBe(
             "You lost!  Please, try again!"
         );
+    });
+
+    DIFFICULTIES.forEach(function(difficulty) {
+        test(`should display difficulty name ${difficulty.name}`, function() {
+            setup("PLAY", difficulty.name);
+            expect(wrapper.find(`.${style.difficulty}`).text()).toBe(
+                difficulty.displayName
+            );
+        });
     });
 });

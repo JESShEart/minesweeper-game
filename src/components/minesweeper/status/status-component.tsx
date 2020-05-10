@@ -1,13 +1,19 @@
 import { GameStatus } from "../../../minesweeper/types/game-status";
 import { h } from "preact";
 import * as style from "./status-component.css";
+import {
+    DIFFICULTIES,
+    DifficultyName
+} from "../../../minesweeper/types/difficulty";
 
 interface Props {
     status: GameStatus;
+    difficultyName: DifficultyName;
 }
 
 export function StatusComponent(props: Props): h.JSX.Element {
-    const { status } = props;
+    const { status, difficultyName } = props;
+    const difficulty = DIFFICULTIES.find(it => it.name === difficultyName);
 
     function description(): string {
         switch (status) {
@@ -40,6 +46,7 @@ export function StatusComponent(props: Props): h.JSX.Element {
             <div className={style.emoji} title={description()}>
                 {emoji()}
             </div>
+            <div className={style.difficulty}>{difficulty?.displayName}</div>
         </div>
     );
 }
