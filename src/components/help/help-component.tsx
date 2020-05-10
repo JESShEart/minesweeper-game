@@ -70,7 +70,7 @@ export function HelpComponent({ updateTitle }: Props): h.JSX.Element {
                     a 💣 to be placed.
                 </li>
                 <li className={style.plusPlusDescription}>
-                    <strong>++</strong> has a 1:{EASY_PLUS_PLUS.mineRatio}
+                    <strong>++</strong> has a 1:{EASY_PLUS_PLUS.mineRatio}{" "}
                     chance for a 💣 to be placed.
                 </li>
             </ul>
@@ -83,7 +83,7 @@ export function HelpComponent({ updateTitle }: Props): h.JSX.Element {
                         second to reveal it.
                     </li>
                     <li>
-                        If you tap on the wrong square, <strong>Swipe</strong>
+                        If you tap on the wrong square, <strong>Swipe</strong>{" "}
                         or <strong>Raise</strong> your finger to prevent
                         revealing it by accident.
                     </li>
