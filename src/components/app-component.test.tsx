@@ -19,6 +19,12 @@ describe("AppComponent", function() {
         wrapper = shallow(<AppComponent />);
     });
 
+    afterEach(function() {
+        window.getSelection = function(): null {
+            return null;
+        };
+    });
+
     test("should render minesweeper route", function() {
         const foundLink = wrapper
             .find(Route)
@@ -50,5 +56,69 @@ describe("AppComponent", function() {
         expect(document.title).toBe("Minesweeper Game - TEST0");
         titleUpdaters[1]("TEST1");
         expect(document.title).toBe("Minesweeper Game - TEST1");
+    });
+
+    function simulateTouchStartOnApp(): void {
+        const onTouchStart = wrapper.find("#app").props().onTouchStart;
+        onTouchStart && onTouchStart({} as React.TouchEvent);
+    }
+
+    function simulateTouchEndOnApp(): void {
+        const onTouchEnd = wrapper.find("#app").props().onTouchEnd;
+        onTouchEnd && onTouchEnd({} as React.TouchEvent);
+    }
+
+    test("should clear selection for chrome-like touches", function() {
+        let emptyCalled;
+
+        window.getSelection = function(): Selection {
+            return {
+                empty: function(): void {
+                    emptyCalled = true;
+                }
+            } as Selection;
+        };
+
+        emptyCalled = false;
+        simulateTouchStartOnApp();
+        expect(emptyCalled).toBeTruthy();
+
+        emptyCalled = false;
+        simulateTouchEndOnApp();
+        expect(emptyCalled).toBeTruthy();
+    });
+
+    test("should clear selection for firefox-like touches", function() {
+        let removeAllRangesCalled;
+
+        window.getSelection = function(): Selection {
+            return {
+                removeAllRanges: function(): void {
+                    removeAllRangesCalled = true;
+                }
+            } as Selection;
+        };
+
+        removeAllRangesCalled = false;
+        simulateTouchStartOnApp();
+        expect(removeAllRangesCalled).toBeTruthy();
+
+        removeAllRangesCalled = false;
+        simulateTouchEndOnApp();
+        expect(removeAllRangesCalled).toBeTruthy();
+    });
+
+    test("should not error when no selection for touches", function() {
+        window.getSelection = function(): null {
+            return null;
+        };
+
+        expect(function() {
+            simulateTouchStartOnApp();
+        }).not.toThrowError();
+
+        expect(function() {
+            simulateTouchEndOnApp();
+        }).not.toThrowError();
     });
 });

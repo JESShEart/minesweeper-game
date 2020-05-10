@@ -28,8 +28,24 @@ export function AppComponent(): h.JSX.Element {
         document.title = `Minesweeper Game - ${routeTitle}`;
     }
 
+    function clearSelection(): void {
+        // touch devices have a selection behavior for long presses,
+        // since long presses are required to clear squares on touch devices,
+        // this will automatically get rid of the selection.
+        if (window.getSelection) {
+            const selection = window.getSelection();
+            if (!selection) {
+                return;
+            } else if (selection.empty) {
+                selection.empty();
+            } else if (selection.removeAllRanges) {
+                selection.removeAllRanges();
+            }
+        }
+    }
+
     return (
-        <div id="app">
+        <div id="app" onTouchStart={clearSelection} onTouchEnd={clearSelection}>
             <HeaderComponent />
             <main>
                 <Router>
