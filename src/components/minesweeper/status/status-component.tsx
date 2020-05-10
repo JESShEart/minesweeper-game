@@ -14,6 +14,7 @@ interface Props {
 export function StatusComponent(props: Props): h.JSX.Element {
     const { status, difficultyName } = props;
     const difficulty = DIFFICULTIES.find(it => it.name === difficultyName);
+    const difficultyDisplayName = difficulty ? difficulty.displayName : "";
 
     function description(): string {
         switch (status) {
@@ -46,7 +47,7 @@ export function StatusComponent(props: Props): h.JSX.Element {
             <div className={style.emoji} title={description()}>
                 {emoji()}
             </div>
-            <div className={style.difficulty}>{difficulty?.displayName}</div>
+            <div className={style.difficulty}>{difficultyDisplayName}</div>
         </div>
     );
 }
