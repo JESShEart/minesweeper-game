@@ -2,7 +2,17 @@ import { h } from "preact";
 import { Stats } from "../../stats/types/stats";
 import { StatsDispatch } from "../../stats/stats-reducer";
 import { DifficultySummaryComponent } from "./summary/difficulty-summary-component";
-import { EASY, HARD, NORMAL } from "../../minesweeper/types/difficulty";
+import {
+    EASY,
+    EASY_PLUS,
+    EASY_PLUS_PLUS,
+    HARD,
+    HARD_PLUS,
+    HARD_PLUS_PLUS,
+    NORMAL,
+    NORMAL_PLUS,
+    NORMAL_PLUS_PLUS
+} from "../../minesweeper/types/difficulty";
 import * as style from "./stats-component.css";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { todayOnlyAction } from "../../stats/actions/today-only-action";
@@ -45,9 +55,39 @@ export function StatsComponent(props: Props): h.JSX.Element {
             <h2>Game Stats: {heading}</h2>
             <div className={style.summaries}>
                 <TotalSummaryComponent stats={stats} />
+            </div>
+            <div className={style.summaries}>
                 <DifficultySummaryComponent difficulty={EASY} stats={stats} />
+                <DifficultySummaryComponent
+                    difficulty={EASY_PLUS}
+                    stats={stats}
+                />
+                <DifficultySummaryComponent
+                    difficulty={EASY_PLUS_PLUS}
+                    stats={stats}
+                />
+            </div>
+            <div className={style.summaries}>
                 <DifficultySummaryComponent difficulty={NORMAL} stats={stats} />
+                <DifficultySummaryComponent
+                    difficulty={NORMAL_PLUS}
+                    stats={stats}
+                />
+                <DifficultySummaryComponent
+                    difficulty={NORMAL_PLUS_PLUS}
+                    stats={stats}
+                />
+            </div>
+            <div className={style.summaries}>
                 <DifficultySummaryComponent difficulty={HARD} stats={stats} />
+                <DifficultySummaryComponent
+                    difficulty={HARD_PLUS}
+                    stats={stats}
+                />
+                <DifficultySummaryComponent
+                    difficulty={HARD_PLUS_PLUS}
+                    stats={stats}
+                />
             </div>
             <small>ℹ️ Stats are only recorded for finished games!</small>
         </div>

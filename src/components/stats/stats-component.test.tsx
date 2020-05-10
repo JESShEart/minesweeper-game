@@ -5,7 +5,7 @@ import { StatsComponent } from "./stats-component";
 import { Stats } from "../../stats/types/stats";
 import * as todayOnlyActionObj from "../../stats/actions/today-only-action";
 import { DifficultySummaryComponent } from "./summary/difficulty-summary-component";
-import { EASY, HARD, NORMAL } from "../../minesweeper/types/difficulty";
+import { DIFFICULTIES } from "../../minesweeper/types/difficulty";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { statsRouteProps } from "./stats-route-props";
 import { h } from "preact";
@@ -62,34 +62,16 @@ describe("StatsComponent", function() {
         expect(wrapper.find(TotalSummaryComponent).props().stats).toBe(stats);
     });
 
-    test("should render EASY difficulty summary", function() {
-        setup(true);
-        expect(
-            wrapper
-                .find(DifficultySummaryComponent)
-                .findWhere(dsc => dsc.props().difficulty === EASY)
-                .props().stats
-        ).toBe(stats);
-    });
-
-    test("should render NORMAL difficulty summary", function() {
-        setup(true);
-        expect(
-            wrapper
-                .find(DifficultySummaryComponent)
-                .findWhere(dsc => dsc.props().difficulty === NORMAL)
-                .props().stats
-        ).toBe(stats);
-    });
-
-    test("should render HARD difficulty summary", function() {
-        setup(true);
-        expect(
-            wrapper
-                .find(DifficultySummaryComponent)
-                .findWhere(dsc => dsc.props().difficulty === HARD)
-                .props().stats
-        ).toBe(stats);
+    DIFFICULTIES.forEach(function(difficulty) {
+        test(`should render ${difficulty.name} difficulty summary`, function() {
+            setup(true);
+            expect(
+                wrapper
+                    .find(DifficultySummaryComponent)
+                    .findWhere(dsc => dsc.props().difficulty === difficulty)
+                    .props().stats
+            ).toBe(stats);
+        });
     });
 
     test("should update title", function() {
