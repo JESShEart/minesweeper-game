@@ -16,23 +16,19 @@ import {
 import * as style from "./stats-component.css";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { todayOnlyAction } from "../../stats/actions/today-only-action";
-import { useEffect } from "preact/hooks";
-import { TitleUpdater } from "../app-component";
 import { statsRouteProps } from "./stats-route-props";
+import { useUpdateTitle } from "../../hooks/update-title";
 
 interface Props {
     stats: Stats;
     dispatch: StatsDispatch;
-    updateTitle: TitleUpdater;
 }
 
 export function StatsComponent(props: Props): h.JSX.Element {
-    const { stats, dispatch, updateTitle } = props;
+    const { stats, dispatch } = props;
     const heading = stats.todayOnly ? "Today" : "All Time";
 
-    useEffect(function() {
-        updateTitle(statsRouteProps.title);
-    }, []);
+    useUpdateTitle(statsRouteProps.title);
 
     function allTime(): void {
         dispatch(todayOnlyAction(false));

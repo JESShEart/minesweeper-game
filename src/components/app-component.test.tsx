@@ -1,14 +1,14 @@
 /// <reference types="enzyme-adapter-preact-pure" />
 import { shallow, ShallowWrapper } from "enzyme";
 import { h } from "preact";
-import { AppComponent, TitleUpdater } from "./app-component";
+import { AppComponent } from "./app-component";
 import * as resetGameObj from "../minesweeper/functions/reset-game";
 import * as loadStatsObj from "../stats/functions/load-stats";
 import { Route } from "preact-router";
 import { MinesweeperComponent } from "./minesweeper/minesweeper-component";
 import { minesweeperRouteProps } from "./minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "./stats/stats-route-props";
-import { StatsComponent } from "./stats/stats-component";
+import { StatsContainer } from "./stats/stats-container";
 
 describe("AppComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
@@ -42,22 +42,9 @@ describe("AppComponent", function() {
             .filterWhere(
                 item =>
                     item.prop("path") === statsRouteProps.path &&
-                    item.prop("component") === StatsComponent
+                    item.prop("component") === StatsContainer
             );
         expect(foundLink.length).toBe(1);
-    });
-
-    test("should set title when updateTitle functions are called", function() {
-        const titleUpdaters: TitleUpdater[] = wrapper
-            .find(Route)
-            .map(item => item.prop("updateTitle"));
-        expect(titleUpdaters.length).toBe(3);
-        titleUpdaters[0]("TEST0");
-        expect(document.title).toBe("Minesweeper Game - TEST0");
-        titleUpdaters[1]("TEST1");
-        expect(document.title).toBe("Minesweeper Game - TEST1");
-        titleUpdaters[2]("TEST2");
-        expect(document.title).toBe("Minesweeper Game - TEST2");
     });
 
     function simulateTouchStartOnApp(): void {

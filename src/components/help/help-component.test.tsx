@@ -12,15 +12,11 @@ import {
 } from "../../minesweeper/types/difficulty";
 import * as style from "./help-component.css";
 
-describe("StatsComponent", function() {
+describe("HelpComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
-    let title: string;
 
     function setup(): void {
-        const titleUpdater = function(it: string): void {
-            title = it;
-        };
-        wrapper = shallow(<HelpComponent updateTitle={titleUpdater} />);
+        wrapper = shallow(<HelpComponent />);
     }
 
     ([
@@ -38,6 +34,6 @@ describe("StatsComponent", function() {
 
     test("should update title", function() {
         setup();
-        expect(title).toBe(helpRouteProps.title);
+        expect(document.title).toContain(helpRouteProps.title);
     });
 });

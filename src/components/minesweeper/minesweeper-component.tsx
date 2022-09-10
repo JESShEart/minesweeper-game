@@ -8,24 +8,20 @@ import * as style from "./minesweeper-component.css";
 import { TimerComponent } from "./timer/timer-component";
 import { FlaggingToggleComponent } from "./flagging-toggle/flagging-toggle-component";
 import { StatsDispatch } from "../../stats/stats-reducer";
-import { useEffect } from "preact/hooks";
-import { TitleUpdater } from "../app-component";
 import { minesweeperRouteProps } from "./minesweeper-route-props";
+import { useUpdateTitle } from "../../hooks/update-title";
 
 interface Props {
     game: Game;
     dispatch: GameDispatch;
     statsDispatch: StatsDispatch;
-    updateTitle: TitleUpdater;
 }
 
 export function MinesweeperComponent(props: Props): h.JSX.Element {
-    const { game, dispatch, statsDispatch, updateTitle } = props;
+    const { game, dispatch, statsDispatch } = props;
     const { status, flagging, startedAt, finishedAt } = game;
 
-    useEffect(function() {
-        updateTitle(minesweeperRouteProps.title);
-    }, []);
+    useUpdateTitle(minesweeperRouteProps.title);
 
     return (
         <div>

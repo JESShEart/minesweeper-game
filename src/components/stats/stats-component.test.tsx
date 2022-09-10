@@ -13,7 +13,6 @@ import { h } from "preact";
 describe("StatsComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
     let stats: Stats;
-    let title: string;
     let todayOnlyAction: jasmine.Spy;
 
     function setup(todayOnly: boolean): void {
@@ -21,18 +20,9 @@ describe("StatsComponent", function() {
             todayOnly,
             results: []
         } as Stats;
-        const titleUpdater = function(it: string): void {
-            title = it;
-        };
         const dispatch = function(): void {};
         todayOnlyAction = spyOn(todayOnlyActionObj, "todayOnlyAction");
-        wrapper = shallow(
-            <StatsComponent
-                stats={stats}
-                dispatch={dispatch}
-                updateTitle={titleUpdater}
-            />
-        );
+        wrapper = shallow(<StatsComponent stats={stats} dispatch={dispatch} />);
     }
 
     test("should put Today in heading when today only is true", function() {
@@ -76,6 +66,6 @@ describe("StatsComponent", function() {
 
     test("should update title", function() {
         setup(true);
-        expect(title).toBe(statsRouteProps.title);
+        expect(document.title).toContain(statsRouteProps.title);
     });
 });

@@ -1,6 +1,4 @@
 import { h } from "preact";
-import { TitleUpdater } from "../app-component";
-import { useEffect } from "preact/hooks";
 import { helpRouteProps } from "./help-route-props";
 import {
     EASY,
@@ -8,15 +6,10 @@ import {
     EASY_PLUS_PLUS
 } from "../../minesweeper/types/difficulty";
 import * as style from "./help-component.css";
+import { useUpdateTitle } from "../../hooks/update-title";
 
-interface Props {
-    updateTitle: TitleUpdater;
-}
-
-export function HelpComponent({ updateTitle }: Props): h.JSX.Element {
-    useEffect(function() {
-        updateTitle(helpRouteProps.title);
-    }, []);
+export function HelpComponent(): h.JSX.Element {
+    useUpdateTitle(helpRouteProps.title);
 
     return (
         <div>

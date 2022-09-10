@@ -16,7 +16,6 @@ import { shallow, ShallowWrapper } from "enzyme";
 describe("MinesweeperComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
     let game: Game;
-    let title: string;
     let gameDispatch: GameDispatch;
     let statsDispatch: StatsDispatch;
 
@@ -27,9 +26,6 @@ describe("MinesweeperComponent", function() {
             finishedAt: 2,
             flagging: false
         } as Game;
-        const titleUpdater = function(it: string): void {
-            title = it;
-        };
         gameDispatch = function(): void {};
         statsDispatch = function(): void {};
         wrapper = shallow(
@@ -37,7 +33,6 @@ describe("MinesweeperComponent", function() {
                 game={game}
                 dispatch={gameDispatch}
                 statsDispatch={statsDispatch}
-                updateTitle={titleUpdater}
             />
         );
     });
@@ -75,6 +70,6 @@ describe("MinesweeperComponent", function() {
     });
 
     test("should update title", function() {
-        expect(title).toBe(minesweeperRouteProps.title);
+        expect(document.title).toContain(minesweeperRouteProps.title);
     });
 });
