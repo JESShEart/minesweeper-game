@@ -17,7 +17,7 @@ import * as style from "./stats-component.css";
 import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { todayOnlyAction } from "../../stats/actions/today-only-action";
 import { statsRouteProps } from "./stats-route-props";
-import { useUpdateTitle } from "../../hooks/update-title";
+import { useUpdateTitle } from "../../hooks/use-update-title";
 
 interface Props {
     stats: Stats;

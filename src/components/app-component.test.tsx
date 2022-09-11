@@ -8,7 +8,7 @@ import { Route } from "preact-router";
 import { MinesweeperComponent } from "./minesweeper/minesweeper-component";
 import { minesweeperRouteProps } from "./minesweeper/minesweeper-route-props";
 import { statsRouteProps } from "./stats/stats-route-props";
-import { StatsContainer } from "./stats/stats-container";
+import { StatsContainer } from "../containers/stats-container";
 
 describe("AppComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;

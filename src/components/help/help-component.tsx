@@ -6,7 +6,7 @@ import {
     EASY_PLUS_PLUS
 } from "../../minesweeper/types/difficulty";
 import * as style from "./help-component.css";
-import { useUpdateTitle } from "../../hooks/update-title";
+import { useUpdateTitle } from "../../hooks/use-update-title";
 
 export function HelpComponent(): h.JSX.Element {
     useUpdateTitle(helpRouteProps.title);

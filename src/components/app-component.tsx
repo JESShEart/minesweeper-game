@@ -7,9 +7,9 @@ import { statsRouteProps } from "./stats/stats-route-props";
 import { helpRouteProps } from "./help/help-route-props";
 import { HelpComponent } from "./help/help-component";
 import * as style from "./app-component.css";
-import { useStatsReducer } from "../hooks/use-stats";
-import { StatsContainer } from "./stats/stats-container";
+import { StatsContainer } from "../containers/stats-container";
 import { useGameReducer } from "../hooks/use-game";
+import { useStatsReducer } from "../hooks/use-stats";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 if ((module as any).hot) {
@@ -20,8 +20,8 @@ if ((module as any).hot) {
 export type TitleUpdater = (routeTitle: string) => void;
 
 export function AppComponent(): h.JSX.Element {
-    const { game, gameDispatch } = useGameReducer();
-    const { statsDispatch } = useStatsReducer();
+    useGameReducer();
+    useStatsReducer();
 
     function clearSelection(): void {
         // touch devices have a selection behavior for long presses,
@@ -47,9 +47,6 @@ export function AppComponent(): h.JSX.Element {
                     <Route
                         path={minesweeperRouteProps.path}
                         component={MinesweeperComponent}
-                        game={game}
-                        dispatch={gameDispatch}
-                        statsDispatch={statsDispatch}
                     />
                     <Route
                         path={statsRouteProps.path}
@@ -60,7 +57,7 @@ export function AppComponent(): h.JSX.Element {
                         component={HelpComponent}
                     />
                 </Router>
-                <small className={style.version}>v1.2.0</small>
+                <small className={style.version}>v1.3.0</small>
             </main>
         </div>
     );

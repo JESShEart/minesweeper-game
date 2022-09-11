@@ -1,49 +1,26 @@
 import { h } from "preact";
-import { GameDispatch } from "../../minesweeper/game-reducer";
-import { BoardComponent } from "./board/board-component";
-import { ResetComponent } from "./reset/reset-component";
-import { Game } from "../../minesweeper/types/game";
-import { StatusComponent } from "./status/status-component";
 import * as style from "./minesweeper-component.css";
-import { TimerComponent } from "./timer/timer-component";
-import { FlaggingToggleComponent } from "./flagging-toggle/flagging-toggle-component";
-import { StatsDispatch } from "../../stats/stats-reducer";
 import { minesweeperRouteProps } from "./minesweeper-route-props";
-import { useUpdateTitle } from "../../hooks/update-title";
+import { useUpdateTitle } from "../../hooks/use-update-title";
+import { BoardContainer } from "../../containers/board-container";
+import { TimerContainer } from "../../containers/timer-container";
+import { StatusContainer } from "../../containers/status-container";
+import { FlaggingToggleContainer } from "../../containers/flagging-toggle-container";
+import { ResetContainer } from "../../containers/reset-container";
 
-interface Props {
-    game: Game;
-    dispatch: GameDispatch;
-    statsDispatch: StatsDispatch;
-}
-
-export function MinesweeperComponent(props: Props): h.JSX.Element {
-    const { game, dispatch, statsDispatch } = props;
-    const { status, flagging, startedAt, finishedAt } = game;
-
+export function MinesweeperComponent(): h.JSX.Element {
     useUpdateTitle(minesweeperRouteProps.title);
 
     return (
         <div>
-            <ResetComponent dispatch={dispatch} />
+            <ResetContainer />
             <div className={style.topRow}>
-                <StatusComponent
-                    status={status}
-                    difficultyName={game.difficultyName}
-                />
-                <TimerComponent startedAt={startedAt} finishedAt={finishedAt} />
+                <StatusContainer />
+                <TimerContainer />
             </div>
-            <BoardComponent
-                game={game}
-                dispatch={dispatch}
-                statsDispatch={statsDispatch}
-            />
+            <BoardContainer />
             <div className={style.bottomRow}>
-                <FlaggingToggleComponent
-                    status={status}
-                    flagging={flagging}
-                    dispatch={dispatch}
-                />
+                <FlaggingToggleContainer />
             </div>
         </div>
     );
