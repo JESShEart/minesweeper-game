@@ -18,6 +18,7 @@ import { TotalSummaryComponent } from "./summary/total-summary-component";
 import { todayOnlyAction } from "../../stats/actions/today-only-action";
 import { statsRouteProps } from "./stats-route-props";
 import { useUpdateTitle } from "../../hooks/use-update-title";
+import { getDifficultySummary } from "../../stats/functions/get-difficulty-summary";
 
 interface Props {
     stats: Stats;
@@ -63,7 +64,7 @@ export function StatsComponent(props: Props): h.JSX.Element {
                         <DifficultySummaryComponent
                             key={`${i}-${j}`}
                             difficulty={difficulty}
-                            stats={stats}
+                            summary={getDifficultySummary(stats, difficulty)}
                         />
                     ))}
                 </div>

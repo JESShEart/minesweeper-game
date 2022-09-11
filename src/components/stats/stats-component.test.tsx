@@ -59,8 +59,8 @@ describe("StatsComponent", function() {
                 wrapper
                     .find(DifficultySummaryComponent)
                     .findWhere(dsc => dsc.props().difficulty === difficulty)
-                    .props().stats
-            ).toBe(stats);
+                    .length
+            ).toBe(1);
         });
     });
 
