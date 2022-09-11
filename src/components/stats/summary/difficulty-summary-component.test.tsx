@@ -3,15 +3,12 @@ import { shallow, ShallowWrapper } from "enzyme";
 import { h } from "preact";
 import { DifficultySummaryComponent } from "./difficulty-summary-component";
 import { Difficulty } from "../../../minesweeper/types/difficulty";
-import { Stats } from "../../../stats/types/stats";
-import * as getDifficultySummaryObj from "../../../stats/functions/get-difficulty-summary";
 import { DifficultySummary } from "../../../stats/types/difficulty-summary";
-import { Result } from "../../../stats/types/result";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { StatLineComponent } from "../stat-line/stat-line-component";
 
 describe("DifficultySummaryComponent", function() {
     let wrapper: ShallowWrapper<h.JSX.Element>;
-    let getDifficultySummary: jasmine.Spy;
 
     const difficulty: Readonly<Difficulty> = {
         name: "EASY",
@@ -20,11 +17,6 @@ describe("DifficultySummaryComponent", function() {
         width: 2,
         mineRatio: 3
     };
-
-    const stats: Readonly<Stats> = {
-        results: [] as Readonly<Array<Result>>,
-        todayOnly: true
-    } as Stats;
 
     const summary: Readonly<DifficultySummary> = {
         games: 2,
@@ -35,18 +27,12 @@ describe("DifficultySummaryComponent", function() {
     };
 
     beforeEach(function(): void {
-        getDifficultySummary = spyOn(
-            getDifficultySummaryObj,
-            "getDifficultySummary"
-        );
-        getDifficultySummary.and.returnValue(summary);
         wrapper = shallow(
-            <DifficultySummaryComponent stats={stats} difficulty={difficulty} />
+            <DifficultySummaryComponent
+                difficulty={difficulty}
+                summary={summary}
+            />
         );
-    });
-
-    test("should call getDifficultySummary with props", function() {
-        expect(getDifficultySummary).toHaveBeenCalledWith(stats, difficulty);
     });
 
     test("should set difficulty title", function() {

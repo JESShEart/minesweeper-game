@@ -1,18 +1,16 @@
-import { Stats } from "../../../stats/types/stats";
 import { h } from "preact";
 import { Difficulty } from "../../../minesweeper/types/difficulty";
 import { StatLineComponent } from "../stat-line/stat-line-component";
 import * as style from "./summary-component.css";
-import { getDifficultySummary } from "../../../stats/functions/get-difficulty-summary";
+import { DifficultySummary } from "../../../stats/types/difficulty-summary";
 
 interface Props {
-    stats: Stats;
     difficulty: Difficulty;
+    summary: DifficultySummary;
 }
 
 export function DifficultySummaryComponent(props: Props): h.JSX.Element {
-    const { stats, difficulty } = props;
-    const summary = getDifficultySummary(stats, difficulty);
+    const { difficulty, summary } = props;
     const { games, wins, winRate, fastestTime, averageTime } = summary;
 
     return (
