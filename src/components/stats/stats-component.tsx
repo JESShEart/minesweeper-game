@@ -27,6 +27,11 @@ interface Props {
 export function StatsComponent(props: Props): h.JSX.Element {
     const { stats, dispatch } = props;
     const heading = stats.todayOnly ? "Today" : "All Time";
+    const summaries = [
+        [EASY, EASY_PLUS, EASY_PLUS_PLUS],
+        [NORMAL, NORMAL_PLUS, NORMAL_PLUS_PLUS],
+        [HARD, HARD_PLUS, HARD_PLUS_PLUS]
+    ];
 
     useUpdateTitle(statsRouteProps.title);
 
@@ -52,39 +57,17 @@ export function StatsComponent(props: Props): h.JSX.Element {
             <div className={style.summaries}>
                 <TotalSummaryComponent stats={stats} />
             </div>
-            <div className={style.summaries}>
-                <DifficultySummaryComponent difficulty={EASY} stats={stats} />
-                <DifficultySummaryComponent
-                    difficulty={EASY_PLUS}
-                    stats={stats}
-                />
-                <DifficultySummaryComponent
-                    difficulty={EASY_PLUS_PLUS}
-                    stats={stats}
-                />
-            </div>
-            <div className={style.summaries}>
-                <DifficultySummaryComponent difficulty={NORMAL} stats={stats} />
-                <DifficultySummaryComponent
-                    difficulty={NORMAL_PLUS}
-                    stats={stats}
-                />
-                <DifficultySummaryComponent
-                    difficulty={NORMAL_PLUS_PLUS}
-                    stats={stats}
-                />
-            </div>
-            <div className={style.summaries}>
-                <DifficultySummaryComponent difficulty={HARD} stats={stats} />
-                <DifficultySummaryComponent
-                    difficulty={HARD_PLUS}
-                    stats={stats}
-                />
-                <DifficultySummaryComponent
-                    difficulty={HARD_PLUS_PLUS}
-                    stats={stats}
-                />
-            </div>
+            {summaries.map((row, i) => (
+                <div key={i} className={style.summaries}>
+                    {row.map((difficulty, j) => (
+                        <DifficultySummaryComponent
+                            key={`${i}-${j}`}
+                            difficulty={difficulty}
+                            stats={stats}
+                        />
+                    ))}
+                </div>
+            ))}
             <small>ℹ️ Stats are only recorded for finished games!</small>
         </div>
     );
